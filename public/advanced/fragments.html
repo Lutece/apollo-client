@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Using fragments | Apollo Client</title>
+    <meta name="description" content="Learn how to use fragments to share fields across queries">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Using fragments | Apollo Client">
+    <meta property="og:description" content="Learn how to use fragments to share fields across queries">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Using fragments | Apollo Client">
+    <meta name="twitter:description" content="Learn how to use fragments to share fields across queries">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc current">
+                <a href="" class="sidebar-link current">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Using fragments
+            </h1>
+            
+              <div class="subtitle-page">
+                Learn how to use fragments to share fields across queries
+              </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <p>A <a href="http://graphql.org/learn/queries/#fragments" target="_blank" rel="noopener">GraphQL fragment</a> is a shared piece of query logic.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-graphql">fragment NameParts on Person {
+  firstName
+  lastName
+}
+
+query GetPerson {
+  people(id: &quot;7&quot;) {
+    ...NameParts
+    avatar(size: LARGE)
+  }
+}
+</code></pre>
+<p>It’s important to note that the component after the <code>on</code> clause is designated for the type we are selecting from. In this case, <code>people</code> is of type <code>Person</code> and we want to select the <code>firstName</code> and <code>lastName</code> fields from <code>people(id: &quot;7&quot;)</code>.</p>
+<p>There are two principal uses for fragments in Apollo:</p>
+<ul>
+<li>Sharing fields between multiple queries, mutations or subscriptions.</li>
+<li>Breaking your queries up to allow you to co-locate field access with the places they are used.</li>
+</ul>
+<p>In this document we’ll outline patterns to do both; we’ll also make use of utilities in the <a href="https://github.com/apollographql/apollo-client" target="_blank" rel="noopener"><code>graphql-anywhere</code></a> and <a href="https://github.com/apollographql/graphql-tag" target="_blank" rel="noopener"><code>graphql-tag</code></a> packages which aim to help us, especially with the second problem.</p>
+<h2 id="reusing-fragments">Reusing fragments</h2>
+
+<p>The most straightforward use of fragments is to reuse parts of queries (or mutations or subscriptions) in various parts of your application. For instance, in GitHunt on the comments page, we want to fetch the same fields after posting a comment as we originally query. This way we can be sure that we render consistent comment objects as the data changes.</p>
+<p>To do so, we can simply share a fragment describing the fields we need for a comment:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import gql from &#39;graphql-tag&#39;;
+
+CommentsPage.fragments = {
+  comment: gql`
+    fragment CommentsPageComment on Comment {
+      id
+      postedBy {
+        login
+        html_url
+      }
+      createdAt
+      content
+    }
+  `,
+};
+</code></pre>
+<p>We put the fragment on <code>CommentsPage.fragments.comment</code> by convention, and use the familiar <code>gql</code> helper to create it.</p>
+<p>When it’s time to embed the fragment in a query, we simply use the <code>...Name</code> syntax in our GraphQL, and embed the fragment inside our query GraphQL document:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const SUBMIT_COMMENT_MUTATION = gql`
+  mutation SubmitComment($repoFullName: String!, $commentContent: String!) {
+    submitComment(repoFullName: $repoFullName, commentContent: $commentContent) {
+      ...CommentsPageComment
+    }
+  }
+  ${CommentsPage.fragments.comment}
+`;
+
+export const COMMENT_QUERY = gql`
+  query Comment($repoName: String!) {
+    # ...
+    entry(repoFullName: $repoName) {
+      # ...
+      comments {
+        ...CommentsPageComment
+      }
+      # ...
+    }
+  }
+  ${CommentsPage.fragments.comment}
+`;
+</code></pre>
+<p>You can see the full source code to the <code>CommentsPage</code> in GitHunt <a href="https://github.com/apollographql/GitHunt-React/blob/master/src/routes/CommentsPage.js" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="colocating-fragments">Colocating fragments</h2>
+
+<p>A key advantage of GraphQL is the tree-like nature of the response data, which in many cases mirrors your rendered component hierarchy. This, combined with GraphQL’s support for fragments, allows you to split your queries up in such a way that the various fields fetched by the queries are located right alongside the code that uses the field.</p>
+<p>Although this technique doesn’t always make sense (for instance it’s not always the case that the GraphQL schema is driven by the UI requirements), when it does, it’s possible to use some patterns in Apollo client to take full advantage of it.</p>
+<p>In GitHunt, we show an example of this on the <a href="https://github.com/apollographql/GitHunt-React/blob/master/src/routes/FeedPage.js" target="_blank" rel="noopener"><code>FeedPage</code></a>, which constructs the follow view hierarchy:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">FeedPage
+└── Feed
+    └── FeedEntry
+        ├── RepoInfo
+        └── VoteButtons
+</code></pre>
+<p>The <code>FeedPage</code> conducts a query to fetch a list of <code>Entry</code>s, and each of the subcomponents requires different subfields of each <code>Entry</code>.</p>
+<p>The <code>graphql-anywhere</code> package gives us tools to easily construct a single query that provides all the fields that each subcomponent needs, and allows to easily pass the exact field that a component needs to it.</p>
+<h3 id="creating-fragments">Creating fragments</h3>
+
+<p>To create the fragments, we again use the <code>gql</code> helper and attach to subfields of <code>ComponentClass.fragments</code>, for example:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">VoteButtons.fragments = {
+  entry: gql`
+    fragment VoteButtons on Entry {
+      score
+      vote {
+        vote_value
+      }
+    }
+  `,
+};
+</code></pre>
+<p>If our fragments include sub-fragments then we can pass them into the <code>gql</code> helper:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">FeedEntry.fragments = {
+  entry: gql`
+    fragment FeedEntry on Entry {
+      commentCount
+      repository {
+        full_name
+        html_url
+        owner {
+          avatar_url
+        }
+      }
+      ...VoteButtons
+      ...RepoInfo
+    }
+    ${VoteButtons.fragments.entry}
+    ${RepoInfo.fragments.entry}
+  `,
+};
+</code></pre>
+<h3 id="filtering-with-fragments">Filtering with fragments</h3>
+
+<p>We can also use the <code>graphql-anywhere</code> package to filter the exact fields from the <code>entry</code> before passing them to the subcomponent. So when we render a <code>VoteButtons</code>, we can simply do:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">import { filter } from &#39;graphql-anywhere&#39;;
+
+&lt;VoteButtons
+  entry={filter(VoteButtons.fragments.entry, entry)}
+  canVote={loggedIn}
+  onVote={type =&gt; onVote({
+    repoFullName: full_name,
+    type,
+  })}
+&#x2F;&gt;
+</code></pre>
+<p>The <code>filter()</code> function will grab exactly the fields from the <code>entry</code> that the fragment defines.</p>
+<h3 id="webpack-importing-fragments" title="Fragments with Webpack">Importing fragments when using Webpack</h3>
+
+<p>When loading <code>.graphql</code> files with <a href="https://github.com/apollographql/graphql-tag/blob/master/loader.js" target="_blank" rel="noopener">graphql-tag/loader</a>, we can include fragments using <code>import</code> statements. For example:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-graphql">#import &quot;.&#x2F;someFragment.graphql&quot;
+</code></pre>
+<p>Will make the contents of <code>someFragment.graphql</code> available to the current file. See the <a href="../recipes/webpack.html#Fragments">Webpack Fragments</a> section for additional details.</p>
+<h2 id="fragment-matcher">Fragments on unions and interfaces</h2>
+
+<blockquote>
+<p>This is an advanced feature that Apollo Boost does not support. Learn how to set Apollo Client up manually in our <a href="./boost-migration.html">Apollo Boost migration guide</a>.</p>
+</blockquote>
+<p>By default, Apollo Client doesn’t require any knowledge of the GraphQL schema, which means it’s very easy to set up and works with any server and supports even the largest schemas. However, as your usage of Apollo and GraphQL becomes more sophisticated, you may start using fragments on interfaces or unions. Here’s an example of a query that uses fragments on an interface:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">query {
+  all_people {
+    ... on Character {
+      name
+    }
+    ... on Jedi {
+      side
+    }
+    ... on Droid {
+      model
+    }
+  }
+}
+</code></pre>
+<p>In the query above, <code>all_people</code> returns a result of type <code>Character[]</code>. Both <code>Jedi</code> and <code>Droid</code> are possible concrete types of <code>Character</code>, but on the client there is no way to know that without having some information about the schema. By default, Apollo Client’s cache will use a heuristic fragment matcher, which assumes that a fragment matched if the result included all the fields in its selection set, and didn’t match when any field was missing. This works in most cases, but it also means that Apollo Client cannot check the server response for you, and it cannot tell you when you’re manually writing an invalid data into the store using <code>update</code>, <code>updateQuery</code>, <code>writeQuery</code>, etc.</p>
+<p>The section below explains how to pass the necessary schema knowledge to the Apollo Client cache so unions and interfaces can be accurately matched and results validated before writing them into the store.</p>
+<p>To support result validation and accurate fragment matching on unions and interfaces, a special fragment matcher called the <code>IntrospectionFragmentMatcher</code> can be used. If there are any changes related to union or interface types in your schema, you will have to update the fragment matcher accordingly.</p>
+<p>We recommend setting up a build step that extracts the necessary information from the schema into a JSON file, where it can be imported from when constructing the fragment matcher. To set it up, follow the three steps below:</p>
+<ol>
+<li>Query your server / schema to obtain the necessary information about unions and interfaces and write it to a file. You can set this up as a script to run at build time.</li>
+</ol>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const fetch = require(&#39;node-fetch&#39;);
+const fs = require(&#39;fs&#39;);
+
+fetch(`${YOUR_API_HOST}&#x2F;graphql`, {
+  method: &#39;POST&#39;,
+  headers: { &#39;Content-Type&#39;: &#39;application&#x2F;json&#39; },
+  body: JSON.stringify({
+    variables: {},
+    query: `
+      {
+        __schema {
+          types {
+            kind
+            name
+            possibleTypes {
+              name
+            }
+          }
+        }
+      }
+    `,
+  }),
+})
+  .then(result =&gt; result.json())
+  .then(result =&gt; {
+    &#x2F;&#x2F; here we&#39;re filtering out any type information unrelated to unions or interfaces
+    const filteredData = result.data.__schema.types.filter(
+      type =&gt; type.possibleTypes !== null,
+    );
+    result.data.__schema.types = filteredData;
+    fs.writeFile(&#39;.&#x2F;fragmentTypes.json&#39;, JSON.stringify(result.data), err =&gt; {
+      if (err) {
+        console.error(&#39;Error writing fragmentTypes file&#39;, err);
+      } else {
+        console.log(&#39;Fragment types successfully extracted!&#39;);
+      }
+    });
+  });
+</code></pre>
+<ol start="2">
+<li>Create a new IntrospectionFragment matcher by passing in the <code>fragmentTypes.json</code> file you just created. You’ll want to do this in the same file where you initialize the cache for Apollo Client.</li>
+</ol>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { IntrospectionFragmentMatcher } from &#39;apollo-cache-inmemory&#39;;
+import introspectionQueryResultData from &#39;.&#x2F;fragmentTypes.json&#39;;
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData
+});
+</code></pre>
+<ol start="3">
+<li>Pass in the newly created <code>IntrospectionFragmentMatcher</code> to configure your cache during construction. Then, you pass your newly configured cache to <code>ApolloClient</code> to complete the process.</li>
+</ol>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import ApolloClient from &#39;apollo-client&#39;;
+import { InMemoryCache } from &#39;apollo-cache-inmemory&#39;;
+import { HttpLink } from &#39;apollo-link-http&#39;;
+
+&#x2F;&#x2F; add fragmentMatcher code from step 2 here
+
+const cache = new InMemoryCache({ fragmentMatcher });
+
+const client = new ApolloClient({
+  cache,
+  link: new HttpLink(),
+});
+</code></pre>
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+         
+              <a class="link primary prev" href="caching.html">
+                <span class="icon-arrow-left-alt"></span>
+                <span class="subtitle-pagination">Previous</span>
+                Caching data
+              </a>
+         
+          
+          
+           
+              <a class="link primary next" href="../recipes/authentication.html">
+                <span class="subtitle-pagination">Next</span>
+                Authentication
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/advanced/fragments.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Updating the Store | Apollo Client</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Updating the Store | Apollo Client">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Updating the Store | Apollo Client">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Updating the Store
+            </h1>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <p>Apollo performs two important core tasks: Executing queries and mutations, and caching the results.</p>
+<p>Thanks to Apollo’s store design, it’s possible for the results of a query or mutation to update your UI in all the right places. In many cases it’s possible for that to happen automatically, whereas in others you need to help the client out a little in doing so.</p>
+<h2 id="normalization">Normalization with <code>dataIdFromObject</code></h2>
+
+<p>Apollo does result caching based on two things:</p>
+<ol>
+<li>The shape of GraphQL queries and their results.</li>
+<li>The identities of the objects returned from the server.</li>
+</ol>
+<p>Flattening out the cache based on object identity is referred to as cache normalization. You can read about our caching model in detail in our blog post, <a href="https://medium.com/apollo-stack/the-concepts-of-graphql-bc68bd819be3" target="_blank" rel="noopener">“GraphQL Concepts Visualized”</a>.</p>
+<p>By default, Apollo identifies objects based on two properties: The <code>__typename</code> and an ID field, either <code>id</code> or <code>_id</code>. The client automatically adds the <code>__typename</code> field to your queries, so you just have to make sure to fetch the <code>id</code> field if you have one.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">&#x2F;&#x2F; This result
+{
+  __typename: &#39;Person&#39;,
+  id: &#39;1234&#39;,
+  name: &#39;Jonas&#39;,
+}
+
+&#x2F;&#x2F; Will get the following ID
+&#39;Person:1234&#39;
+</code></pre>
+<p>You can also specify a custom function to generate IDs from each object, and supply it as the <code>dataIdFromObject</code> in the <a href="initialization.html#creating-client"><code>ApolloClient</code> constructor</a>, if you want to specify how Apollo will identify and de-duplicate the objects returned from the server.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { InMemoryCache } from &#39;apollo-cache-inmemory&#39;;
+
+&#x2F;&#x2F; If your database has unique IDs across all types of objects, you can use
+&#x2F;&#x2F; a very simple function!
+const cache = new InMemoryCache({
+  dataIdFromObject: o =&gt; o.id
+});
+</code></pre>
+<p>These IDs allow Apollo Client to reactively tell all queries that fetched a particular object about updates to that part of the store.</p>
+<p>If you want to get the dataIdFromObjectFunction (for instance when using the <a href="LINK PLZ"><code>readFragment</code> function</a>), you can import it from the InMemoryCache package;
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { defaultDataIdFromObject } from &#39;apollo-cache-inmemory&#39;;
+const person = {
+  __typename: &#39;Person&#39;,
+  id: &#39;1234&#39;,
+};
+
+defaultDataIdFromObject(person); &#x2F;&#x2F; &#39;Person:1234&#39;
+</code></pre></p>
+<h3 id="automatic-updates">Automatic store updates</h3>
+
+<p>Let’s look at a case where just using the cache normalization results in the correct update to our store. Let’s say we do the following query:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-graphql">{
+  post(id: &#39;5&#39;) {
+    id
+    score
+  }
+}
+</code></pre>
+<p>Then, we do the following mutation:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-graphql">mutation {
+  upvotePost(id: &#39;5&#39;) {
+    id
+    score
+  }
+}
+</code></pre>
+<p>If the <code>id</code> field on both results matches up, then the <code>score</code> field everywhere in our UI will be updated automatically! One nice way to take advantage of this property as much as possible is to make your mutation results have all of the data necessary to update the queries previously fetched. A simple trick for this is to use <a href="fragments.html">fragments</a> to share fields between the query and the mutation that affects it.</p>
+<h2 id="after-mutations">Updating after a mutation</h2>
+
+<p>In some cases, just using <code>dataIdFromObject</code> is not enough for your application UI to update correctly. For example, if you want to add something to a list of objects without refetching the entire list, or if there are some objects that to which you can’t assign an object identifier, Apollo Client cannot update existing queries for you. Read on to learn about the other tools at your disposal.</p>
+<h3 id="refetchQueries"><code>refetchQueries</code></h3>
+
+<p><code>refetchQueries</code> is the simplest way of updating the cache. With <code>refetchQueries</code> you can specify one or more queries that you want to run after a mutation is completed in order to refetch the parts of the store that may have been affected by the mutation:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-javascript">mutate({
+  &#x2F;&#x2F;... insert comment mutation
+  refetchQueries: [{
+    query: gql`
+      query UpdateCache($repoName: String!) {
+        entry(repoFullName: $repoName) {
+          id
+          comments {
+            postedBy {
+              login
+              html_url
+            }
+            createdAt
+            content
+          }
+        }
+      }
+    `,
+    variables: { repoName: &#39;apollographql&#x2F;apollo-client&#39; },
+  }],
+})
+</code></pre>
+<p>A very common way of using <code>refetchQueries</code> is to import queries defined for other components to make sure that those components will be updated:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-javascript">import RepoCommentsQuery from &#39;..&#x2F;queries&#x2F;RepoCommentsQuery&#39;;
+
+mutate({
+  &#x2F;&#x2F;... insert comment mutation
+  refetchQueries: [{
+    query: RepoCommentsQuery,
+    variables: { repoFullName: &#39;apollographql&#x2F;apollo-client&#39; },
+  }],
+})
+</code></pre>
+<h3 id="directAccess"><code>update</code></h3>
+
+<p>Using <code>update</code> gives you full control over the cache, allowing you to make changes to your data model in response to a mutation in any way you like. <code>update</code> is the recommended way of updating the cache after a query. It is explained in full <a href="../api/react-apollo/mutations.html#graphql-mutation-options-update">here</a>.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-javascript">import CommentAppQuery from &#39;..&#x2F;queries&#x2F;CommentAppQuery&#39;;
+
+const SUBMIT_COMMENT_MUTATION = gql`
+  mutation SubmitComment($repoFullName: String!, $commentContent: String!) {
+    submitComment(repoFullName: $repoFullName, commentContent: $commentContent) {
+      postedBy {
+        login
+        html_url
+      }
+      createdAt
+      content
+    }
+  }
+`;
+
+const CommentsPageWithMutations = graphql(SUBMIT_COMMENT_MUTATION, {
+  props({ ownProps, mutate }) {
+    return {
+      submit({ repoFullName, commentContent }) {
+        return mutate({
+          variables: { repoFullName, commentContent },
+
+          update: (store, { data: { submitComment } }) =&gt; {
+            &#x2F;&#x2F; Read the data from our cache for this query.
+            const data = store.readQuery({ query: CommentAppQuery });
+            &#x2F;&#x2F; Add our comment from the mutation to the end.
+            data.comments.push(submitComment);
+            &#x2F;&#x2F; Write our data back to the cache.
+            store.writeQuery({ query: CommentAppQuery, data });
+          },
+        });
+      },
+    };
+  },
+})(CommentsPage);
+</code></pre>
+<h3 id="updateQueries"><code>updateQueries</code></h3>
+
+<p><strong>NOTE: We recommend using the more flexible <code>update</code> API instead of <code>updateQueries</code>. The <code>updateQueries</code> API may be deprecated in the future.</strong></p>
+<p>As its name suggests, <code>updateQueries</code> lets you update your UI based on the result of a mutation. To re-emphasize: most of the time, your UI will update automatically based on mutation results, as long as the object IDs in the result match up with the IDs you already have in your store. See the <a href="#normalization"><code>normalization</code></a> documentation above for more information about how to take advantage of this feature.</p>
+<p>However, if you are removing or adding items to a list with a mutation or can’t assign object identifiers to the relevant objects, you’ll have to use <code>updateQueries</code> to make sure that your UI reflects the change correctly.</p>
+<p>We’ll take the comments page within GitHunt as our example. When we submit a new comment, the “submit” button fires a mutation which adds a new comment to the “list” of the comments held on the server. In reality, the server doesn’t know there’s a list–it just knows that something is added to the <code>comments</code> table in SQL–so the server can’t really tell us exactly where to put the result. The original query that fetched the comments for the list also doesn’t know about this new comment yet, so Apollo can’t automatically add it to the list for us.</p>
+<p>In this case, we can use <code>updateQueries</code> to make sure that query result is updated, which will also update Apollo’s normalized store to make everything remain consistent.</p>
+<p>If you’re familiar with Redux, think of the <code>updateQueries</code> option as a reducer, except instead of updating the store directly we’re updating the query result shape, which means we don’t have to worry about how the store internals work.</p>
+<p>We expose this mutation through a function prop that the <code>CommentsPage</code> component can call. This is what the code looks like:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-javascript">import update from &#39;immutability-helper&#39;;
+
+const SUBMIT_COMMENT_MUTATION = gql`
+  mutation SubmitComment($repoFullName: String!, $commentContent: String!) {
+    submitComment(repoFullName: $repoFullName, commentContent: $commentContent) {
+      postedBy {
+        login
+        html_url
+      }
+      createdAt
+      content
+    }
+  }
+`;
+
+const CommentsPageWithMutations = graphql(SUBMIT_COMMENT_MUTATION, {
+  props({ ownProps, mutate }) {
+    return {
+      submit({ repoFullName, commentContent }) {
+        return mutate({
+          variables: { repoFullName, commentContent },
+
+          updateQueries: {
+            Comment: (prev, { mutationResult }) =&gt; {
+              const newComment = mutationResult.data.submitComment;
+
+              return update(prev, {
+                entry: {
+                  comments: {
+                    $unshift: [newComment],
+                  },
+                },
+              });
+            },
+          },
+        });
+      },
+    };
+  },
+})(CommentsPage);
+</code></pre>
+<p>If we were to look carefully at the server schema, we’d see that the mutation actually returns information about the single new comment that was added; it doesn’t refetch the whole list of comments. This makes a lot of sense: if we have a thousand comments on a page, we don’t want to refetch all of them if we add a single new comment.</p>
+<p>The comments page itself is rendered with the following query:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-javascript">const COMMENT_QUERY = gql`
+  query Comment($repoName: String!) {
+    currentUser {
+      login
+      html_url
+    }
+
+    entry(repoFullName: $repoName) {
+      id
+      postedBy {
+        login
+        html_url
+      }
+      createdAt
+      comments {
+        postedBy {
+          login
+          html_url
+        }
+        createdAt
+        content
+      }
+      repository {
+        full_name
+        html_url
+        description
+        open_issues_count
+        stargazers_count
+      }
+    }
+  }`;
+</code></pre>
+<p>Now, we have to incorporate the newly added comment returned by the mutation into the information that was already returned by the <code>COMMENT_QUERY</code> that was fired when the page was loaded. We accomplish this through <code>updateQueries</code>. Zooming in on that portion of the code:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-javascript">mutate({
+  &#x2F;&#x2F;...
+  updateQueries: {
+    Comment: (prev, { mutationResult }) =&gt; {
+      const newComment = mutationResult.data.submitComment;
+      return update(prev, {
+        entry: {
+          comments: {
+            $unshift: [newComment],
+          },
+        },
+      });
+    },
+  },
+})
+</code></pre>
+<p>Fundamentally, <code>updateQueries</code> is a map going from the name of a query (in our case, <code>Comment</code>) to a function that receives the previous result that this query received as well as the result returned by the mutation. In our case, the mutation returns information about the new comment. This function should then incorporate the mutation result into a new object containing the result previously received by the query (<code>prev</code>) and return that new object.</p>
+<p>Note that the function must not alter the <code>prev</code> object (because <code>prev</code> is compared with the new object returned to see what changes the function made and hence what prop updates are needed).</p>
+<p>In our <code>updateQueries</code> function for the <code>Comment</code> query, we’re doing something really simple: just adding the comment we just submitted to the list of comments that the query asks for. We’re doing that using the <code>update</code> function from the <a href="https://github.com/kolodny/immutability-helper" target="_blank" rel="noopener">immutability-helper</a> package, just to do it concisely. But, if you wanted to, you could write some no-helper Javascript to combine the two incoming objects into a new one for the result.</p>
+<p>Once the mutation fires and the result arrives from the server (or, a result is provided through optimistic UI), our <code>updateQueries</code> function for the <code>Comment</code> query will be called and the <code>Comment</code> query will be updated accordingly. These changes in the result will be mapped to React props and our UI will update as well with the new information!</p>
+<h2 id="fetchMore">Incremental loading: <code>fetchMore</code></h2>
+
+<p><code>fetchMore</code> can be used to update the result of a query based on the data returned by another query. Most often, it is used to handle infinite-scroll pagination or other situations where you are loading more data when you already have some.</p>
+<p>In our GitHunt example, we have a paginated feed that displays a list of GitHub repositories. When we hit the “Load More” button, we don’t want Apollo Client to throw away the repository information it has already loaded. Instead, it should just append the newly loaded repositories to the list that Apollo Client already has in the store. With this update, our UI component should re-render and show us all of the available repositories.</p>
+<p>Let’s see how to do that with the <code>fetchMore</code> method on a query:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-javascript">const FeedQuery = gql`
+  query Feed($type: FeedType!, $offset: Int, $limit: Int) {
+    # ...
+  }`;
+
+const FeedWithData = graphql(FeedQuery, {
+  props({ data: { loading, feed, currentUser, fetchMore } }) {
+    return {
+      loading,
+      feed,
+      currentUser,
+      loadNextPage() {
+        return fetchMore({
+          variables: {
+            offset: feed.length,
+          },
+
+          updateQuery: (previousResult, { fetchMoreResult }) =&gt; {
+            if (!fetchMoreResult) { return previousResult; }
+
+            return Object.assign({}, previousResult, {
+              feed: [...previousResult.feed, ...fetchMoreResult.feed],
+            });
+          },
+        });
+      },
+    };
+  },
+})(Feed);
+</code></pre>
+<p>We have two components here: <code>FeedWithData</code> and <code>Feed</code>. The <code>FeedWithData</code> container implementation produces the <code>props</code> to be passed to the presentational <code>Feed</code> component. Specifically, we’re mapping the <code>loadNextPage</code> prop to the following:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">return fetchMore({
+  variables: {
+    offset: feed.length,
+  },
+  updateQuery: (prev, { fetchMoreResult }) =&gt; {
+    if (!fetchMoreResult.data) { return prev; }
+    return Object.assign({}, prev, {
+      feed: [...prev.feed, ...fetchMoreResult.feed],
+    });
+  },
+});
+</code></pre>
+<p>The <code>fetchMore</code> method takes a map of <code>variables</code> to be sent with the new query. Here, we’re setting the offset to <code>feed.length</code> so that we fetch items that aren’t already displayed on the feed. This variable map is merged with the one that’s been specified for the query associated with the component. This means that other variables, e.g. the <code>limit</code> variable, will have the same value as they do within the component query.</p>
+<p>It can also take a <code>query</code> named argument, which can be a GraphQL document containing a query that will be fetched in order to fetch more information; we refer to this as the <code>fetchMore</code> query. By default, the <code>fetchMore</code> query is the query associated with the container, in this case the <code>FEED_QUERY</code>.</p>
+<p>When we call <code>fetchMore</code>, Apollo Client will fire the <code>fetchMore</code> query and use the logic in the <code>updateQuery</code> option to incorporate that into the original result. The named argument <code>updateQuery</code> should be a function that takes the previous result of the query associated with your component (i.e. <code>FEED_QUERY</code> in this case) and the information returned by the <code>fetchMore</code> query and return a combination of the two.</p>
+<p>Here, the <code>fetchMore</code> query is the same as the query associated with the component. Our <code>updateQuery</code> takes the new feed items returned and just appends them onto the feed items that we’d asked for previously. With this, the UI will update and the feed will contain the next page of items!</p>
+<p>Although <code>fetchMore</code> is often used for pagination, there are many other cases in which it is applicable. For example, suppose you have a list of items (say, a collaborative todo list) and you have a way to fetch items that have been updated after a certain time. Then, you don’t have to refetch the whole todo list to get updates: you can just incorporate the newly added items with <code>fetchMore</code>, as long as your <code>updateQuery</code> function correctly merges the new results.</p>
+<h3 id="connection-directive">The <code>@connection</code> directive</h3>
+
+<p>Fundamentally, paginated queries are the same as any other query with the exception that calls to <code>fetchMore</code> update the same cache key. Since these queries are cached by both the initial query and their parameters, a problem arises when later retrieving or updating paginated queries in the cache. We don’t care about pagination arguments such as limits, offsets, or cursors outside of the need to <code>fetchMore</code>, nor do we want to provide them simply for accessing cached data.</p>
+<p>To solve this Apollo Client 1.6 introduced the <code>@connection</code> directive to specify a custom store key for results. A connection allows us to set the cache key for a field and to filter which arguments actually alter the query.</p>
+<p>To have a stable cache location for query results, Apollo Client 1.6 introduced the <code>@connection</code> directive, which can be used to specify a custom store key for results. To use the <code>@connection</code> directive, simply add the directive to the segment of the query you want a custom store key for and provide the <code>key</code> parameter to specify the store key. In addition to the <code>key</code> parameter, you can also include the optional <code>filter</code> parameter, which takes an array of query argument names to include in the generated custom store key.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">const query = gql`query Feed($type: FeedType!, $offset: Int, $limit: Int) {
+  feed(type: $type, offset: $offset, limit: $limit) @connection(key: &quot;feed&quot;, filter: [&quot;type&quot;]) {
+    ...FeedEntry
+  }
+}`
+</code></pre>
+<p>With the above query, even with multiple <code>fetchMore</code>s, the results of each feed update will always result in the <code>feed</code> key in the store being updated with the latest accumulated values. In this example, we also use the <code>@connection</code> directive’s optional <code>filter</code> argument to include the <code>type</code> query argument in the store key, which results in multiple store values that accumulate queries from each type of feed.</p>
+<p>Now that we have a stable store key, we can easily use <code>writeQuery</code> to perform a store update, in this case clearing out the feed.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">client.writeQuery({
+  query: gql`
+    query Feed($type: FeedType!) {
+      feed(type: $type) @connection(key: &quot;feed&quot;, filter: [&quot;type&quot;]) {
+        id
+      }
+    }
+  `,
+  variables: {
+    type: &quot;top&quot;,
+  },
+  data: {
+    feed: [],
+  },
+});
+</code></pre>
+<p>Note that because we are only using the <code>type</code> argument in the store key, we don’t have to provide <code>offset</code> or <code>limit</code>.</p>
+<h2 id="cacheRedirect">Cache redirects with <code>cacheResolvers</code></h2>
+
+<p>In some cases, a query requests data that already exists in the client store under a different key. A very common example of this is when your UI has a list view and a detail view that both use the same data. The list view might run the following query:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">query ListView {
+  books {
+    id
+    title
+    abstract
+  }
+}
+</code></pre>
+<p>When a specific book is selected, the detail view displays an individual item using this query:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">query DetailView {
+  book(id: $id) {
+    id
+    title
+    abstract
+  }
+}
+</code></pre>
+<blockquote>
+<p>Note: The data returned by the list query has to include all the data the specific query needs. If the specific book query fetches a field that the list query doesn’t return Apollo Client cannot return the data from the cache.</p>
+</blockquote>
+<p>We know that the data is most likely already in the client cache, but because it’s requested with a different query, Apollo Client doesn’t know that. In order to tell Apollo Client where to look for the data, we can define custom resolvers:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">import { toIdValue } from &#39;apollo-utilities&#39;;
+import { InMemoryCache } from &#39;apollo-cache-inmemory&#39;;
+
+const cache = new InMemoryCache({
+  cacheResolvers: {
+    Query: {
+      book: (_, args) =&gt; toIdValue(cache.config.dataIdFromObject({ __typename: &#39;Book&#39;, id: args.id })),
+    },
+  },
+});
+</code></pre>
+<blockquote>
+<p>Note: This’ll also work with custom <code>dataIdFromObject</code> methods as long as you use the same one.</p>
+</blockquote>
+<p>Apollo Client will use the return value of the custom resolver to look up the item in its cache. <code>toIdValue</code> must be used to indicate that the value returned should be interpreted as an id, and not as a scalar value or an object. “Query” key in this example is your root query type name.</p>
+<p>To figure out what you should put in the <code>__typename</code> property run one of the queries in GraphiQL and get the <code>__typename</code> field:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">query ListView {
+  books {
+    __typename
+  }
+}
+
+# or
+
+query DetailView {
+  book(id: $id) {
+    __typename
+  }
+}
+</code></pre>
+<p>The value that’s returned (the name of your type) is what you need to put into the <code>__typename</code> property.</p>
+<p>It is also possible to return a list of IDs:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">cacheResolvers: {
+  Query: {
+    books: (_, args) =&gt; args.ids.map(id =&gt;
+      toIdValue(cache.config.dataIdFromObject({ __typename: &#39;Book&#39;, id: id }))),
+  },
+},
+</code></pre>
+<h2 id="reset-store">Resetting the store</h2>
+
+<p>Sometimes, you may want to reset the store entirely, such as <a href="../recipes/authentication.html#login-logout">when a user logs out</a>. To accomplish this, use <code>client.resetStore</code> to clear out your Apollo cache. Since <code>client.resetStore</code> also refetches any of your active queries for you, it is asynchronous.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default withApollo(graphql(PROFILE_QUERY, {
+  props: ({ data: { loading, currentUser }, client }) =&gt; ({
+    loading,
+    currentUser,
+    resetOnLogout: async () =&gt; client.resetStore(),
+  }),
+})(Profile));
+</code></pre>
+<p>To register a callback function to be executed after the store has been reset, call <code>client.onResetStore</code> and pass in your callback. If you would like to register multiple callbacks, simply call <code>client.onResetStore</code> again. All of your callbacks will be pushed into an array and executed concurrently.</p>
+<p>In this example, we’re using <code>client.onResetStore</code> to write our default values to the cache for <a href="docs/link/links/state"><code>apollo-link-state</code></a>. This is necessary if you’re using <code>apollo-link-state</code> for local state management and calling <code>client.resetStore</code> anywhere in your application.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient } from &#39;apollo-client&#39;;
+import { InMemoryCache } from &#39;apollo-cache-inmemory&#39;;
+import { withClientState } from &#39;apollo-link-state&#39;;
+
+import { resolvers, defaults } from &#39;.&#x2F;resolvers&#39;;
+
+const cache = new InMemoryCache();
+const stateLink = withClientState({ cache, resolvers, defaults });
+
+const client = new ApolloClient({
+  cache,
+  link: stateLink,
+});
+
+client.onResetStore(stateLink.writeDefaults);
+</code></pre>
+<p>You can also call <code>client.onResetStore</code> from your React components. This can be useful if you would like to force your UI to rerender after the store has been reset.</p>
+<p>If you would like to unsubscribe your callbacks from resetStore, use the return value of <code>client.onResetStore</code> for your unsubscribe function.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { withApollo } from &quot;react-apollo&quot;;
+
+export class Foo extends Component {
+  constructor(props) {
+    super(props);
+    this.unsubscribe = props.client.onResetStore(
+      () =&gt; this.setState({ reset: false })
+    );
+    this.state = { reset: false };
+  }
+  componentDidUnmount() {
+    this.unsubscribe();
+  }
+  render() {
+    return this.state.reset ? &lt;div &#x2F;&gt; : &lt;span &#x2F;&gt;
+  }
+}
+
+export default withApollo(Foo);
+</code></pre>
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+          
+           
+              <a class="link primary next" href="../index.html">
+                <span class="subtitle-pagination">Next</span>
+                Introduction
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/advanced/update-store.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

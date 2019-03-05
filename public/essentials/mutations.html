@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Mutations | Apollo Client</title>
+    <meta name="description" content="Learn how to update data with Mutation components">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Mutations | Apollo Client">
+    <meta property="og:description" content="Learn how to update data with Mutation components">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Mutations | Apollo Client">
+    <meta name="twitter:description" content="Learn how to update data with Mutation components">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc current">
+                <a href="" class="sidebar-link current">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Mutations
+            </h1>
+            
+              <div class="subtitle-page">
+                Learn how to update data with Mutation components
+              </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <p>Now that we’ve learned how to fetch data with Apollo Client, what happens when we need to update that data? In this guide, you’ll discover how to build Mutation components in order to send updates to your GraphQL server. You’ll also learn how to update the Apollo cache after a mutation occurs and how to handle errors when things go wrong.</p>
+<p>This page assumes some familiarity with building GraphQL mutations. If you’d like a refresher, we recommend <a href="http://graphql.org/learn/queries/#mutations" target="_blank" rel="noopener">reading this guide</a>.</p>
+<p>The following examples assume that you’ve already set up Apollo Client and have wrapped your React app in an <code>ApolloProvider</code> component. Read our <a href="./get-started.html">getting started</a> guide if you need help with either of those steps. Let’s dive in!</p>
+<blockquote>
+<p>If you’d like to follow along with the examples, open up our <a href="https://codesandbox.io/s/znl94y0vp" target="_blank" rel="noopener">starter project</a> on CodeSandbox, and our sample GraphQL server on <a href="https://codesandbox.io/s/plp0mopxq" target="_blank" rel="noopener">this CodeSandBox</a>. You can view the completed version of the app <a href="https://codesandbox.io/s/v3mn68xxvy" target="_blank" rel="noopener">here</a>.</p>
+</blockquote>
+<h2 id="basic">The Mutation component</h2>
+
+<p>The <code>Mutation</code> component is what you’ll use to trigger mutations from your UI. To create a <code>Mutation</code> component, just pass a GraphQL mutation string wrapped with the <code>gql</code> function to <code>this.props.mutation</code> and provide a function to <code>this.props.children</code> that tells React what to render. The <code>Mutation</code> component is an example of a React component that uses the <a href="https://reactjs.org/docs/render-props.html" target="_blank" rel="noopener">render prop</a> pattern. React will call the render prop function you provide with a mutate function and an object with your mutation result containing loading, error, called, and data properties. Let’s look at an example:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">import gql from &quot;graphql-tag&quot;;
+import { Mutation } from &quot;react-apollo&quot;;
+
+const ADD_TODO = gql`
+  mutation AddTodo($type: String!) {
+    addTodo(type: $type) {
+      id
+      type
+    }
+  }
+`;
+
+const AddTodo = () =&gt; {
+  let input;
+
+  return (
+    &lt;Mutation mutation={ADD_TODO}&gt;
+      {(addTodo, { data }) =&gt; (
+        &lt;div&gt;
+          &lt;form
+            onSubmit={e =&gt; {
+              e.preventDefault();
+              addTodo({ variables: { type: input.value } });
+              input.value = &quot;&quot;;
+            }}
+          &gt;
+            &lt;input
+              ref={node =&gt; {
+                input = node;
+              }}
+            &#x2F;&gt;
+            &lt;button type=&quot;submit&quot;&gt;Add Todo&lt;&#x2F;button&gt;
+          &lt;&#x2F;form&gt;
+        &lt;&#x2F;div&gt;
+      )}
+    &lt;&#x2F;Mutation&gt;
+  );
+};
+</code></pre>
+<p>First, create your GraphQL mutation, wrap it in <code>gql</code>, and pass it to the <code>mutation</code> prop on the <code>Mutation</code> component. The <code>Mutation</code> component also requires a function as a child (also called the render prop function). The first argument of the render prop function is the mutate function, which you call to tell Apollo Client that you’d like to trigger a mutation. The mutate function optionally takes <code>variables</code>, <code>optimisticResponse</code>, <code>refetchQueries</code>, and <code>update</code>; however, you can also pass in those values as props to the <code>Mutation</code> component. In the example, notice how we use the mutate function (called <code>addTodo</code>) to submit the form with our variables.</p>
+<p>The second argument to the render prop function is an object with your mutation result on the <code>data</code> property, as well as booleans for <code>loading</code> and if the mutate function was <code>called</code>, in addition to <code>error</code>. If you’d like to ignore the result of the mutation, pass <code>ignoreResults</code> as a prop to the mutation component.</p>
+<p>If you’re following along with the example on CodeSandbox, you probably noticed that the UI reflecting the list of todos did not update with our newly created todo when you submitted the form. This is because the todos query in the Apollo cache does not know about our newly created todo. In the next section, we’ll learn when and how to update the Apollo cache after a mutation.</p>
+<h2 id="update">Updating the cache</h2>
+
+<p>Sometimes when you perform a mutation, your GraphQL server and your Apollo cache become out of sync. This happens when the update you’re performing depends on data that is already in the cache; for example, deleting and adding items to a list. We need a way to tell Apollo Client to update the query for the list of items. This is where the <code>update</code> function comes in! <code>update</code> functions aren’t required to update the cache for all mutations, but our <code>addTodo</code> mutation is an example of where it comes in handy.</p>
+<p>The update function is called with the Apollo cache as the first argument. The cache has several utility functions such as <code>cache.readQuery</code> and <code>cache.writeQuery</code> that allow you to read and write queries to the cache with GraphQL as if it were a server.
+There are other cache methods, such as <code>cache.readFragment</code>, <code>cache.writeFragment</code>, and <code>cache.writeData</code>, which you can learn about in our detailed <a href="../advanced/caching.html">caching guide</a> if you’re curious.</p>
+<p>The second argument to the update function is an object with a data property containing your mutation result. If you specify an <a href="../features/optimistic-ui.html">optimistic response</a>, your update function will be called twice: once with your optimistic result, and another time with your actual result. You can use your mutation result to update the cache with <code>cache.writeQuery</code>.</p>
+<p>Now that we’ve learned about the update function, let’s implement one for the <code>Mutation</code> component we just built!</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">const GET_TODOS = gql`
+  query GetTodos {
+    todos
+  }
+`;
+
+const AddTodo = () =&gt; {
+  let input;
+
+  return (
+    &lt;Mutation
+      mutation={ADD_TODO}
+      update={(cache, { data: { addTodo } }) =&gt; {
+        const { todos } = cache.readQuery({ query: GET_TODOS });
+        cache.writeQuery({
+          query: GET_TODOS,
+          data: { todos: todos.concat([addTodo]) },
+        });
+      }}
+    &gt;
+      {addTodo =&gt; (
+        &lt;div&gt;
+          &lt;form
+            onSubmit={e =&gt; {
+              e.preventDefault();
+              addTodo({ variables: { type: input.value } });
+              input.value = &quot;&quot;;
+            }}
+          &gt;
+            &lt;input
+              ref={node =&gt; {
+                input = node;
+              }}
+            &#x2F;&gt;
+            &lt;button type=&quot;submit&quot;&gt;Add Todo&lt;&#x2F;button&gt;
+          &lt;&#x2F;form&gt;
+        &lt;&#x2F;div&gt;
+      )}
+    &lt;&#x2F;Mutation&gt;
+  );
+};
+</code></pre>
+<p>You can pass the <code>update</code> function as a prop to <code>Mutation</code> or as an option to the mutate function (<code>addTodo</code> in this example). Since we need to update the query that displays a list of todos, first we read the data from the cache with <code>cache.readQuery</code>. Then, we concatenate our new todo from our mutation with the list of existing todos and write the query back to the cache with <code>cache.writeQuery</code>. Now that we’ve specified an update function, our UI will update reactively with the new todo once it comes back from the server.</p>
+<p>Not every mutation requires an update function. If you’re updating a single item, you usually don’t need an update function as long as you return the item’s <code>id</code> and the property you updated. While this may seem like magic, this is actually a benefit of Apollo’s normalized cache, which splits out each object with an <code>id</code> into its own entity in the cache. Let’s look at an example:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">const UPDATE_TODO = gql`
+  mutation UpdateTodo($id: String!, $type: String!) {
+    updateTodo(id: $id, type: $type) {
+      id
+      type
+    }
+  }
+`;
+
+const Todos = () =&gt; (
+  &lt;Query query={GET_TODOS}&gt;
+    {({ loading, error, data }) =&gt; {
+      if (loading) return &lt;p&gt;Loading...&lt;&#x2F;p&gt;;
+      if (error) return &lt;p&gt;Error :(&lt;&#x2F;p&gt;;
+
+      return data.todos.map(({ id, type }) =&gt; {
+        let input;
+
+        return (
+          &lt;Mutation mutation={UPDATE_TODO} key={id}&gt;
+            {updateTodo =&gt; (
+              &lt;div&gt;
+                &lt;p&gt;{type}&lt;&#x2F;p&gt;
+                &lt;form
+                  onSubmit={e =&gt; {
+                    e.preventDefault();
+                    updateTodo({ variables: { id, type: input.value } });
+
+                    input.value = &quot;&quot;;
+                  }}
+                &gt;
+                  &lt;input
+                    ref={node =&gt; {
+                      input = node;
+                    }}
+                  &#x2F;&gt;
+                  &lt;button type=&quot;submit&quot;&gt;Update Todo&lt;&#x2F;button&gt;
+                &lt;&#x2F;form&gt;
+              &lt;&#x2F;div&gt;
+            )}
+          &lt;&#x2F;Mutation&gt;
+        );
+      });
+    }}
+  &lt;&#x2F;Query&gt;
+);
+</code></pre>
+<p>If you try updating a todo, you’ll notice that the UI updates immediately. Even though we don’t plan on using the mutation return result in our UI, we still need to return the <code>id</code> and the property we updated in order for our UI to update reactively. Here, we don’t need to specify an update function since the todos query will automatically reconstruct the query result with the updated todo’s entry in the cache. If you’d like to dive deeper into the Apollo cache’s normalization strategy, check out our advanced <a href="../advanced/caching.html">caching guide</a>.</p>
+<h2 id="errors">Loading and error state</h2>
+
+<p>How do we know that our mutation has completed? What happens when your mutation doesn’t complete successfully? We need a way to track loading and error state. Luckily, the Mutation component allows you to do just that. Let’s look at the <code>Todos</code> component from the previous example:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">const Todos = () =&gt; (
+  &lt;Query query={GET_TODOS}&gt;
+    {({ loading, error, data }) =&gt; {
+      if (loading) return &lt;p&gt;Loading...&lt;&#x2F;p&gt;;
+      if (error) return &lt;p&gt;Error :(&lt;&#x2F;p&gt;;
+
+      return data.todos.map(({ id, type }) =&gt; {
+        let input;
+
+        return (
+          &lt;Mutation mutation={UPDATE_TODO} key={id}&gt;
+            {(updateTodo, { loading, error }) =&gt; (
+              &lt;div&gt;
+                &lt;p&gt;{type}&lt;&#x2F;p&gt;
+                &lt;form
+                  onSubmit={e =&gt; {
+                    e.preventDefault();
+                    updateTodo({ variables: { id, type: input.value } });
+
+                    input.value = &quot;&quot;;
+                  }}
+                &gt;
+                  &lt;input
+                    ref={node =&gt; {
+                      input = node;
+                    }}
+                  &#x2F;&gt;
+                  &lt;button type=&quot;submit&quot;&gt;Update Todo&lt;&#x2F;button&gt;
+                &lt;&#x2F;form&gt;
+                {loading &amp;&amp; &lt;p&gt;Loading...&lt;&#x2F;p&gt;}
+                {error &amp;&amp; &lt;p&gt;Error :( Please try again&lt;&#x2F;p&gt;}
+              &lt;&#x2F;div&gt;
+            )}
+          &lt;&#x2F;Mutation&gt;
+        );
+      });
+    }}
+  &lt;&#x2F;Query&gt;
+</code></pre>
+<p>In the render prop function, we can destructure <code>loading</code> and <code>error</code> properties off the mutation result in order to track the state of our mutation in our UI. The <code>Mutation</code> component also has <code>onCompleted</code> and <code>onError</code> props in case you would like to provide callbacks instead. Additionally, the mutation result object also has a <code>called</code> boolean that tracks whether or not the mutate function has been called.</p>
+<h2 id="api">Mutation API overview</h2>
+
+<p>If you’re looking for an overview of all the props <code>Mutation</code> accepts and its render prop function, look no further! Most <code>Mutation</code> components will not need all of these configuration options, but it’s useful to know that they exist. If you’d like to learn about the <code>Mutation</code> component API in more detail with usage examples, visit our <a href="../api/react-apollo.html">reference guide</a>.</p>
+<h3 id="props">Props</h3>
+
+<p>The Mutation component accepts the following props. Only <code>mutation</code> and <code>children</code> are <strong>required</strong>.</p>
+<dl>
+  <dt><code>mutation</code>: DocumentNode</dt>
+  <dd>A GraphQL mutation document parsed into an AST by <code>graphql-tag</code>. <strong>Required</strong></dd>
+  <dt><code>children</code>: (mutate: Function, result: MutationResult) =&gt; React.ReactNode</dt>
+  <dd>A function that allows you to trigger a mutation from your UI. <strong>Required</strong></dd>
+  <dt><code>variables</code>: { [key: string]: any }</dt>
+  <dd>An object containing all of the variables your mutation needs to execute</dd>
+  <dt><code>update</code>: (cache: DataProxy, mutationResult: FetchResult)</dt>
+  <dd>A function used to update the cache after a mutation occurs</dd>
+  <dt><code>ignoreResults</code>: boolean</dt>
+  <dd>If true, the <code>data</code> property on the render prop function will not update with the mutation result.</dd>
+  <dt><code>optimisticResponse</code>: Object</dt>
+  <dd>Provide a <a href="../features/optimistic-ui.html">mutation response</a> before the result comes back from the server</dd>
+  <dt><code>refetchQueries</code>: (mutationResult: FetchResult) =&gt; Array&lt;{ query: DocumentNode, variables?: TVariables} | string&gt;</dt>
+  <dd>A function that allows you to specify which queries you want to refetch after a mutation has occurred</dd>
+  <dt><code>awaitRefetchQueries</code>: boolean</dt>
+  <dd>Queries refetched as part of <code>refetchQueries</code> are handled asynchronously, and are not waited on before the mutation is completed (resolved). Setting this to <code>true</code> will make sure refetched queries are completed before the mutation is considered done. <code>false</code> by default.</dd>
+  <dt><code>onCompleted</code>: (data: TData) =&gt; void</dt>
+  <dd>A callback executed once your mutation successfully completes</dd>
+  <dt><code>onError</code>: (error: ApolloError) =&gt; void</dt>
+  <dd>A callback executed in the event of an error</dd>
+  <dt><code>context</code>: Record&lt;string, any&gt;</dt>
+  <dd>Shared context between your Mutation component and your network interface (Apollo Link). Useful for setting headers from props or sending information to the <code>request</code> function of Apollo Boost.</dd>
+</dl>
+
+<h3 id="render-prop">Render prop function</h3>
+
+<p>The render prop function that you pass to the <code>children</code> prop of <code>Mutation</code> is called with the <code>mutate</code> function and an object with the mutation result. The <code>mutate</code> function is how you trigger the mutation from your UI. The object contains your mutation result, plus loading and error state.</p>
+<p><strong>Mutate function:</strong></p>
+<dl>
+  <dt><code>mutate</code>: (options?: MutationOptions) =&gt; Promise<fetchresult></fetchresult></dt>
+  <dd>A function to trigger a mutation from your UI. You can optionally pass <code>variables</code>, <code>optimisticResponse</code>, <code>refetchQueries</code>, and <code>update</code> in as options, which will override any props passed to the <code>Mutation</code> component. The function returns a promise that fulfills with your mutation result.</dd>
+</dl>
+
+<p><strong>Mutation result:</strong></p>
+<dl>
+  <dt><code>data</code>: TData</dt>
+  <dd>The data returned from your mutation. It can be undefined if <code>ignoreResults</code> is true.</dd>
+  <dt><code>loading</code>: boolean</dt>
+  <dd>A boolean indicating whether your mutation is in flight</dd>
+  <dt><code>error</code>: ApolloError</dt>
+  <dd>Any errors returned from the mutation</dd>
+  <dt><code>called</code>: boolean</dt>
+  <dd>A boolean indicating if the mutate function has been called</dd>
+  <dt><code>client</code>: ApolloClient</dt>
+  <dd>Your <code>ApolloClient</code> instance. Useful for invoking cache methods outside the context of the update function, such as <code>client.writeData</code> and <code>client.readQuery</code>.</dd>
+</dl>
+
+<h2 id="next-steps">Next steps</h2>
+
+<p>Learning how to build <code>Mutation</code> components to update your data is an important part of developing applications with Apollo Client. Now that you’re well-versed in updating data, why not try executing client-side mutations with <code>apollo-link-state</code>? Here are some resources we think will help you level up your skills:</p>
+<ul>
+<li><a href="../features/optimistic-ui.html">Optimistic UI</a>: Learn how to improve perceived performance by returning an optimistic response before your mutation result comes back from the server.</li>
+<li><a href="./local-state.html">Local state</a>: Manage your local state with Apollo by executing client-side mutations with <code>apollo-link-state</code>.</li>
+<li><a href="../advanced/caching.html">Caching in Apollo</a>: Dive deep into the Apollo cache and how it’s normalized in our advanced guide on caching. Understanding the cache is helpful when writing your mutation’s <code>update</code> function!</li>
+<li><a href="https://youtu.be/2SYa0F50Mb4" target="_blank" rel="noopener">Mutation component video by Sara Vieira</a>: If you need a refresher or learn best by watching videos, check out this tutorial on <code>Mutation</code> components by Sara!</li>
+</ul>
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+         
+              <a class="link primary prev" href="queries.html">
+                <span class="icon-arrow-left-alt"></span>
+                <span class="subtitle-pagination">Previous</span>
+                Queries
+              </a>
+         
+          
+          
+           
+              <a class="link primary next" href="local-state.html">
+                <span class="subtitle-pagination">Next</span>
+                Local state management
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/essentials/mutations.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

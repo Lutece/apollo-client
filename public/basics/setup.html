@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Setup and options | Apollo Client</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Setup and options | Apollo Client">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Setup and options | Apollo Client">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Setup and options
+            </h1>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <h2 id="installation">Installation</h2>
+
+<p>To get started with Apollo and React, you will need to install a few packages from npm or use <a href="https://www.npmjs.com/package/apollo-boost" target="_blank" rel="noopener"><code>apollo-boost</code></a>.</p>
+<blockquote>
+<p>If you are first getting started with Apollo Client, the preset package is a quick and easy way to try it out!</p>
+</blockquote>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-bash"># installing the preset package and react integration
+npm install apollo-boost react-apollo graphql --save
+
+# installing each piece independently
+npm install apollo-client apollo-cache-inmemory apollo-link-http react-apollo graphql-tag graphql --save
+</code></pre>
+<blockquote>
+<p>Note: You don’t have to do anything special to get Apollo Client to work in React Native, just install and import it as usual.</p>
+</blockquote>
+<p>To get started using Apollo with React, we need to create an <code>ApolloClient</code> and an <code>ApolloProvider</code>. The <code>ApolloProvider</code> is specific to the React integration, to learn how to include Apollo Client with your view layer of choice, see the corresponding guide!</p>
+<ul>
+<li><code>ApolloClient</code> is the center of using GraphQL in your app! It manages all of your data so you can focus on features!</li>
+<li><code>ApolloProvider</code> makes it easy to use Apollo anywhere in your React component hierarchy.</li>
+</ul>
+<h3 id="creating-client">Creating a client</h3>
+
+<p>To get started, create an <a href="#ApolloClient"><code>ApolloClient</code></a> instance and point it at your GraphQL server:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient } from &#39;apollo-client&#39;;
+import { HttpLink } from &#39;apollo-link-http&#39;;
+import { InMemoryCache } from &#39;apollo-cache-inmemory&#39;;
+
+const client = new ApolloClient({
+  &#x2F;&#x2F; By default, this client will send queries to the
+  &#x2F;&#x2F;  `&#x2F;graphql` endpoint on the same host
+  link: new HttpLink(),
+  cache: new InMemoryCache()
+});
+</code></pre>
+<p>The client takes a variety of <a href="#ApolloClient">options</a>, but in particular, if you want to change the URL of the GraphQL server, you can customize your <a href="/docs/link"><code>Apollo Link</code></a>:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient } from &#39;apollo-client&#39;;
+import { HttpLink } from &#39;apollo-link-http&#39;;
+import { InMemoryCache } from &#39;apollo-cache-inmemory&#39;;
+
+const client = new ApolloClient({
+  link: new HttpLink({ uri: &#39;https:&#x2F;&#x2F;api.example.com&#x2F;graphql&#39; }),
+  cache: new InMemoryCache()
+});
+</code></pre>
+<p><code>ApolloClient</code> has some other options which control the behavior of the client, and we’ll see examples of their use throughout this guide.</p>
+<h3 id="creating-provider">Creating a provider</h3>
+
+<p>To connect your client to your component tree, use an <code>ApolloProvider</code> component. We suggest putting the <code>ApolloProvider</code> somewhere high in your app, above any places where you need to access GraphQL data. For example, it could be outside of your root route component if you’re using React Router.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloProvider } from &#39;react-apollo&#39;;
+import { ApolloClient } from &#39;apollo-client&#39;;
+import { HttpLink } from &#39;apollo-link-http&#39;;
+import { InMemoryCache } from &#39;apollo-cache-inmemory&#39;;
+
+const client = new ApolloClient({
+  link: new HttpLink(),
+  cache: new InMemoryCache()
+});
+
+ReactDOM.render(
+  &lt;ApolloProvider client={client}&gt;
+    &lt;MyAppComponent &#x2F;&gt;
+  &lt;&#x2F;ApolloProvider&gt;,
+  document.getElementById(&#39;root&#39;)
+)
+</code></pre>
+<h3 id="gql">Creating Operations using <code>graphql-tag</code></h3>
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import gql from &#39;graphql-tag&#39;;
+</code></pre>
+<p>The <code>gql</code> template tag is what you use to define GraphQL queries in your Apollo Client apps. It parses your GraphQL query into the <a href="https://github.com/graphql/graphql-js/blob/d92dd9883b76e54babf2b0ffccdab838f04fc46c/src/language/ast.js" target="_blank" rel="noopener">GraphQL.js AST format</a> which may then be consumed by Apollo Client methods. Whenever Apollo Client is asking for a GraphQL query you will always want to wrap it in a <code>gql</code> template tag.</p>
+<p>You can embed a GraphQL document containing only fragments inside of another GraphQL document using template string interpolation. This allows you to use fragments defined in one part of your codebase inside of a query define in a completely different file. See the example below for a demonstration of how this works.</p>
+<p><strong>Example:</strong></p>
+<p>Notice how in the <code>query</code> variable we not only include the <code>fragments</code> variable through template string interpolation (<code>${fragments}</code>), but we also include a spread for the <code>foo</code> fragment in our query.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const fragments = gql`
+  fragment foo on Foo {
+    a
+    b
+    c
+    ...bar
+  }
+
+  fragment bar on Bar {
+    d
+    e
+    f
+  }
+`;
+
+const query = gql`
+  query {
+    ...foo
+  }
+
+  ${fragments}
+`;
+</code></pre>
+<p>For more information about using fragments, checkout the <a href="../advanced/fragments.html">guide</a> and even some of the different ways to write GraphQL operations in your app using <a href="../recipes/babel.html">babel</a> or <a href="../recipes/webpack.html">webpack</a>.</p>
+<h2 id="connecting-data">Requesting data</h2>
+
+<p>Apollo Client makes it super easy to request data using GraphQL. You can <a href="./queries.html">read</a>, <a href="./mutations.html">update</a>, and even <a href="../advanced/subscriptions.html">subscribe</a> to whatever information your app needs using the client directly, or integrating it with your components.</p>
+<h3 id="basic-operations">Basic Operations</h3>
+If you want to see how easy it is to fetch data from a GraphQL server with Apollo, you can use the <code>query</code> method on your client. It is as easy as this:
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient } from &#39;apollo-client&#39;;
+import { HttpLink } from &#39;apollo-link-http&#39;;
+import { InMemoryCache } from &#39;apollo-cache-inmemory&#39;;
+
+const client = new ApolloClient({
+  link: new HttpLink({ uri: &#39;https:&#x2F;&#x2F;q80vw8qjp.lp.gql.zone&#x2F;graphql&#39; }),
+  cache: new InMemoryCache()
+});
+
+client.query({ query: gql`{ hello }` }).then(console.log);
+</code></pre>
+
+
+
+<h3 id="in-your-ui">Describe your data</h3>
+Most of the time, you want to use Apollo Client to fetch data for your UI which is even easier using the <code>graphql()</code> container from <code>react-apollo</code>. The <code>graphql()</code> container is the recommended approach for using Apollo with React and it is a React <a href="https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.html#subscriptions-and-side-effects" target="_blank" rel="noopener">Higher Order Component</a>.
+
+The basic usage of <code>graphql()</code> is as follows:
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import React, { Component } from &#39;react&#39;;
+import { graphql } from &#39;react-apollo&#39;;
+import gql from &#39;graphql-tag&#39;;
+
+&#x2F;&#x2F; here we create a query opearation
+const MY_QUERY = gql`query { todos { text } }`;
+
+&#x2F;&#x2F; We then can use the graphql container to pass the query results returned by MY_QUERY
+&#x2F;&#x2F; to a component as a prop (and update them as the results change)
+const MyComponentWithData = graphql(MY_QUERY)(props =&gt; &lt;div&gt;...&lt;&#x2F;div&gt;);
+</code></pre>
+
+
+
+The overall idea of using <code>graphql</code> is to pair a description (GraphQL Operation) of data you want, with the presentation (React Component) you want to show to your users! That is what makes the API as simple as <code>graphql</code> + <code>(operation)</code> + <code>(component)</code>! Over the course of the rest of the docs, you will see the <code>graphql</code> function used almost everywhere as the best way to use Apollo and React together.
+
+<h3 id="ready">Ready for more?</h3>
+At this point you are ready to start building something with Apollo! Checkout the <a href="./queries.html">queries</a> guide to start writing queries instead of a lot of code to get your data!
+
+<h2 id="api" title="API Reference">API Reference</h2>
+
+<h3 id="ApolloClient"><code>ApolloClient</code></h3>
+The Apollo Client constructor takes a small number of options, of which two are required. These arguments make it easy to customize how Apollo works based on your environment or application needs.
+
+- <code>link</code>: Apollo Client requires an Apollo Link to serve as the network layer. For more information about creating links, read the <a href="/docs/link">docs</a>.
+- <code>cache</code>: The second required argument for using Apollo Client is an instance of an Apollo Cache. The default cache is the <code>apollo-cache-inmemory</code> which exports an <code>{ InMemoryCache }</code>. For more information read the <a href="../advanced/caching.html">cache docs</a>.
+- <code>ssrMode</code>: When using the client for <a href="../features/server-side-rendering.html">server side rendering</a>, pass <code>ssrMode</code> as <code>true</code> so that React Apollo’s <code>getDataFromTree</code> can work effectively.
+- <code>ssrForceFetchDelay</code>: determines the time interval before Apollo Client force fetchs queries after a server side render.
+- <code>connectToDevTools</code>: This argument allows the <a href="../features/developer-tooling.html">Apollo Client Devtools</a> to connect to your application’s Apollo Client. You can set this to be <code>true</code> to use the tools in production (they are on by default in dev mode).
+- <code>queryDeduplication</code>: If set to false, this argument will force a query to still be sent to the server even if a query with identical parameters (query, variables, operationName) is already in flight.
+- <code>defaultOptions</code>: If you want to set application wide defaults for the options supplied to <code>watchQuery</code>, <code>query</code>, or <code>mutate</code>, you can pass them as a <code>defaultOptions</code> object. An example object looks like this:
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: &#39;cache-and-network&#39;,
+    errorPolicy: &#39;ignore&#39;,
+  },
+  query: {
+    fetchPolicy: &#39;network-only&#39;,
+    errorPolicy: &#39;all&#39;,
+  },
+  mutate: {
+    errorPolicy: &#39;all&#39;
+  }
+}
+</code></pre>
+
+
+
+These options will be merged with options supplied with each request.
+
+
+<h3 id="ApolloProvider" title="ApolloProvider"><code>ApolloProvider</code></h3>
+React-Apollo includes a component for providing a client instance to a React component tree, and a higher-order component for retrieving that client instance.
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloProvider } from &#39;react-apollo&#39;;
+</code></pre>
+
+
+
+Makes the GraphQL client available to any of your components enhanced by the <code>graphql()</code> function. The <code>&lt;ApolloProvider/&gt;</code> component works the same as the [<code>react-redux</code> <code>&lt;Provider/&gt;</code> component][]. It provides an <a href="#ApolloClient"><code>ApolloClient</code></a> instance to all of your GraphQL components that either use the <a href="#graphql"><code>graphql()</code></a> function, or the <a href="#withApollo"><code>withApollo</code></a> function.
+
+If you do not add this component to the root of your React tree then your components enhanced with Apollo capabilities will not be able to function.
+
+
+The <code>&lt;ApolloProvider/&gt;</code> component takes the following props:
+
+- <code>client</code>: The required <a href="#ApolloClient"><code>ApolloClient</code></a> instance. This <a href="#ApolloClient"><code>ApolloClient</code></a> instance will be used by all of your components enhanced with GraphQL capabilties.
+
+If you want to get direct access to your <a href="#ApolloClient"><code>ApolloClient</code></a> instance that is provided by <code>&lt;ApolloProvider/&gt;</code> in your components then be sure to look at the <a href="#withApollo"><code>withApollo()</code></a> enhancer function.
+
+<strong>Example:</strong>
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">ReactDOM.render(
+  &lt;ApolloProvider client={client}&gt;
+    &lt;MyRootComponent &#x2F;&gt;
+  &lt;&#x2F;ApolloProvider&gt;,
+  document.getElementById(&#39;root&#39;),
+);
+</code></pre>
+
+
+
+<h3 id="graphql" title="graphql(...)"><code>graphql(query, [config])(component)</code></h3>
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { graphql } from &#39;react-apollo&#39;;
+</code></pre>
+<p>The <code>graphql()</code> function is the most important thing exported by <code>react-apollo</code>. With this function you can create higher-order components that can execute queries and update reactively based on the data in your Apollo store. The <code>graphql()</code> function returns a function which will “enhance” any component with reactive GraphQL capabilities. This follows the React <a href="https://facebook.github.io/react/docs/higher-order-components.html" target="_blank" rel="noopener">higher-order component</a> pattern which is also used by <a href="https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options" target="_blank" rel="noopener"><code>react-redux</code>’s <code>connect</code></a> function.</p>
+<p>The <code>graphql()</code> function may be used like this:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">function TodoApp({ data: { todos } }) {
+  return (
+    &lt;ul&gt;
+      {todos.map(({ id, text }) =&gt; (
+        &lt;li key={id}&gt;{text}&lt;&#x2F;li&gt;
+      ))}
+    &lt;&#x2F;ul&gt;
+  );
+}
+
+export default graphql(gql`
+  query TodoAppQuery {
+    todos {
+      id
+      text
+    }
+  }
+`)(TodoApp);
+</code></pre>
+<p>You may also define an intermediate function and hook up your component with the <code>graphql()</code> function like this:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">&#x2F;&#x2F; Create our enhancer function.
+const withTodoAppQuery = graphql(gql`query { ... }`);
+
+&#x2F;&#x2F; Enhance our component.
+const TodoAppWithData = withTodoAppQuery(TodoApp);
+
+&#x2F;&#x2F; Export the enhanced component.
+export default TodoAppWithData;
+</code></pre>
+<p>The <code>graphql()</code> function will only be able to provide access to your GraphQL data if there is a <a href="#ApolloProvider"><code>&lt;ApolloProvider/&gt;</code></a> component higher up in your tree to provide an <a href="#ApolloClient"><code>ApolloClient</code></a> instance that will be used to fetch your data.</p>
+<p>The behavior of your component enhanced with the <code>graphql()</code> function will be different depending on if your GraphQL operation is a <a href="./queries.html">query</a>, a <a href="./mutations.html">mutation</a>, or a <a href="../advanced/subscriptions.html">subscription</a>. Go to the appropriate API documentation for more information about the functionality and available options for each type.</p>
+<p>Before we look into the specific behaviors of each operation, let us look at the <code>config</code> object.</p>
+<h2 id="graphql-config">Query Configuration</h2>
+
+<p>The <code>config</code> object is the second argument you pass into the <code>graphql()</code> function, after your GraphQL document. The config is optional and allows you to add some custom behavior to your higher order component.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default graphql(
+  gql`{ ... }`,
+  config, &#x2F;&#x2F; &lt;- The `config` object.
+)(MyComponent);
+</code></pre>
+<p>Lets go through all of the properties that may live on your <code>config</code> object.</p>
+<h3 id="graphql-config-options"><code>config.options</code></h3>
+
+<p><code>config.options</code> is an object or a function that allows you to define the specific behavior your component should use in handling your GraphQL data.</p>
+<p>The specific options available for configuration depend on the operation you pass as the first argument to <code>graphql()</code>. There are options specific to <a href="./queries.html#graphql-query-options">queries</a> and <a href="./mutations.html#graphql-mutation-options">mutations</a>.</p>
+<p>You can define <code>config.options</code> as a plain object, or you can compute your options from a function that takes the component’s props as an argument.</p>
+<p><strong>Example:</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default graphql(gql`{ ... }`, {
+  options: {
+    &#x2F;&#x2F; Options go here.
+  },
+})(MyComponent);
+</code></pre>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default graphql(gql`{ ... }`, {
+  options: (props) =&gt; ({
+    &#x2F;&#x2F; Options are computed from `props` here.
+  }),
+})(MyComponent);
+</code></pre>
+<h3 id="graphql-config-props"><code>config.props</code></h3>
+
+<p>The <code>config.props</code> property allows you to define a map function that takes your props including the props added by the <code>graphql()</code> function (<a href="#graphql-query-data"><code>props.data</code></a> for queries and <a href="#graphql-mutation-mutate"><code>props.mutate</code></a> for mutations) and allows you to compute a new props object that will be provided to the component that <code>graphql()</code> is wrapping.</p>
+<p>The function you define behaves almost exactly like <a href="https://github.com/acdlite/recompose/blob/2e71fdf4270cc8022a6574aaf00731bfc25dcae6/docs/API.md#mapprops" target="_blank" rel="noopener"><code>mapProps</code> from Recompose</a> providing the same benefits without the need for another library.</p>
+<p><code>config.props</code> is most useful when you want to abstract away complex functions calls into a simple prop that you can pass down to your component.</p>
+<p>Another benefit of <code>config.props</code> is that it also allows you to decouple your pure UI components from your GraphQL and Apollo concerns. You can write your pure UI components in one file and then keep the logic required for them to interact with the store in a completely different place in your project. You can accomplish this by your pure UI components only asking for the props needed to render and <code>config.props</code> can contain the logic to provide exactly the props your pure component needs from the data provided by your GraphQL API.</p>
+<p><strong>Example:</strong></p>
+<p>This example uses <a href="#graphql-query-data-fetchMore"><code>props.data.fetchMore</code></a>.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default graphql(gql`{ ... }`, {
+  props: ({ data: { fetchMore } }) =&gt; ({
+    onLoadMore: () =&gt; {
+      fetchMore({ ... });
+    },
+  }),
+})(MyComponent);
+
+function MyComponent({ onLoadMore }) {
+  return (
+    &lt;button onClick={onLoadMore}&gt;
+      Load More!
+    &lt;&#x2F;button&gt;
+  );
+}
+</code></pre>
+<h3 id="graphql-config-skip"><code>config.skip</code></h3>
+
+<p>If <code>config.skip</code> is true then all of the React Apollo code will be skipped <em>entirely</em>. It will be as if the <code>graphql()</code> function were a simple identity function. Your component will behave as if the <code>graphql()</code> function were not there at all.</p>
+<p>Instead of passing a boolean to <code>config.skip</code>, you may also pass a function to <code>config.skip</code>. The function will take your components props and should return a boolean. If the boolean returns true then the skip behavior will go into effect.</p>
+<p><code>config.skip</code> is especially useful if you want to use a different query based on some prop. You can see this in an example below.</p>
+<p><strong>Example:</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default graphql(gql`{ ... }`, {
+  skip: props =&gt; !!props.skip,
+})(MyComponent);
+</code></pre>
+<p>The following example uses the <a href="#compose"><code>compose()</code></a> function to use multiple <code>graphql()</code> enhancers at once.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default compose(
+  graphql(gql`query MyQuery1 { ... }`, { skip: props =&gt; !props.useQuery1 }),
+  graphql(gql`query MyQuery2 { ... }`, { skip: props =&gt; props.useQuery1 }),
+)(MyComponent);
+
+function MyComponent({ data }) {
+  &#x2F;&#x2F; The data may be from `MyQuery1` or `MyQuery2` depending on the value
+  &#x2F;&#x2F; of the prop `useQuery1`.
+  console.log(data);
+}
+</code></pre>
+<h3 id="graphql-config-name"><code>config.name</code></h3>
+
+<p>This property allows you to configure the name of the prop that gets passed down to your component. By default if the GraphQL document you pass into <code>graphql()</code> is a query then your prop will be named <a href="#graphql-query-data"><code>data</code></a>. If you pass a mutation then your prop will be named <a href="#graphql-mutation-mutate"><code>mutate</code></a>. While appropriate these default names collide when you are trying to use multiple queries or mutations with the same component. To avoid collisions you may use <code>config.name</code> to provide the prop from each query or mutation HOC a new name.</p>
+<p><strong>Example:</strong></p>
+<p>This example uses the <a href="#compose"><code>compose</code></a> function to use multiple <code>graphql()</code> HOCs together.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default compose(
+  graphql(gql`mutation (...) { ... }`, { name: &#39;createTodo&#39; }),
+  graphql(gql`mutation (...) { ... }`, { name: &#39;updateTodo&#39; }),
+  graphql(gql`mutation (...) { ... }`, { name: &#39;deleteTodo&#39; }),
+)(MyComponent);
+
+function MyComponent(props) {
+  &#x2F;&#x2F; Instead of the default prop name, `mutate`,
+  &#x2F;&#x2F; we have three different prop names.
+  console.log(props.createTodo);
+  console.log(props.updateTodo);
+  console.log(props.deleteTodo);
+
+  return null;
+}
+</code></pre>
+<h3 id="graphql-config-withRef"><code>config.withRef</code></h3>
+
+<p>By setting <code>config.withRef</code> to true you will be able to get the instance of your wrapped component from your higher-order GraphQL component using a <code>getWrappedInstance</code> method available on the instance of your higher-order GraphQL component.</p>
+<p>You may want to set this to true when you want to call functions or get access to properties that are defined on your wrapped component’s class instance.</p>
+<p>Below you can see an example of this behavior.</p>
+<p><strong>Example:</strong></p>
+<p>This example uses the <a href="https://facebook.github.io/react/docs/refs-and-the-dom.html" target="_blank" rel="noopener">React <code>ref</code> feature</a>.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">class MyComponent extends Component {
+  saySomething() {
+    console.log(&#39;Hello, world!&#39;);
+  }
+
+  render() {
+    &#x2F;&#x2F; ...
+  }
+}
+
+const MyGraphQLComponent = graphql(
+  gql`{ ... }`,
+  { withRef: true },
+)(MyComponent);
+
+class MyContainerComponent extends Component {
+  render() {
+    return (
+      &lt;MyGraphQLComponent
+        ref={component =&gt; {
+          assert(component.getWrappedInstance() instanceof MyComponent);
+          &#x2F;&#x2F; We can call methods on the component class instance.
+          component.saySomething();
+        }}
+      &#x2F;&gt;
+    );
+  }
+}
+</code></pre>
+<h3 id="graphql-config-alias"><code>config.alias</code></h3>
+
+<p>By default the display name for React Apollo components is <code>Apollo(${WrappedComponent.displayName})</code>. This is a pattern used by most React libraries that make use of higher order components. However, it may get a little confusing when you are using more then one higher order components and you look at the <a href="https://camo.githubusercontent.com/42385f70ef638c48310ce01a675ceceb4d4b84a9/68747470733a2f2f64337676366c703535716a6171632e636c6f756466726f6e742e6e65742f6974656d732f30543361333532443366325330423049314e31662f53637265656e25323053686f74253230323031372d30312d3132253230617425323031362e33372e30302e706e673f582d436c6f75644170702d56697369746f722d49643d626536623231313261633434616130636135386432623562616265373336323626763d3236623964363434" target="_blank" rel="noopener">React Devtools</a>.</p>
+<p>To configure the name of your higher order component wrapper, you may use the <code>config.alias</code> property. So for example, if you set <code>config.alias</code> to <code>&#39;withCurrentUser&#39;</code> your wrapper component display name would be <code>withCurrentUser(${WrappedComponent.displayName})</code> instead of <code>Apollo(${WrappedComponent.displayName})</code>.</p>
+<p><strong>Example:</strong></p>
+<p>This example uses the <a href="#compose"><code>compose</code></a> function to use multiple <code>graphql()</code> HOCs together.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default compose(
+  graphql(gql`{ ... }`, { alias: &#39;withCurrentUser&#39; }),
+  graphql(gql`{ ... }`, { alias: &#39;withList&#39; }),
+)(MyComponent);
+</code></pre>
+<h2 id="compose" title="compose(...)"><code>compose(...enhancers)(component)</code></h2>
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { compose } from &#39;react-apollo&#39;;
+</code></pre>
+<p>For utility purposes, <code>react-apollo</code> exports a <code>compose</code> function. Using this function you may cleanly use several component enhancers at once. Including multiple <a href="#graphql"><code>graphql()</code></a>, <a href="#withApollo"><code>withApollo()</code></a>, or <a href="https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options" target="_blank" rel="noopener">Redux <code>connect()</code></a> enhancers. This should clean up your code when you use multiple enhancers. <a href="http://redux.js.org/" target="_blank" rel="noopener">Redux</a> also exports a <code>compose</code> function, and so does <a href="https://github.com/acdlite/recompose" target="_blank" rel="noopener">Recompose</a> so you may choose to use the function from whichever library feels most appropriate.</p>
+<p>Important to note is that <code>compose()</code> executes the last enhancer <em>first</em>, working its way backwards through the list of enhancers. To illustrate, calling three functions like  <code>funcC(funcB(funcA(component)))</code> is equivalent to calling <code>compose()</code> like <code>compose(funcC, funcB, funcA)(component)</code>. For more information, see the <a href="https://lodash.com/docs/4.17.4#flowRight" target="_blank" rel="noopener">Lodash <code>flowRight()</code></a> docs (as <code>compose</code> is just an alias for <code>flowRight</code>).</p>
+<p><strong>Example:</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default compose(
+  withApollo,
+  graphql(`query { ... }`),
+  graphql(`mutation { ... }`),
+  connect(...),
+)(MyComponent);
+</code></pre>
+<h2 id="withApollo"><code>withApollo(component)</code></h2>
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { withApollo } from &#39;react-apollo&#39;;
+</code></pre>
+<p>A simple enhancer which provides direct access to your <a href="#ApolloClient"><code>ApolloClient</code></a> instance. This is useful if you want to do custom logic with Apollo. Such as calling one-off queries. By calling this function with the component you want to enhance, <code>withApollo()</code> will create a new component which passes in an instance of <a href="#ApolloClient"><code>ApolloClient</code></a> as a <code>client</code> prop.</p>
+<p>If you are wondering when to use <code>withApollo()</code> and when to use <a href="#graphql"><code>graphql()</code></a> the answer is that most of the time you will want to use <a href="#graphql"><code>graphql()</code></a>. <a href="#graphql"><code>graphql()</code></a> provides many of the advanced features you need to work with your GraphQL data. You should only use <code>withApollo()</code> if you want the GraphQL client without any of the other features.</p>
+<p>This will only be able to provide access to your client if there is an <a href="#ApolloProvider"><code>&lt;ApolloProvider/&gt;</code></a> component higher up in your tree to actually provide the client.</p>
+<p><strong>Example:</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export default withApollo(MyComponent);
+
+function MyComponent({ client }) {
+  console.log(client);
+}
+</code></pre>
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+          
+           
+              <a class="link primary next" href="../index.html">
+                <span class="subtitle-pagination">Next</span>
+                Introduction
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/basics/setup.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

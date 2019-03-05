@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Recompose patterns | Apollo Client</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Recompose patterns | Apollo Client">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Recompose patterns | Apollo Client">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc current">
+                <a href="" class="sidebar-link current">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Recompose patterns
+            </h1>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <p><a href="https://github.com/acdlite/recompose" target="_blank" rel="noopener">Recompose</a> is a toolbelt for working with React components in a reusable, functional way. The workflow is similar to libraries like Underscore or Lodash, which can help you avoid re-implementing common patterns and keep your code <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank" rel="noopener">DRY</a>. Check out the <a href="https://github.com/acdlite/recompose/blob/master/docs/API.md" target="_blank" rel="noopener">Recompose API</a> for all the details.</p>
+<h2 id="loading-status">Loading status</h2>
+
+<p>A common use-case when using the <code>graphql</code> HOC is to display a “loading” screen while your data is being fetched. We often end up with something like this:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const Component = props =&gt; {
+  if (props.data.loading) {
+    return &lt;LoadingPlaceholder&gt;
+  }
+
+  return (
+    &lt;div&gt;Our component&lt;&#x2F;div&gt;
+  )
+}
+</code></pre>
+<p>Recompose has a utility function <code>branch()</code> which lets us compose different HOCs based on the results of a test function. We can combine it with another Recompose method, <code>renderComponent()</code>. So we can say “If we are loading, render <code>LoadingPlaceholder</code> instead of our default component”, like so:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { propType } from &#39;graphql-anywhere&#39;
+
+const renderWhileLoading = (component, propName = &#39;data&#39;) =&gt;
+  branch(
+    props =&gt; props[propName] &amp;&amp; props[propName].loading,
+    renderComponent(component),
+  );
+
+const Component = props =&gt; (&lt;div&gt;Our component for {props.user.name}&lt;&#x2F;div&gt;)
+Component.propTypes = {
+  &#x2F;&#x2F; autogenerated proptypes should be in place (if no error)
+  user: propType(getUser).isRequired,
+}
+
+const enhancedComponent = compose(
+  graphql(getUser, { name: &quot;user&quot; }),
+  renderWhileLoading(LoadingPlaceholder, &quot;user&quot;)
+)(Component);
+
+export default enhancedComponent;
+</code></pre>
+<p>This way, our wrapped component is only rendered outside of the loading state. That means we only need to take care of 2 states: error or successful load.</p>
+<blockquote>
+<p>Note: <code>loading</code> is only <code>true</code> during the first fetch for a particular query. But if you enable <a href="../basics/queries.html#graphql-config-options-notifyOnNetworkStatusChange">options.notifyOnNetworkStatusChange</a> you can keep track of other loading status using the <a href="../basics/queries.html#graphql-query-data-networkStatus">data.networkStatus</a> field. You can use a similar pattern to the above.</p>
+</blockquote>
+<h2 id="error-handling">Error handling</h2>
+
+<p>Similar to the loading state above, we might want to display a different component in the case of an error, or let the user <code>refetch()</code>. We will use <code>withProps()</code> to include the refetch method directly in the props. This way our universal error handler can always expect it to be there and is more decoupled.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const renderForError = (component, propName = &quot;data&quot;) =&gt;
+  branch(
+    props =&gt; props[propName] &amp;&amp; props[propName].error,
+    renderComponent(component),
+  );
+
+const ErrorComponent = props =&gt;(
+  &lt;span&gt;
+    Something went wrong, you can try to
+    &lt;button onClick={props.refetch}&gt;refetch&lt;&#x2F;button&gt;
+  &lt;&#x2F;span&gt;
+)
+
+const setRefetchProp = (propName = &quot;data&quot;) =&gt;
+  withProps(props =&gt; ({refetch: props[propName] &amp;&amp; props[propName].refetch}))
+
+const enhancedComponent = compose(
+  graphql(getUser, { name: &quot;user&quot; }),
+  renderWhileLoading(LoadingPlaceholder, &quot;user&quot;),
+  setRefetchProp(&quot;user&quot;),
+  renderForError(ErrorComponent, &quot;user&quot;),
+)(Component);
+
+export default enhancedComponent;
+</code></pre>
+<p>Now we can count on results being available for our default component and don’t have to manually check for loading state or errors inside the <code>render</code> function.</p>
+<h2 id="query-lifecycle">Query lifecycle</h2>
+
+<p>There are some use-cases when we need to execute code after a query finishes fetching. From the example above, we would render our default component only when there is no error and loading is finished.</p>
+<p>But it is just a stateless component; it has no lifecycle hooks. If we need extra lifecycle functionality, Recompose’s <code>lifecycle()</code> comes to the rescue:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const execAtMount = lifecycle({
+  componentWillMount() {
+    executeSomething();
+  },
+})
+
+const enhancedComponent = compose(
+  graphql(getUser, { name: &quot;user&quot; }),
+  renderWhileLoading(LoadingPlaceholder, &quot;user&quot;),
+  setRefetchProp(&quot;user&quot;),
+  renderForError(ErrorComponent, &quot;user&quot;),
+  execAtMount,
+)(Component);
+</code></pre>
+<p>The above works well if we just want something to happen at component mount time.</p>
+<p>Let’s define another more advanced use-case, for example, using <code>react-select</code> to let a user pick an option from the results of a query. I want to always display the react-select, which has its own loading state indicator. Then, I want to automatically select the predefined option after the query finishes fetching.</p>
+<p>There is one caveat: we need to be aware that the query can skip the loading state when data is already in the cache. That would mean we need to handle <code>networkStatus === 7</code> on mount.</p>
+<p>We will also use recompose’s <code>withState()</code> to keep value for our option picker. For this example we will assume the default <code>data</code> prop name is unchanged.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const DEFAULT_PICK = &quot;orange&quot;;
+const withPickerValue = withState(&quot;pickerValue&quot;, &quot;setPickerValue&quot;, null);
+
+&#x2F;&#x2F; find matching option
+const findOption = (options, ourLabel) =&gt;
+  lodashFind(options, option =&gt; option.label.toLowerCase() === ourLabel.toLowerCase());
+
+const withAutoPicking = lifecycle({
+  componentWillReceiveProps(nextProps) {
+    &#x2F;&#x2F; when value was already picked
+    if (nextProps.pickerValue) {
+      return;
+    }
+    &#x2F;&#x2F; networkStatus changed from 1 to 7, meaning initial load finished successfully
+    if (this.props.data.networkStatus === 1 &amp;&amp; nextProps.data.networkStatus === 7) {
+      const match = findOption(nextProps.data.options)
+      if (match) {
+        nextProps.setPickerValue(match);
+      }
+    }
+  },
+  componentWillMount() {
+    const { pickerValue, setPickerValue, data } = this.props;
+    if (pickerValue) {
+      return;
+    }
+    &#x2F;&#x2F; when Apollo query is resolved from cache,
+    &#x2F;&#x2F; it already has networkStatus 7 at mount time
+    if (data.networkStatus === 7 &amp;&amp; !data.error) {
+      const match = findOption(data.options);
+      if (match) {
+        setPickerValue(match);
+      }
+    }
+  },
+});
+
+const Component = props =&gt; (
+  &lt;Select
+    loading={props.data.loading}
+    value={props.pickerValue &amp;&amp; props.pickerValue.value || null}
+    onChange={props.setPickerValue}
+    options={props.data.options || undefined}
+  &#x2F;&gt;
+);
+
+const enhancedComponent = compose(
+  graphql(getOptions),
+  withPickerValue,
+  withAutoPicking,
+)(Component);
+</code></pre>
+<h2 id="controlling-poll-interval">Controlling pollInterval</h2>
+
+<p>This case is borrowed from <a href="https://blog.apollographql.com/dynamic-graphql-polling-with-react-and-apollo-client-fb36e390d250" target="_blank" rel="noopener">David Glasser’s post on the Apollo blog</a> about the Meteor’s Galaxy UI migrations panel implementation. In the post, he says:</p>
+<blockquote>
+<p>We’re not usually running any migrations, so a nice, slow polling interval like 30 seconds seemed reasonable. But in the rare case where a migration is running, I wanted to be able to see much faster updates on its progress.</p>
+</blockquote>
+<blockquote>
+<p>The key to this is knowing that the <code>options</code> parameter to react-apollo’s main graphql function can itself be a function that depends on its incoming React props. (The <code>options</code> parameter describes the options for the query itself, as opposed to React-specific details like what property name to use for data.) We can then use recompose’s <code>withState()</code> to set the poll interval from a prop passed in to the graphql component, and use the <code>componentWillReceiveProps</code> React lifecycle event (added via the recompose lifecycle helper) to look at the fetched GraphQL data and adjust if necessary.</p>
+</blockquote>
+<p>Let’s look at the code:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { graphql } from &quot;react-apollo&quot;;
+import gql from &quot;graphql-tag&quot;;
+import { compose, withState, lifecycle } from &quot;recompose&quot;;
+
+const DEFAULT_INTERVAL = 30 * 1000;
+const ACTIVE_INTERVAL = 500;
+
+const withData = compose(
+  &#x2F;&#x2F; Pass down two props to the nested component: `pollInterval`,
+  &#x2F;&#x2F; which defaults to our normal slow poll, and `setPollInterval`,
+  &#x2F;&#x2F; which lets the nested components modify `pollInterval`.
+  withState(&quot;pollInterval&quot;, &quot;setPollInterval&quot;, DEFAULT_INTERVAL),
+  graphql(
+    gql`
+      query GetMigrationStatus {
+        activeMigration {
+          name
+          version
+          progress
+        }
+      }
+    `,
+    {
+      &#x2F;&#x2F; If you think it&#39;s clear enough, you can abbreviate this as:
+      &#x2F;&#x2F;   options: ({pollInterval}) =&gt; ({pollInterval}),
+      options: props =&gt; {
+        return {
+          pollInterval: props.pollInterval
+        };
+      }
+    }
+  ),
+  lifecycle({
+    componentWillReceiveProps({
+      data: { loading, activeMigration },
+      pollInterval,
+      setPollInterval
+    }) {
+      if (loading) {
+        return;
+      }
+      if (activeMigration &amp;&amp; pollInterval !== ACTIVE_INTERVAL) {
+        setPollInterval(ACTIVE_INTERVAL);
+      } else if (
+        !activeMigration &amp;&amp;
+        pollInterval !== DEFAULT_INTERVAL
+      ) {
+        setPollInterval(DEFAULT_INTERVAL);
+      }
+    }
+  })
+);
+const MigrationPanelWithData = withData(MigrationPanel);
+</code></pre>
+<p>Note that we check the current value of <code>pollInterval</code> before changing it because, by default in React, nested components will get re-rendered any time we change state, even if you change it to the same value. You can deal with this using <code>shouldComponentUpdate</code> or <code>React.PureComponent</code>, but in this case it’s straightforward just to only set the state when it’s actually changing.</p>
+<h2 id="other">Other use-cases</h2>
+
+<p>Recompose is a powerful tool and can be applied to all sorts of other cases. Here are a few final examples.</p>
+<p>Normally, if you wanted to add side effects to the <code>mutate</code> function, you would manage them in the <code>graphql</code> HOC’s <a href="https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-config-props"><code>props</code> option</a> by doing something like <code>{ mutate: () =&gt; mutate().then(sideEffectHandler) }</code>. But that’s not very reusable. Using recompose’s <code>withHandlers()</code> you can compose the same prop manipulation in any number of components. You can see a more detailed example <a href="https://medium.com/front-end-developers/how-i-write-mutations-in-apollo-w-recompose-1c0ab06ef4ea" target="_blank" rel="noopener">here</a>.</p>
+<p>Mutations can also be tracked using recompose’s <code>withState</code>, since it has no effect on your query’s <code>loading</code> state. For example, you could use it to disable buttons while submitting form data.</p>
+<p>See the full Recompose docs <a href="https://github.com/acdlite/recompose" target="_blank" rel="noopener">here</a>.</p>
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+         
+              <a class="link primary prev" href="meteor.html">
+                <span class="icon-arrow-left-alt"></span>
+                <span class="subtitle-pagination">Previous</span>
+                Integrating with Meteor
+              </a>
+         
+          
+          
+           
+              <a class="link primary next" href="2.0-migration.html">
+                <span class="subtitle-pagination">Next</span>
+                Apollo Client 1.0 migration
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/recipes/recompose.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

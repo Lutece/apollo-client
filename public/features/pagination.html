@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Pagination | Apollo Client</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Pagination | Apollo Client">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Pagination | Apollo Client">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc current">
+                <a href="" class="sidebar-link current">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Pagination
+            </h1>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <p>Often, you will have some views in your application where you need to display a list that contains too much data to be either fetched or displayed at once. Pagination is the most common solution to this problem, and Apollo Client has built-in functionality that makes it quite easy to do.</p>
+<p>There are basically two ways of fetching paginated data: numbered pages, and cursors. There are also two ways for displaying paginated data: discrete pages, and infinite scrolling. For a more in-depth explanation of the difference and when you might want to use one vs. the other, we recommend that you read our blog post on the subject: <a href="https://medium.com/apollo-stack/understanding-pagination-rest-graphql-and-relay-b10f835549e7" target="_blank" rel="noopener">Understanding Pagination</a>.</p>
+<p>In this article, we’ll cover the technical details of using Apollo to implement both approaches.</p>
+<h2 id="fetch-more">Using <code>fetchMore</code></h2>
+
+<p>In Apollo, the easiest way to do pagination is with a function called <a href="../advanced/caching.html#fetchMore"><code>fetchMore</code></a>, which is provided on the <code>data</code> prop by the <code>graphql</code> higher order component. This basically allows you to do a new GraphQL query and merge the result into the original result.</p>
+<p>You can specify what query and variables to use for the new query, and how to merge the new query result with the existing data on the client. How exactly you do that will determine what kind of pagination you are implementing.</p>
+<h2 id="numbered-pages">Offset-based</h2>
+
+<p>Offset-based pagination — also called numbered pages — is a very common pattern, found on many websites, because it is usually the easiest to implement on the backend. In SQL for example, numbered pages can easily be generated by using <a href="https://www.postgresql.org/docs/8.2/static/queries-limit.html" target="_blank" rel="noopener">OFFSET and LIMIT</a>.</p>
+<p>Here is an example with numbered pages taken from <a href="https://github.com/apollographql/GitHunt-React" target="_blank" rel="noopener">GitHunt</a>:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const FEED_QUERY = gql`
+  query Feed($type: FeedType!, $offset: Int, $limit: Int) {
+    currentUser {
+      login
+    }
+    feed(type: $type, offset: $offset, limit: $limit) {
+      id
+      # ...
+    }
+  }
+`;
+
+const FeedData = ({ match }) =&gt; (
+  &lt;Query
+    query={FEED_QUERY}
+    variables={{
+      type: match.params.type.toUpperCase() || &quot;TOP&quot;,
+      offset: 0,
+      limit: 10
+    }}
+    fetchPolicy=&quot;cache-and-network&quot;
+  &gt;
+    {({ data, fetchMore }) =&gt; (
+      &lt;Feed
+        entries={data.feed || []}
+        onLoadMore={() =&gt;
+          fetchMore({
+            variables: {
+              offset: data.feed.length
+            },
+            updateQuery: (prev, { fetchMoreResult }) =&gt; {
+              if (!fetchMoreResult) return prev;
+              return Object.assign({}, prev, {
+                feed: [...prev.feed, ...fetchMoreResult.feed]
+              });
+            }
+          })
+        }
+      &#x2F;&gt;
+    )}
+  &lt;&#x2F;Query&gt;
+);
+</code></pre>
+<p><a href="https://github.com/apollographql/GitHunt-React/blob/e5d5dc3abcee7352f5d2e981ee559343e361d2e3/src/routes/FeedPage.js#L26-L68" target="_blank" rel="noopener">See this code in context in GitHunt.</a></p>
+<p>As you can see, <code>fetchMore</code> is accessible through the render prop function. By default, <code>fetchMore</code> will use the original <code>query</code>, so we just pass in new variables. Once the new data is returned from the server, the <code>updateQuery</code> function is used to merge it with the existing data, which will cause a re-render of your UI component with an expanded list.</p>
+<p>The above approach works great for limit/offset pagination. One downside of pagination with numbered pages or offsets is that an item can be skipped or returned twice when items are inserted into or removed from the list at the same time. That can be avoided with cursor-based pagination.</p>
+<p>Note that in order for the UI component to receive an updated <code>loading</code> prop after <code>fetchMore</code> is called, you must set <code>notifyOnNetworkStatusChange</code> to <code>true</code> in your Query component’s props.</p>
+<h2 id="cursor-pages">Cursor-based</h2>
+
+<p>In cursor-based pagination, a “cursor” is used to keep track of where in the data set the next items should be fetched from. Sometimes the cursor can be quite simple and just refer to the ID of the last object fetched, but in some cases — for example lists sorted according to some criteria — the cursor needs to encode the sorting criteria in addition to the ID of the last object fetched.</p>
+<p>Implementing cursor-based pagination on the client isn’t all that different from offset-based pagination, but instead of using an absolute offset, we keep a reference to the last object fetched and information about the sort order used.</p>
+<p>In the example below, we use a <code>fetchMore</code> query to continuously load new comments, which will be prepended to the list. The cursor to be used in the <code>fetchMore</code> query is provided in the initial server response, and is updated whenever more data is fetched.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const MoreCommentsQuery = gql`
+  query MoreComments($cursor: String) {
+    moreComments(cursor: $cursor) {
+      cursor
+      comments {
+        author
+        text
+      }
+    }
+  }
+`;
+
+const CommentsWithData = () =&gt; (
+  &lt;Query query={CommentsQuery}&gt;
+    {({ data: { comments, cursor }, loading, fetchMore }) =&gt; (
+      &lt;Comments
+        entries={comments || []}
+        onLoadMore={() =&gt;
+          fetchMore({
+            &#x2F;&#x2F; note this is a different query than the one used in the
+            &#x2F;&#x2F; Query component
+            query: MoreCommentsQuery,
+            variables: { cursor: cursor },
+            updateQuery: (previousResult, { fetchMoreResult }) =&gt; {
+              const previousEntry = previousResult.entry;
+              const newComments = fetchMoreResult.moreComments.comments;
+              const newCursor = fetchMoreResult.moreComments.cursor;
+
+              return {
+                &#x2F;&#x2F; By returning `cursor` here, we update the `fetchMore` function
+                &#x2F;&#x2F; to the new cursor.
+                cursor: newCursor,
+                entry: {
+                  &#x2F;&#x2F; Put the new comments in the front of the list
+                  comments: [...newComments, ...previousEntry.comments]
+                },
+                __typename: previousEntry.__typename
+              };
+            }
+          })
+        }
+      &#x2F;&gt;
+    )}
+  &lt;&#x2F;Query&gt;
+);
+</code></pre>
+<h2 id="relay-cursors">Relay-style cursor pagination</h2>
+
+<p>Relay, another popular GraphQL client, is opinionated about the input and output of paginated queries, so people sometimes build their server’s pagination model around Relay’s needs. If you have a server that is designed to work with the <a href="https://facebook.github.io/relay/graphql/connections.htm" target="_blank" rel="noopener">Relay Cursor Connections</a> spec, you can also call that server from Apollo Client with no problems.</p>
+<p>Using Relay-style cursors is very similar to basic cursor-based pagination.  The main difference is in the format of the query response which affects where you get the cursor.</p>
+<p>Relay provides a <code>pageInfo</code> object on the returned cursor connection which contains the cursor of the first and last items returned as the properties <code>startCursor</code> and <code>endCursor</code> respectively.  This object also contains a boolean property <code>hasNextPage</code> which can be used to determine if there are more results available.</p>
+<p>The following example specifies a request of 10 items at a time and that results should start after the provided <code>cursor</code>.  If <code>null</code> is passed for the cursor relay will ignore it and provide results starting from the beginning of the data set which allows the use of the same query for both initial and subsequent requests.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const CommentsQuery = gql`
+  query Comments($cursor: String) {
+    Comments(first: 10, after: $cursor) {
+      edges {
+        node {
+          author
+          text
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+`;
+
+const CommentsWithData = () =&gt; (
+  &lt;Query query={CommentsQuery}&gt;
+    {({ data: { Comments: comments }, loading, fetchMore }) =&gt; (
+      &lt;Comments
+        entries={comments || []}
+        onLoadMore={() =&gt;
+          fetchMore({
+            variables: {
+              cursor: comments.pageInfo.endCursor
+            },
+            updateQuery: (previousResult, { fetchMoreResult }) =&gt; {
+              const newEdges = fetchMoreResult.comments.edges;
+              const pageInfo = fetchMoreResult.comments.pageInfo;
+
+              return newEdges.length
+                ? {
+                    &#x2F;&#x2F; Put the new comments at the end of the list and update `pageInfo`
+                    &#x2F;&#x2F; so we have the new `endCursor` and `hasNextPage` values
+                    comments: {
+                      __typename: previousResult.comments.__typename,
+                      edges: [...previousResult.comments.edges, ...newEdges],
+                      pageInfo
+                    }
+                  }
+                : previousResult;
+            }
+          })
+        }
+      &#x2F;&gt;
+    )}
+  &lt;&#x2F;Query&gt;
+);
+</code></pre>
+<p></p><h2 id="connection-directive">The <code>@connection</code> directive</h2>
+When using paginated queries, results from accumulated queries can be hard to find in the store, as the parameters passed to the query are used to determine the default store key but are usually not known outside the piece of code that executes the query. This is problematic for imperative store updates, as there is no stable store key for updates to target. To direct Apollo Client to use a stable store key for paginated queries, you can use the optional <code>@connection</code> directive to specify a store key for parts of your queries. For example, if we wanted to have a stable store key for the feed query earlier, we could adjust our query to use the <code>@connection</code> directive:<p></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const FEED_QUERY = gql`
+  query Feed($type: FeedType!, $offset: Int, $limit: Int) {
+    currentUser {
+      login
+    }
+    feed(type: $type, offset: $offset, limit: $limit) @connection(key: &quot;feed&quot;, filter: [&quot;type&quot;]) {
+      id
+      # ...
+    }
+  }
+`;
+</code></pre>
+<p>This would result in the accumulated feed in every query or <code>fetchMore</code> being placed in the store under the <code>feed</code> key, which we could later use for imperative store updates. In this example, we also use the <code>@connection</code> directive’s optional <code>filter</code> argument, which allows us to include some arguments of the query in the store key. In this case, we want to include the <code>type</code> query argument in the store key, which results in multiple store values that accumulate pages from each type of feed.</p>
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+         
+              <a class="link primary prev" href="error-handling.html">
+                <span class="icon-arrow-left-alt"></span>
+                <span class="subtitle-pagination">Previous</span>
+                Error handling
+              </a>
+         
+          
+          
+           
+              <a class="link primary next" href="optimistic-ui.html">
+                <span class="subtitle-pagination">Next</span>
+                Optimistic UI
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/features/pagination.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

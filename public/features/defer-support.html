@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Deferred queries | Apollo Client</title>
+    <meta name="description" content="Optimize data loading with the @defer directive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Deferred queries | Apollo Client">
+    <meta property="og:description" content="Optimize data loading with the @defer directive">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Deferred queries | Apollo Client">
+    <meta name="twitter:description" content="Optimize data loading with the @defer directive">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc current">
+                <a href="" class="sidebar-link current">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Deferred queries
+            </h1>
+            
+              <div class="subtitle-page">
+                Optimize data loading with the @defer directive
+              </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <h2 id="defer-setup">Setting up</h2>
+
+<p>Note: <code>@defer</code> support is an experimental feature that is only available in the alpha preview of Apollo Server and Apollo Client.</p>
+<ul>
+<li><p>On the server:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">  npm install apollo-server@alpha
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>On the client, if you are using Apollo Boost:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">  npm install apollo-boost@alpha react-apollo@alpha
+</code></pre>
+<p>Or if you are using Apollo Client:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-clike">  npm install apollo-client@alpha apollo-cache-inmemory@alpha apollo-link-http@alpha apollo-link-error apollo-link
+</code></pre>
+</li>
+</ul>
+<h2 id="defer">The <code>@defer</code> Directive</h2>
+
+<p>Many applications that use Apollo fetch data from a variety of microservices, which may each have varying latencies and cache characteristics. Apollo comes with a built-in directive for deferring parts of your GraphQL query in a declarative way, so that fields that take a long time to resolve do not need to slow down your entire query.</p>
+<p>There are 3 main reasons why you may want to defer a field:</p>
+<ol>
+<li><strong>Field is expensive to load.</strong> This includes private data that is not cached (like user progress), or information that requires more computation on the backend (like calculating price quotes on Airbnb).</li>
+<li><strong>Field is not on the critical path for interactivity.</strong> This includes the comments section of a story, or the number of claps received.</li>
+<li><strong>Field is expensive to send.</strong> Even if the field may resolve quickly (ready to send back), users might still choose to defer it if the cost of transport is too expensive.</li>
+</ol>
+<p>As an example, take a look at the following query that populates a NewsFeed page:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-graphql">query NewsFeed {
+  newsFeed {
+    stories {
+      text
+      comments {
+        text
+      }
+    }
+    recommendedForYou {
+      story {
+        text
+        comments {
+          text
+        }
+      }
+      matchScore
+    }
+  }
+}
+</code></pre>
+<p>It is likely that the time needed for different fields in a query to resolve are significantly different. <code>stories</code> is highly public data that we can cache in CDNs (fast), while <code>recommendedForYou</code> is personalized and may need to be computed for every user (slooow). Also, we might not need <code>comments</code> to be displayed immediately, so slowing down our query to wait for them to be fetched is not the best idea.</p>
+<h2 id="defer-how">How to use <code>@defer</code></h2>
+
+<p>We can optimize the above query with <code>@defer</code>:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-graphql">query NewsFeed {
+  newsFeed {
+    stories {
+      text
+      comments @defer {
+        text
+      }
+    }
+    recommendedForYou @defer {
+      story {
+        text
+        comments @defer {
+          text
+        }
+      }
+      matchScore
+    }
+  }
+}
+</code></pre>
+<p>Once you have added <code>@defer</code>, Apollo Server will return an initial response without waiting for deferred fields to resolve, using <code>null</code> as placeholders for them. Then, it streams patches for each deferred field asynchronously as they resolve.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-json">&#x2F;&#x2F; Initial response
+{
+  &quot;data&quot;: {
+    &quot;newsFeed&quot;: {
+      &quot;stories&quot;: [{ &quot;text&quot;: &quot;...&quot;, &quot;comments&quot;: null }],
+      &quot;recommendedForYou&quot;: null
+    }
+  }
+}
+</code></pre>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-json">&#x2F;&#x2F; Patch for &quot;recommendedForYou&quot;
+{
+  &quot;path&quot;: [&quot;newsFeed&quot;, &quot;recommendedForYou&quot;],
+  &quot;data&quot;: [
+    {
+      &quot;story&quot;: {
+        &quot;text&quot;: &quot;...&quot;
+      },
+      &quot;matchScore&quot;: 99
+    }
+  ]
+}
+</code></pre>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-json">&#x2F;&#x2F; Patch for &quot;comments&quot;, sent for each story
+{
+  &quot;path&quot;: [&quot;newsFeed&quot;, &quot;stories&quot;, 1, &quot;comments&quot;],
+  &quot;data&quot;: [
+    {
+      &quot;text&quot;: &quot;...&quot;
+    }
+  ]
+}
+</code></pre>
+<p>If an error is thrown within a resolver, the error gets sent along with its closest deferred parent, and is merged with the <code>graphQLErrors</code> array on the client.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-json">&#x2F;&#x2F; Patch for &quot;comments&quot; if there is an error
+{
+  &quot;path&quot;: [&quot;newsFeed&quot;, &quot;stories&quot;, 1, &quot;comments&quot;],
+  &quot;data&quot;: null,
+  &quot;errors&quot;: [
+    {
+      &quot;message&quot;: &quot;Failed to fetch comments&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="defer-loadingstate">Distinguishing between “pending” and “null”</h3>
+
+<p>You may have noticed that deferred fields are returned as <code>null</code> in the initial response. So how can we know which fields are pending so that we can show some loading indicator? To deal with that, Apollo Client now exposes field-level loading information in a new property called <code>loadingState</code> that you can check for in your UI components. The shape of <code>loadingState</code> mirrors that of your data. For example, if <code>data.newsFeed.stories</code> is ready, <code>loadingState.newsFeed.stories</code> will be <code>true</code>.</p>
+<p>You can use it in a React component like this:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">&lt;Query query={query}&gt;
+  {({ loading, error, data, loadingState }) =&gt; {
+    if (loading) return &#39;loading...&#39;;
+    return loadingState.newsFeed.recommendedForYou
+      ? data.newsFeed.recommendedForYou
+        ? data &#x2F;* render component here *&#x2F;
+        : &#39;No recommended content&#39;
+      : &#39;Loading recommended content&#39;;
+  }}
+&lt;&#x2F;Query&gt;
+</code></pre>
+<h2 id="defer-usage">Where is <code>@defer</code> allowed?</h2>
+
+<ul>
+<li><p><code>@defer</code> can be applied on any <code>FIELD</code> of a <code>Query</code> operation. It also takes an optional argument <code>if</code>, that is a <code>boolean</code> controlling whether it is active, similar to <code>@include</code>.</p>
+</li>
+<li><p><code>@include</code> and <code>@skip</code> take precedence over <code>@defer</code>.</p>
+</li>
+<li><p>Mutations: Not supported.</p>
+</li>
+<li><p>Non-Nullable Types: Not allowed and will throw a validation error. This is because deferred fields are returned as <code>null</code> in the initial response. Deferring non-nullable types may also lead to unexpected behavior when errors occur, since errors will propagate up to the nearest nullable parent as per the GraphQL spec. We want to avoid letting errors on deferred fields clobber the initial data that was loaded already.</p>
+</li>
+<li><p>Nesting: <code>@defer</code> can be nested arbitrarily. For example, we can defer a list type, and defer a field on an object in the list. During execution, we ensure that the patch for a parent field will be sent before its children, even if the child object resolves first. This will simplify the logic for merging patches.</p>
+</li>
+<li><p>GraphQL fragments: Supported. If there are multiple declarations of a field within the query, <strong>all</strong> of them have to contain <code>@defer</code> for the field to be deferred. This could happen if we have use a fragment like this:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-graphql">  fragment StoryDetail on Story {
+    id
+    text
+  }
+  query {
+    newsFeed {
+      stories {
+        text @defer
+        ...StoryDetail
+      }
+    }
+  }
+</code></pre>
+<p>In this case, <code>text</code> will not be deferred since <code>@defer</code> was not applied in the fragment definition.</p>
+<p>A common pattern around fragments is to bind it to a component and reuse them across different parts of your UI. This is why it would be ideal to make sure that the <code>@defer</code> behavior of fields in a fragment is not overridden.</p>
+</li>
+</ul>
+<h2 id="defer-transport">Transport</h2>
+
+<p>There is no additional setup for the transport required to use <code>@defer</code>. By default, deferred responses are transmitted using <a href="https://www.w3.org/Protocols/rfc1341/7_2_Multipart.html" target="_blank" rel="noopener">Multipart HTTP</a>. For browsers that do not support the <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream" target="_blank" rel="noopener">ReadableStream</a> API used to read streaming responses, we will just fallback to normal query execution ignoring <code>@defer</code>.</p>
+<h2 id="defer-performance">Performance Considerations</h2>
+
+<p><code>@defer</code> is one of those features that work best if used in moderation. If it is used too granularly (on many nested fields), the overhead of performing patching and re-rendering could be worse than just waiting for the full query to resolve. Try to limit <code>@defer</code> to fields that take a significantly longer time to load. This is super easy to figure out if you have Apollo Engine set up!</p>
+<h2 id="defer-servers">Use with other GraphQL servers</h2>
+
+<p>If you are sending queries to a GraphQL server that does not support <code>@defer</code>, it is likely that the <code>@defer</code> directive is simply ignored, or a GraphQL validation error is thrown.</p>
+<p>If you would want to implement a GraphQL server that is able to interoperate with Apollo Client, please look at the documentation <a href="https://github.com/apollographql/apollo-server/blob/defer-support/docs/source/defer-support.md" target="_blank" rel="noopener">here</a>.</p>
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+         
+              <a class="link primary prev" href="developer-tooling.html">
+                <span class="icon-arrow-left-alt"></span>
+                <span class="subtitle-pagination">Previous</span>
+                Developer tools
+              </a>
+         
+          
+          
+           
+              <a class="link primary next" href="../advanced/boost-migration.html">
+                <span class="subtitle-pagination">Next</span>
+                Apollo Boost migration
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/features/defer-support.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

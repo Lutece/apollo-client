@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Apollo Client | Apollo Client</title>
+    <meta name="description" content="Apollo Client API reference">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Apollo Client | Apollo Client">
+    <meta property="og:description" content="Apollo Client API reference">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Apollo Client | Apollo Client">
+    <meta name="twitter:description" content="Apollo Client API reference">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc current">
+                <a href="" class="sidebar-link current">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Apollo Client
+            </h1>
+            
+              <div class="subtitle-page">
+                Apollo Client API reference
+              </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <h2 id="apollo-client">ApolloClient</h2>
+
+<p>The Apollo Client constructor takes a small number of options, of which two are required. These arguments make it easy to customize how Apollo works based on your environment or application needs.</p>
+<ul>
+<li><code>link</code>: Apollo Client requires an Apollo Link to serve as the network layer. For more information about creating links, read the <a href="/docs/link">docs</a>.</li>
+<li><code>cache</code>: The second required argument for using Apollo Client is an instance of an Apollo Cache. The recommended cache is the <code>apollo-cache-inmemory</code> which exports an <code>{ InMemoryCache }</code>. For more information read the <a href="../advanced/caching.html">cache docs</a>.</li>
+<li><code>ssrMode</code>: When using the client for <a href="../features/server-side-rendering.html">server side rendering</a>, pass <code>ssrMode</code> as <code>true</code> so that React Apollo’s <code>getDataFromTree</code> can work effectively.</li>
+<li><code>ssrForceFetchDelay</code>: determines the time interval before Apollo Client force fetchs queries after a server side render.</li>
+<li><code>connectToDevTools</code>: This argument allows the <a href="../features/developer-tooling.html">Apollo Client Devtools</a> to connect to your application’s Apollo Client. You can set this to be <code>true</code> to use the tools in production (they are on by default in dev mode).</li>
+<li><code>queryDeduplication</code>: If set to false, this argument will force a query to still be sent to the server even if a query with identical parameters (query, variables, operationName) is already in flight.</li>
+<li><code>name</code>: A custom name that can be used to identify this client, e.g. “iOS”. Apollo Server leverages this property as part of its <a href="/docs/apollo-server/v2/features/metrics.html#Client-Awareness">Client Awareness</a> functionality.</li>
+<li><code>version</code>: A custom version that can be used to identify this client, when using Apollo client awareness features. This is the version of your client, which you may want to increment on new builds. This is NOT the version of Apollo Client that you are using. Apollo Server leverages this property as part of its <a href="/docs/apollo-server/v2/features/metrics.html#Client-Awareness">Client Awareness</a> functionality.</li>
+<li><code>defaultOptions</code>: If you want to set application wide defaults for the options supplied to <code>watchQuery</code>, <code>query</code>, or <code>mutate</code>, you can pass them as a <code>defaultOptions</code> object. An example object looks like this:</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: &#39;cache-and-network&#39;,
+    errorPolicy: &#39;ignore&#39;,
+  },
+  query: {
+    fetchPolicy: &#39;network-only&#39;,
+    errorPolicy: &#39;all&#39;,
+  },
+  mutate: {
+    errorPolicy: &#39;all&#39;
+  }
+}
+</code></pre>
+<p>These options will be merged with options supplied with each request.</p>
+<blockquote>
+<p><strong>Note:</strong> The React Apollo <code>&lt;Query /&gt;</code> component uses Apollo Client’s <code>watchQuery</code> functionality, so if you would like to set <code>defaultOptions</code> when using <code>&lt;Query /&gt;</code>, be sure to set them under the <code>defaultOptions.watchQuery</code> property.</p>
+</blockquote>
+<p>The <code>ApolloClient</code> class is the core API for Apollo, and the one you’ll need to use no matter which integration you are using:</p>
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="constructor" class="title-api selflink" id="ApolloClient.constructor">
+      <a href="#ApolloClient.constructor" class="link primary">constructor(options)</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L88" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 88)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Constructs an instance of <a href="#ApolloClient">ApolloClient</a>.</p>
+    </div>
+
+
+      <h4 class="subheading">Options</h4>
+      <dl class="args">
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="watchQuery" class="title-api selflink" id="ApolloClient.watchQuery">
+      <a href="#ApolloClient.watchQuery" class="link primary">watchQuery(options): <a href="#ObservableQuery">ObservableQuery</a><,></,></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L279" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 279)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>This watches the cache store of the query according to the options specified and
+returns an <a href="#ObservableQuery">ObservableQuery</a>. We can subscribe to this <a href="#ObservableQuery">ObservableQuery</a> and
+receive updated results through a GraphQL observer when the cache store changes.
+</p><p></p><p>
+Note that this method is not an implementation of GraphQL subscriptions. Rather,
+it uses Apollo's store in order to reactively deliver updates to your query results.
+</p><p></p><p>
+For example, suppose you call watchQuery on a GraphQL query that fetches a person's
+first and last name and this person has a particular object identifer, provided by
+dataIdFromObject. Later, a different query fetches that same person's
+first and last name and the first name has now changed. Then, any observers associated
+with the results of the first query will be updated with a new result object.
+</p><p></p><p>
+Note that if the cache does not change, the subscriber will <em>not</em> be notified.
+</p><p></p><p>
+See <a href="https://medium.com/apollo-stack/the-concepts-of-graphql-bc68bd819be3#.3mb0cbcmc" target="_blank" rel="noopener">here</a> for
+a description of store reactivity.</p>
+    </div>
+
+
+      <h4 class="subheading">Options</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">context</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>Context to be passed to link execution chain</p>
+          </dd>
+          <dt>
+            <span class="name">errorPolicy</span>
+            <span class="type">"none" | "ignore" | "all"</span>
+          </dt>
+          <dd>
+            <p>Specifies the <a href="#ErrorPolicy">ErrorPolicy</a> to be used for this query</p>
+          </dd>
+          <dt>
+            <span class="name">fetchPolicy</span>
+            <span class="type">"cache-first" | "cache-and-network" | "network-only" | "cache-only" | "no-cache" | "standby"</span>
+          </dt>
+          <dd>
+            <p>Specifies the <a href="#FetchPolicy">FetchPolicy</a> to be used for this query</p>
+          </dd>
+          <dt>
+            <span class="name">fetchResults</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>Whether or not to fetch results</p>
+          </dd>
+          <dt>
+            <span class="name">metadata</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>Arbitrary metadata stored in the store with this query.  Designed for debugging,
+developer tools, etc.</p>
+          </dd>
+          <dt>
+            <span class="name">notifyOnNetworkStatusChange</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>Whether or not updates to the network status should trigger next on the observer of this query</p>
+          </dd>
+          <dt>
+            <span class="name">pollInterval</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>The time interval (in milliseconds) on which this query should be
+refetched from the server.</p>
+          </dd>
+          <dt>
+            <span class="name">query</span>
+            <span class="type"><a href="#DocumentNode">DocumentNode</a></span>
+          </dt>
+          <dd>
+            <p>A GraphQL document that consists of a single query to be sent down to the
+server.</p>
+          </dd>
+          <dt>
+            <span class="name">variables</span>
+            <span class="type"><a href="#TVariables">TVariables</a></span>
+          </dt>
+          <dd>
+            <p>A map going from variable name to variable value, where the variables are used
+within the GraphQL query.</p>
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="query" class="title-api selflink" id="ApolloClient.query">
+      <a href="#ApolloClient.query" class="link primary">query(options): <a href="#Promise">Promise</a><<a href="#ApolloQueryResult">ApolloQueryResult</a>></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L310" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 310)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>This resolves a single query according to the options specified and
+returns a <a href="#Promise">Promise</a> which is either resolved with the resulting data
+or rejected with an error.</p>
+    </div>
+
+
+      <h4 class="subheading">Options</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">context</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>Context to be passed to link execution chain</p>
+          </dd>
+          <dt>
+            <span class="name">errorPolicy</span>
+            <span class="type">"none" | "ignore" | "all"</span>
+          </dt>
+          <dd>
+            <p>Specifies the <a href="#ErrorPolicy">ErrorPolicy</a> to be used for this query</p>
+          </dd>
+          <dt>
+            <span class="name">fetchPolicy</span>
+            <span class="type">"cache-first" | "cache-and-network" | "network-only" | "cache-only" | "no-cache" | "standby"</span>
+          </dt>
+          <dd>
+            <p>Specifies the <a href="#FetchPolicy">FetchPolicy</a> to be used for this query</p>
+          </dd>
+          <dt>
+            <span class="name">fetchResults</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>Whether or not to fetch results</p>
+          </dd>
+          <dt>
+            <span class="name">metadata</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>Arbitrary metadata stored in the store with this query.  Designed for debugging,
+developer tools, etc.</p>
+          </dd>
+          <dt>
+            <span class="name">query</span>
+            <span class="type"><a href="#DocumentNode">DocumentNode</a></span>
+          </dt>
+          <dd>
+            <p>A GraphQL document that consists of a single query to be sent down to the
+server.</p>
+          </dd>
+          <dt>
+            <span class="name">variables</span>
+            <span class="type"><a href="#TVariables">TVariables</a></span>
+          </dt>
+          <dd>
+            <p>A map going from variable name to variable value, where the variables are used
+within the GraphQL query.</p>
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="mutate" class="title-api selflink" id="ApolloClient.mutate">
+      <a href="#ApolloClient.mutate" class="link primary">mutate(options): <a href="#Promise">Promise</a><<a href="#FetchResult">FetchResult</a>></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L340" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 340)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>This resolves a single mutation according to the options specified and returns a
+<a href="#Promise">Promise</a> which is either resolved with the resulting data or rejected with an
+error.</p>
+    </div>
+
+
+      <h4 class="subheading">Options</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">awaitRefetchQueries</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>By default, <code>refetchQueries</code> does not wait for the refetched queries to
+be completed, before resolving the mutation <code>Promise</code>. This ensures that
+query refetching does not hold up mutation response handling (query
+refetching is handled asynchronously). Set <code>awaitRefetchQueries</code> to
+<code>true</code> if you would like to wait for the refetched queries to complete,
+before the mutation can be marked as resolved.</p>
+          </dd>
+          <dt>
+            <span class="name">context</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>The context to be passed to the link execution chain. This context will
+only be used with the mutation. It will not be used with
+<code>refetchQueries</code>. Refetched queries use the context they were
+initialized with (since the intitial context is stored as part of the
+<code>ObservableQuery</code> instance). If a specific context is needed when
+refetching queries, make sure it is configured (via the
+<a href="/docs/react/api/apollo-client.html#ApolloClient.query"><code>query</code> <code>context</code> option</a>)
+when the query is first initialized/run.</p>
+          </dd>
+          <dt>
+            <span class="name">errorPolicy</span>
+            <span class="type">"none" | "ignore" | "all"</span>
+          </dt>
+          <dd>
+            <p>Specifies the <a href="#ErrorPolicy">ErrorPolicy</a> to be used for this operation</p>
+          </dd>
+          <dt>
+            <span class="name">fetchPolicy</span>
+            <span class="type">"cache-first" | "cache-and-network" | "network-only" | "cache-only" | "no-cache" | "standby"</span>
+          </dt>
+          <dd>
+            <p>Specifies the <a href="#FetchPolicy">FetchPolicy</a> to be used for this query</p>
+          </dd>
+          <dt>
+            <span class="name">mutation</span>
+            <span class="type"><a href="#DocumentNode">DocumentNode</a></span>
+          </dt>
+          <dd>
+            <p>A GraphQL document, often created with <code>gql</code> from the <code>graphql-tag</code>
+package, that contains a single mutation inside of it.</p>
+          </dd>
+          <dt>
+            <span class="name">optimisticResponse</span>
+            <span class="type"><a href="#Object">Object</a> | <a href="#Function">Function</a></span>
+          </dt>
+          <dd>
+            <p>An object that represents the result of this mutation that will be
+optimistically stored before the server has actually returned a result.
+This is most often used for optimistic UI, where we want to be able to see
+the result of a mutation immediately, and update the UI later if any errors
+appear.</p>
+          </dd>
+          <dt>
+            <span class="name">refetchQueries</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>A list of query names which will be refetched once this mutation has
+returned. This is often used if you have a set of queries which may be
+affected by a mutation and will have to update. Rather than writing a
+mutation query reducer (i.e. <code>updateQueries</code>) for this, you can simply
+refetch the queries that will be affected and achieve a consistent store
+once these queries return.</p>
+          </dd>
+          <dt>
+            <span class="name">update</span>
+            <span class="type">(<a href="#DataProxy">DataProxy</a>, <a href="#FetchResult">FetchResult</a><>) => any<></span>
+          </dt>
+          <dd>
+            <p>This function will be called twice over the lifecycle of a mutation. Once
+at the very beginning if an <code>optimisticResponse</code> was provided. The writes
+created from the optimistic data will be rolled back before the second time
+this function is called which is when the mutation has succesfully
+resolved. At that point <code>update</code> will be called with the <em>actual</em> mutation
+result and those writes will not be rolled back.</p>
+<p>The reason a <a href="#DataProxy">DataProxy</a> is provided instead of the user calling the
+methods directly on <a href="#ApolloClient">ApolloClient</a> is that all of the writes are
+batched together at the end of the update, and it allows for writes
+generated by optimistic data to be rolled back.</p>
+<p>Note that since this function is intended to be used to update the
+store, it cannot be used with a <code>no-cache</code> fetch policy. If you're
+interested in performing some action after a mutation has completed,
+and you don't need to update the store, use the Promise returned from
+<code>client.mutate</code> instead.</p>
+          </dd>
+          <dt>
+            <span class="name">updateQueries</span>
+            <span class="type">[queryName:undefined]:(<a href="#Record">Record</a><,>, any) => <a href="#Record">Record</a><,><><></,></,></span>
+          </dt>
+          <dd>
+            <p>A <a href="#MutationQueryReducersMap">MutationQueryReducersMap</a>, which is map from query names to
+mutation query reducers. Briefly, this map defines how to incorporate the
+results of the mutation into the results of queries that are currently
+being watched by your application.</p>
+          </dd>
+          <dt>
+            <span class="name">variables</span>
+            <span class="type"><a href="#TVariables">TVariables</a></span>
+          </dt>
+          <dd>
+            <p>An object that maps from the name of a variable as used in the mutation
+GraphQL document to that variable's value.</p>
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="subscribe" class="title-api selflink" id="ApolloClient.subscribe">
+      <a href="#ApolloClient.subscribe" class="link primary">subscribe(options): <a href="#Observable">Observable</a><></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L357" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 357)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>This subscribes to a graphql subscription according to the options specified and returns an
+<a href="#Observable">Observable</a> which either emits received data or an error.</p>
+    </div>
+
+
+      <h4 class="subheading">Options</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">fetchPolicy</span>
+            <span class="type">"cache-first" | "cache-and-network" | "network-only" | "cache-only" | "no-cache" | "standby"</span>
+          </dt>
+          <dd>
+            <p>Specifies the <a href="#FetchPolicy">FetchPolicy</a> to be used for this subscription.</p>
+          </dd>
+          <dt>
+            <span class="name">query</span>
+            <span class="type"><a href="#DocumentNode">DocumentNode</a></span>
+          </dt>
+          <dd>
+            <p>A GraphQL document, often created with <code>gql</code> from the <code>graphql-tag</code>
+package, that contains a single subscription inside of it.</p>
+          </dd>
+          <dt>
+            <span class="name">variables</span>
+            <span class="type"><a href="#TVariables">TVariables</a></span>
+          </dt>
+          <dd>
+            <p>An object that maps from the name of a variable as used in the subscription
+GraphQL document to that variable's value.</p>
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="readQuery" class="title-api selflink" id="ApolloClient.readQuery">
+      <a href="#ApolloClient.readQuery" class="link primary">readQuery(options, optimistic): any</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L372" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 372)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Tries to read some data from the store in the shape of the provided
+GraphQL query without making a network request. This method will start at
+the root query. To start at a specific id returned by <code>dataIdFromObject</code>
+use <code>readFragment</code>.</p>
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">optimistic</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>Set to <code>true</code> to allow <code>readQuery</code> to return
+optimistic results. Is <code>false</code> by default.</p>
+          </dd>
+      </dl>
+      <h4 class="subheading">Options</h4>
+      <dl class="args">
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="readFragment" class="title-api selflink" id="ApolloClient.readFragment">
+      <a href="#ApolloClient.readFragment" class="link primary">readFragment(options, optimistic): any</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L393" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 393)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Tries to read some data from the store in the shape of the provided
+GraphQL fragment without making a network request. This method will read a
+GraphQL fragment from any arbitrary id that is currently cached, unlike
+<code>readQuery</code> which will only read from the root query.</p>
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">optimistic</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            <p>Set to <code>true</code> to allow <code>readFragment</code> to return
+optimistic results. Is <code>false</code> by default.</p>
+          </dd>
+      </dl>
+      <h4 class="subheading">Options</h4>
+      <dl class="args">
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="writeQuery" class="title-api selflink" id="ApolloClient.writeQuery">
+      <a href="#ApolloClient.writeQuery" class="link primary">writeQuery(options): any</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L405" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 405)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Writes some data in the shape of the provided GraphQL query directly to
+the store. This method will start at the root query. To start at a
+specific id returned by <code>dataIdFromObject</code> then use <code>writeFragment</code>.</p>
+    </div>
+
+
+      <h4 class="subheading">Options</h4>
+      <dl class="args">
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="writeFragment" class="title-api selflink" id="ApolloClient.writeFragment">
+      <a href="#ApolloClient.writeFragment" class="link primary">writeFragment(options): any</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L424" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 424)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Writes some data in the shape of the provided GraphQL fragment directly to
+the store. This method will write to a GraphQL fragment from any arbitrary
+id that is currently cached, unlike <code>writeQuery</code> which will only write
+from the root query.</p>
+    </div>
+
+
+      <h4 class="subheading">Options</h4>
+      <dl class="args">
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="resetStore" class="title-api selflink" id="ApolloClient.resetStore">
+      <a href="#ApolloClient.resetStore" class="link primary">resetStore(): <a href="#Promise">Promise</a><></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L507" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 507)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Resets your entire store by clearing out your cache and then re-executing
+all of your active queries. This makes it so that you may guarantee that
+there is no data left in your store from a time before you called this
+method.</p>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="onResetStore" class="title-api selflink" id="ApolloClient.onResetStore">
+      <a href="#ApolloClient.onResetStore" class="link primary">onResetStore(cb): () => any</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L541" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 541)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Allows callbacks to be registered that are executed when the store is
+reset. <code>onResetStore</code> returns an unsubscribe function that can be used
+to remove registered callbacks.</p>
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">cb</span>
+            <span class="type">() => <a href="#Promise">Promise</a><></span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="clearStore" class="title-api selflink" id="ApolloClient.clearStore">
+      <a href="#ApolloClient.clearStore" class="link primary">clearStore(): <a href="#Promise">Promise</a><></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L526" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 526)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Remove all data from the store. Unlike <code>resetStore</code>, <code>clearStore</code> will
+not refetch any active queries.</p>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="onClearStore" class="title-api selflink" id="ApolloClient.onClearStore">
+      <a href="#ApolloClient.onClearStore" class="link primary">onClearStore(cb): () => any</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L553" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 553)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Allows callbacks to be registered that are executed when the store is
+cleared. <code>onClearStore</code> returns an unsubscribe function that can be used
+to remove registered callbacks.</p>
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">cb</span>
+            <span class="type">() => <a href="#Promise">Promise</a><></span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="stop" class="title-api selflink" id="ApolloClient.stop">
+      <a href="#ApolloClient.stop" class="link primary">stop(): any</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L254" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 254)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Call this method to terminate any active client processes, making it safe
+to dispose of this <code>ApolloClient</code> instance.</p>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="reFetchObservableQueries" class="title-api selflink" id="ApolloClient.reFetchObservableQueries">
+      <a href="#ApolloClient.reFetchObservableQueries" class="link primary">reFetchObservableQueries(includeStandby): <a href="#Promise">Promise</a> | <a href="#Promise">Promise</a></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L572" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 572)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Refetches all of your active queries.</p>
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">includeStandby</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<h2 id="ObservableQuery">ObservableQuery</h2>
+
+<p><code>ApolloClient</code> Observables extend the Observables implementation provided by <a href="https://github.com/zenparsing/zen-observable" target="_blank" rel="noopener"><code>zen-observable</code></a>. Refer to the <code>zen-observable</code> documentation for additional context and API options.</p>
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="variables" class="title-api selflink" id="ObservableQuery.variables">
+      <a href="#ObservableQuery.variables" class="link primary">variables</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L79" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 79)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>The current value of the variables for this query. Can change.</p>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="result" class="title-api selflink" id="ObservableQuery.result">
+      <a href="#ObservableQuery.result" class="link primary">result(): <a href="#Promise">Promise</a><<a href="#ApolloQueryResult">ApolloQueryResult</a>></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L121" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 121)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="getCurrentResult" class="title-api selflink" id="ObservableQuery.getCurrentResult">
+      <a href="#ObservableQuery.getCurrentResult" class="link primary">getCurrentResult(): <a href="#ApolloCurrentQueryResult">ApolloCurrentQueryResult</a><></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L171" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 171)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Return the result of the query from the local cache as well as some fetching status
+<code>loading</code> and <code>networkStatus</code> allow to know if a request is in flight
+<code>partial</code> lets you know if the result from the local cache is complete or partial</p>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="refetch" class="title-api selflink" id="ObservableQuery.refetch">
+      <a href="#ObservableQuery.refetch" class="link primary">refetch(variables): <a href="#Promise">Promise</a><<a href="#ApolloQueryResult">ApolloQueryResult</a>></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L296" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 296)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>Update the variables of this observable query, and fetch the new results.
+This method should be preferred over <code>setVariables</code> in most use cases.</p>
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">variables</span>
+            <span class="type"><a href="#TVariables">TVariables</a></span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="setOptions" class="title-api selflink" id="ObservableQuery.setOptions">
+      <a href="#ObservableQuery.setOptions" class="link primary">setOptions(opts): <a href="#Promise">Promise</a><<a href="#ApolloQueryResult">ApolloQueryResult</a>></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L436" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 436)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">opts</span>
+            <span class="type"><a href="#ModifiableWatchQueryOptions">ModifiableWatchQueryOptions</a></span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="setVariables" class="title-api selflink" id="ObservableQuery.setVariables">
+      <a href="#ObservableQuery.setVariables" class="link primary">setVariables(variables, tryFetch, fetchResults): <a href="#Promise">Promise</a><<a href="#ApolloQueryResult">ApolloQueryResult</a>></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L494" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 494)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>This is for <em>internal</em> use only. Most users should instead use <code>refetch</code>
+in order to be properly notified of results even when they come from cache.</p>
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">variables</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">tryFetch</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">fetchResults</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="fetchMore" class="title-api selflink" id="ObservableQuery.fetchMore">
+      <a href="#ObservableQuery.fetchMore" class="link primary">fetchMore(fetchMoreOptions): <a href="#Promise">Promise</a><<a href="#ApolloQueryResult">ApolloQueryResult</a>></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L336" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 336)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">fetchMoreOptions</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="updateQuery" class="title-api selflink" id="ObservableQuery.updateQuery">
+      <a href="#ObservableQuery.updateQuery" class="link primary">updateQuery(mapFn): any</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L531" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 531)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">mapFn</span>
+            <span class="type">(any, <a href="#UpdateQueryOptions">UpdateQueryOptions</a><>) => any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="startPolling" class="title-api selflink" id="ObservableQuery.startPolling">
+      <a href="#ObservableQuery.startPolling" class="link primary">startPolling(pollInterval): any</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L562" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 562)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+      <h4 class="subheading">Arguments</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">pollInterval</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="stopPolling" class="title-api selflink" id="ObservableQuery.stopPolling">
+      <a href="#ObservableQuery.stopPolling" class="link primary">stopPolling(): any</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L557" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 557)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="subscribeToMore" class="title-api selflink" id="ObservableQuery.subscribeToMore">
+      <a href="#ObservableQuery.subscribeToMore" class="link primary">subscribeToMore(options): <a href="#(Anonymous function)">(Anonymous function)</a></a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L391" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 391)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+      <h4 class="subheading">Options</h4>
+      <dl class="args">
+      </dl>
+  </div>
+</div>
+
+<h2 id="types">Types</h2>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="ApolloClientOptions" class="title-api selflink" id="ApolloClientOptions">
+      <a href="#ApolloClientOptions" class="link primary">ApolloClientOptions</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L50" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 50)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+      <h4 class="subheading">Properties</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">cache</span>
+            <span class="type"><a href="#ApolloCache">ApolloCache</a><></span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">connectToDevTools</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">defaultOptions</span>
+            <span class="type"><a href="#DefaultOptions">DefaultOptions</a></span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">fragmentMatcher</span>
+            <span class="type">(any, any, any) => any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">link</span>
+            <span class="type"><a href="#ApolloLink">ApolloLink</a></span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">name</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">queryDeduplication</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">resolvers</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">ssrForceFetchDelay</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">ssrMode</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">typeDefs</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">version</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="DefaultOptions" class="title-api selflink" id="DefaultOptions">
+      <a href="#DefaultOptions" class="link primary">DefaultOptions</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/ApolloClient.ts#L42" target="_blank">
+          (packages/apollo-client/src/ApolloClient.ts, line 42)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+      <h4 class="subheading">Properties</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">mutate</span>
+            <span class="type"><a href="#MutationBaseOptions">MutationBaseOptions</a></span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">query</span>
+            <span class="type"><a href="#QueryBaseOptions">QueryBaseOptions</a></span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">watchQuery</span>
+            <span class="type"><a href="#ModifiableWatchQueryOptions">ModifiableWatchQueryOptions</a></span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="NetworkStatus" class="title-api selflink" id="NetworkStatus">
+      <a href="#NetworkStatus" class="link primary">NetworkStatus</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/networkStatus.ts#L4" target="_blank">
+          (packages/apollo-client/src/core/networkStatus.ts, line 4)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      <p>The current status of a query’s execution in our system.</p>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="ApolloQueryResult" class="title-api selflink" id="ApolloQueryResult">
+      <a href="#ApolloQueryResult" class="link primary">ApolloQueryResult</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/types.ts#L21" target="_blank">
+          (packages/apollo-client/src/core/types.ts, line 21)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+      <h4 class="subheading">Properties</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">data</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">errors</span>
+            <span class="type"><a href="#ReadonlyArray">ReadonlyArray</a><<a href="#GraphQLError">GraphQLError</a>></span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">loading</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">networkStatus</span>
+            <span class="type"><a href="#NetworkStatus">NetworkStatus</a></span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">stale</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+<div class="api new-api-box">
+  <div class="api-heading">
+    <h3 title="ApolloCurrentQueryResult" class="title-api selflink" id="ApolloCurrentQueryResult">
+      <a href="#ApolloCurrentQueryResult" class="link primary">ApolloCurrentQueryResult</a>
+    </h3>
+
+    <div class="subtext-api">
+        <a class="src-code link secondary" href="https://github.com/apollostack/apollo-client/blob/master/packages/apollo-client/src/core/ObservableQuery.ts#L32" target="_blank">
+          (packages/apollo-client/src/core/ObservableQuery.ts, line 32)
+        </a>
+    </div>
+  </div>
+
+  <div class="api-body">
+    <div class="desc">
+      
+    </div>
+
+
+      <h4 class="subheading">Properties</h4>
+      <dl class="args">
+          <dt>
+            <span class="name">data</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">error</span>
+            <span class="type"><a href="#ApolloError">ApolloError</a></span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">errors</span>
+            <span class="type"><a href="#ReadonlyArray">ReadonlyArray</a><<a href="#GraphQLError">GraphQLError</a>></span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">loading</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">networkStatus</span>
+            <span class="type"><a href="#NetworkStatus">NetworkStatus</a></span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">partial</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+          <dt>
+            <span class="name">stale</span>
+            <span class="type">any</span>
+          </dt>
+          <dd>
+            
+          </dd>
+      </dl>
+  </div>
+</div>
+
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+         
+              <a class="link primary prev" href="../recipes/2.0-migration.html">
+                <span class="icon-arrow-left-alt"></span>
+                <span class="subtitle-pagination">Previous</span>
+                Apollo Client 1.0 migration
+              </a>
+         
+          
+          
+           
+              <a class="link primary next" href="react-apollo.html">
+                <span class="subtitle-pagination">Next</span>
+                React Apollo
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/api/apollo-client.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

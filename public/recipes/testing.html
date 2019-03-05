@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Testing React components | Apollo Client</title>
+    <meta name="description" content="Have peace of mind when using react-apollo in production">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Testing React components | Apollo Client">
+    <meta property="og:description" content="Have peace of mind when using react-apollo in production">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Testing React components | Apollo Client">
+    <meta name="twitter:description" content="Have peace of mind when using react-apollo in production">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc current">
+                <a href="" class="sidebar-link current">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Testing React components
+            </h1>
+            
+              <div class="subtitle-page">
+                Have peace of mind when using react-apollo in production
+              </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <p>Running tests against code meant for production has long been a best practice. It provides additional security for the code that’s already written, and prevents accidental regressions in the future. Components utilizing <code>react-apollo</code>, the React implementation of Apollo Client, are no exception.</p>
+<p>Although <code>react-apollo</code> has a lot going on under the hood, the library provides multiple tools for testing that simplify those abstractions, and allows complete focus on the component logic. These testing utilities have long been used to test the <code>react-apollo</code> library itself, so they will be supported long-term.</p>
+<h2 id="An-introduction"><a href="#An-introduction" class="headerlink" title="An introduction"></a>An introduction</h2><p>The <code>react-apollo</code> library relies on <a href="https://reactjs.org/docs/context.html" target="_blank" rel="noopener">context</a> in order to pass the <code>ApolloClient</code> instance through the React component tree. In addition, <code>react-apollo</code> makes network requests in order to fetch data. This behavior affects how tests should be written for components that use <code>react-apollo</code>.</p>
+<p>This guide will explain step-by-step how to test <code>react-apollo</code> code. The following examples use the <a href="https://facebook.github.io/jest/docs/en/tutorial-react.html" target="_blank" rel="noopener">Jest</a> testing framework, but most concepts should be reusable with other libraries. These examples aim to use as simple of a toolset as possible, so React’s <a href="https://reactjs.org/docs/test-renderer.html" target="_blank" rel="noopener">test renderer</a> will be used in place of React-specific tools like <a href="https://github.com/airbnb/enzyme" target="_blank" rel="noopener">Enzyme</a> and <a href="https://github.com/kentcdodds/react-testing-library" target="_blank" rel="noopener">react-testing-library</a>.</p>
+<p>Consider the component below, which makes a basic query, and displays its results:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import React from &#39;react&#39;;
+import gql from &#39;graphql-tag&#39;;
+import { Query } from &#39;react-apollo&#39;;
+
+&#x2F;&#x2F; Make sure the query is also exported -- not just the component
+export const GET_DOG_QUERY = gql`
+  query getDog($name: String) {
+    dog(name: $name) {
+      id
+      name
+      breed
+    }
+  }
+`;
+
+export const Dog = ({ name }) =&gt; (
+  &lt;Query query={GET_DOG_QUERY} variables={{ name }}&gt;
+    {({ loading, error, data }) =&gt; {
+      if (loading) return &#39;Loading...&#39;;
+      if (error) return `Error!`;
+
+      return (
+        &lt;p&gt;
+          {data.dog.name} is a {data.dog.breed}
+        &lt;&#x2F;p&gt;
+      );
+    }}
+  &lt;&#x2F;Query&gt;
+);
+</code></pre>
+<p>Given this component, let’s try to render it inside a test, just to make sure there are no render errors:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">&#x2F;&#x2F; Broken because it&#39;s missing Apollo Client in the context
+it(&#39;should render without error&#39;, () =&gt; {
+  renderer.create(&lt;Dog name=&quot;Buck&quot; &#x2F;&gt;);
+});
+</code></pre>
+<p>This test would produce an error because Apollo Client isn’t available on the context for the <code>Query</code> component to consume.</p>
+<p>In order to fix this we could wrap the component in an <code>ApolloProvider</code> and pass an instance of Apollo Client to the <code>client</code> prop. However, this will cause the tests to run against an actual backend which makes the tests very unpredictable for the following reasons:</p>
+<ul>
+<li>The server could be down.</li>
+<li>There may be no network connection.</li>
+<li>The results are not guaranteed to be the same for every query.</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">&#x2F;&#x2F; Not predictable
+it(&#39;renders without error&#39;, () =&gt; {
+  renderer.create(
+    &lt;ApolloProvider client={client}&gt;
+      &lt;Dog name=&quot;Buck&quot; &#x2F;&gt;
+    &lt;&#x2F;ApolloProvider&gt;,
+  );
+});
+</code></pre>
+<h2 id="MockedProvider"><a href="#MockedProvider" class="headerlink" title="MockedProvider"></a><code>MockedProvider</code></h2><p>The <code>react-apollo/test-utils</code> module exports a <code>MockedProvider</code> component which simplifies the testing of React components by mocking calls to the GraphQL endpoint.  This allows the tests to be run in isolation and provides consistent results on every run by removing the dependence on remote data.</p>
+<p>By using this <code>MockedProvider</code> component, it’s possible to specify the exact results that should be returned for a certain query using the <code>mocks</code> prop.  </p>
+<p>Here’s an example of a test for the above <code>Dog</code> component using <code>MockedProvider</code>, which shows how to define the mocked response for <code>GET_DOG_QUERY</code>:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">&#x2F;&#x2F; dog.test.js
+
+import { MockedProvider } from &#39;react-apollo&#x2F;test-utils&#39;;
+
+&#x2F;&#x2F; The component AND the query need to be exported
+import { GET_DOG_QUERY, Dog } from &#39;.&#x2F;dog&#39;;
+
+const mocks = [
+  {
+    request: {
+      query: GET_DOG_QUERY,
+      variables: {
+        name: &#39;Buck&#39;,
+      },
+    },
+    result: {
+      data: {
+        dog: { id: &#39;1&#39;, name: &#39;Buck&#39;, breed: &#39;bulldog&#39; },
+      },
+    },
+  },
+];
+
+it(&#39;renders without error&#39;, () =&gt; {
+  renderer.create(
+    &lt;MockedProvider mocks={mocks} addTypename={false}&gt;
+      &lt;Dog name=&quot;Buck&quot; &#x2F;&gt;
+    &lt;&#x2F;MockedProvider&gt;,
+  );
+});
+</code></pre>
+<p>The <code>mocks</code> array takes objects with specific <code>request</code>s and their associated <code>result</code>s.  When the provider receives a <code>GET_DOG_QUERY</code> with matching <code>variables</code>, it returns the corresponding object from the <code>result</code> key.</p>
+<h3 id="addTypename"><a href="#addTypename" class="headerlink" title="addTypename"></a><code>addTypename</code></h3><p>You may notice the prop being passed to the <code>MockedProvider</code> called <code>addTypename</code>. The reason this is here is because of how Apollo Client normally works. When a request is made with Apollo Client normally, it adds a <code>__typename</code> field to every object type requested. This is to make sure that Apollo Client’s cache knows how to normalize and store the response. When we’re making our mocks, though, we’re importing the raw queries <em>without typenames</em> from the component files.</p>
+<p>If we don’t disable the adding of typenames to queries, the imported query won’t match the query actually being run by the component during our tests.</p>
+<blockquote>
+<p>In short, if queries are lacking <code>__typename</code>, it’s important to pass the <code>addTypename={false}</code> prop to the <code>MockedProvider</code>s.</p>
+</blockquote>
+<h2 id="Testing-loading-states"><a href="#Testing-loading-states" class="headerlink" title="Testing loading states"></a>Testing loading states</h2><p>In this example, the <code>Dog</code> component will render, but it will render in a loading state, not the final response state. This is because <code>MockedProvider</code> doesn’t just return the data but instead returns a <code>Promise</code> that will resolve to that data.  By using a <code>Promise</code> it enables testing of the loading state in addition to the final state:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">it(&#39;should render loading state initially&#39;, () =&gt; {
+  const component = renderer.create(
+    &lt;MockedProvider mocks={[]}&gt;
+      &lt;Dog &#x2F;&gt;
+    &lt;&#x2F;MockedProvider&gt;,
+  );
+
+  const tree = component.toJSON();
+  expect(tree.children).toContain(&#39;Loading...&#39;);
+});
+</code></pre>
+<p>This shows a basic example test that tests the loading state of a component by checking that the children of the component contain the text <code>Loading...</code>. In an actual application, this test would probably be more complicated, but the testing logic would be the same.</p>
+<h2 id="Testing-final-state"><a href="#Testing-final-state" class="headerlink" title="Testing final state"></a>Testing final state</h2><p>Loading state, while important, isn’t the only thing to test. To test the final state of the component after receiving data, we can just wait for it to update and test the final state.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const wait = require(&#39;waait&#39;);
+
+it(&#39;should render dog&#39;, async () =&gt; {
+  const dogMock = {
+    request: {
+      query: GET_DOG_QUERY,
+      variables: { name: &#39;Buck&#39; },
+    },
+    result: {
+      data: { dog: { id: 1, name: &#39;Buck&#39;, breed: &#39;poodle&#39; } },
+    },
+  };
+
+  const component = renderer.create(
+    &lt;MockedProvider mocks={[dogMock]} addTypename={false}&gt;
+      &lt;Dog name=&quot;Buck&quot; &#x2F;&gt;
+    &lt;&#x2F;MockedProvider&gt;,
+  );
+
+  await wait(0); &#x2F;&#x2F; wait for response
+
+  const p = component.root.findByType(&#39;p&#39;);
+  expect(p.children).toContain(&#39;Buck is a poodle&#39;);
+});
+</code></pre>
+<p>Here, you can see the <code>await wait(0)</code> line. This is a utility function from the <a href="https://npm.im/waait" target="_blank" rel="noopener"><code>waait</code></a> npm package. It delays until the next “tick” of the event loop, and allows time for that <code>Promise</code> returned from <code>MockedProvider</code> to be fulfilled. After that <code>Promise</code> resolves (or rejects), the component can be checked to ensure it displays the correct information — in this case, “Buck is a poodle”.</p>
+<p>For more complex UI with heavy calculations, or delays added into its render logic, the <code>wait(0)</code> will not be long enough. In these cases, you could either increase the wait time or use a package like <a href="https://npm.im/wait-for-expect" target="_blank" rel="noopener"><code>wait-for-expect</code></a> to delay until the render has happened. The risk of using a package like this everywhere by default is that <em>every</em> test could take up to five seconds to execute (or longer if the default timeout has been increased).</p>
+<h2 id="Testing-error-states"><a href="#Testing-error-states" class="headerlink" title="Testing error states"></a>Testing error states</h2><p>Since they can make or break the experience a user has when interacting with the app, error states are one of the most important states to test, but are often less tested in development.</p>
+<p>Since most developers would follow the “happy path” and not encounter these states as often, it’s almost <em>more</em> important to test these states to prevent accidental regressions.</p>
+<p>To simulate a network error, an <code>error</code> property can be included on the mock, in place of or in addition to the <code>result</code>.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">it(&#39;should show error UI&#39;, async () =&gt; {
+  const dogMock = {
+    request: {
+      query: GET_DOG_QUERY,
+      variables: { name: &#39;Buck&#39; },
+    },
+    error: new Error(&#39;aw shucks&#39;),
+  };
+
+  const component = renderer.create(
+    &lt;MockedProvider mocks={[dogMock]} addTypename={false}&gt;
+      &lt;Dog name=&quot;Buck&quot; &#x2F;&gt;
+    &lt;&#x2F;MockedProvider&gt;,
+  );
+
+  await wait(0); &#x2F;&#x2F; wait for response
+
+  const tree = component.toJSON();
+  expect(tree.children).toContain(&#39;Error!&#39;);
+});
+</code></pre>
+<p>Here, whenever the <code>MockedProvider</code> receives a <code>GET_DOG_QUERY</code> with matching <code>variables</code>, it will return the error assigned to the <code>error</code> property in the mock. This forces the component into the error state, allowing verification that it’s being handled gracefully.</p>
+<p>To simulate GraphQL errors, simply define <code>errors</code> along with any data in your result.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">const dogMock = {
+  &#x2F;&#x2F; ...
+  result: {
+    errors: [{ message: &quot;Error!&quot; }],
+  },
+};
+</code></pre>
+<h2 id="Testing-mutation-components"><a href="#Testing-mutation-components" class="headerlink" title="Testing mutation components"></a>Testing mutation components</h2><p><code>Mutation</code> components are tested very similarly to <code>Query</code> components. The only key difference is how the operation is fired. On a <code>Query</code> component, the query is fired when the component <em>mounts</em>, whereas with <code>Mutation</code> components, the mutation is fired manually, usually after some user interaction like pressing a button.</p>
+<p>Consider this component that calls a mutation:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">export const DELETE_DOG_MUTATION = gql`
+  mutation deleteDog($name: String!) {
+    deleteDog(name: $name) {
+      id
+      name
+      breed
+    }
+  }
+`;
+
+export const DeleteButton = () =&gt; (
+  &lt;Mutation mutation={DELETE_DOG_MUTATION}&gt;
+    {(mutate, { loading, error, data }) =&gt; {
+      if (loading) return &lt;p&gt;Loading...&lt;&#x2F;p&gt;;
+      if (error) return &lt;p&gt;Error!&lt;&#x2F;p&gt;;
+      if (data) return &lt;p&gt;Deleted!&lt;&#x2F;p&gt;;
+
+      return (
+        &lt;button onClick={() =&gt; mutate({ variables: { name: &#39;Buck&#39; } })}&gt;
+          Click me to Delete Buck!
+        &lt;&#x2F;button&gt;
+      );
+    }}
+  &lt;&#x2F;Mutation&gt;
+);
+</code></pre>
+<p>Testing an initial render for this component looks identical to testing our <code>Query</code> component.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import DeleteButton, { DELETE_DOG_MUTATION } from &#39;.&#x2F;delete-dog&#39;;
+
+it(&#39;should render without error&#39;, () =&gt; {
+  renderer.create(
+    &lt;MockedProvider mocks={[]}&gt;
+      &lt;DeleteButton &#x2F;&gt;
+    &lt;&#x2F;MockedProvider&gt;,
+  );
+});
+</code></pre>
+<p>Calling the mutation is where things get interesting:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">it(&#39;should render loading state initially&#39;, () =&gt; {
+  const deleteDog = { name: &#39;Buck&#39;, breed: &#39;Poodle&#39;, id: 1 };
+  const mocks = [
+    {
+      request: {
+        query: DELETE_DOG_MUTATION,
+        variables: { name: &#39;Buck&#39; },
+      },
+      result: { data: { deleteDog } },
+    },
+  ];
+
+  const component = renderer.create(
+    &lt;MockedProvider mocks={mocks} addTypename={false}&gt;
+      &lt;DeleteButton &#x2F;&gt;
+    &lt;&#x2F;MockedProvider&gt;,
+  );
+
+  &#x2F;&#x2F; find the button and simulate a click
+  const button = component.root.findByType(&#39;button&#39;);
+  button.props.onClick(); &#x2F;&#x2F; fires the mutation
+
+  const tree = component.toJSON();
+  expect(tree.children).toContain(&#39;Loading...&#39;);
+});
+</code></pre>
+<p>This example looks very similar to the <code>Query</code> component, but the difference comes after the rendering is completed. Since this component relies on a button to be clicked to fire a mutation, the renderer’s API is used to find the button.</p>
+<p>After a reference to the button has been obtained, a “click” on the button can be simulated by calling its <code>onClick</code> handler. This will fire off the mutation, and then the rest will be tested identically to the <code>Query</code> component.</p>
+<blockquote>
+<p>Note: Other test utilities like <a href="https://github.com/airbnb/enzyme" target="_blank" rel="noopener">Enzyme</a> and <a href="https://github.com/kentcdodds/react-testing-library" target="_blank" rel="noopener">react-testing-library</a> have built-in tools for finding elements and simulating events, but the concept is the same: find the button and simulate a click on it.</p>
+</blockquote>
+<p>To test for a successful mutation after simulating the click, the fulfilled <code>Promise</code> from <code>MockedProvider</code> can be checked for the appropriate confirmation message, just like the <code>Query</code> component:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">it(&#39;should delete and give visual feedback&#39;, async () =&gt; {
+  const deleteDog = { name: &#39;Buck&#39;, breed: &#39;Poodle&#39;, id: 1 };
+  const mocks = [
+    {
+      request: {
+        query: DELETE_DOG_MUTATION,
+        variables: { name: &#39;Buck&#39; },
+      },
+      result: { data: { deleteDog } },
+    },
+  ];
+
+  const component = renderer.create(
+    &lt;MockedProvider mocks={mocks} addTypename={false}&gt;
+      &lt;DeleteButton &#x2F;&gt;
+    &lt;&#x2F;MockedProvider&gt;,
+  );
+
+  &#x2F;&#x2F; find the button and simulate a click
+  const button = component.root.findByType(&#39;button&#39;);
+  button.props.onClick(); &#x2F;&#x2F; fires the mutation
+
+  await wait(0);
+
+  const tree = component.toJSON();
+  expect(tree.children).toContain(&#39;Deleted!&#39;);
+});
+</code></pre>
+<p>For the sake of simplicity, the error case for mutations hasn’t been shown here, but testing <code>Mutation</code> errors is exactly the same as testing <code>Query</code> errors: just add an <code>error</code> to the mock, fire the mutation, and check the UI for error messages.</p>
+<p>Testing UI components isn’t a simple issue, but hopefully these tools will create confidence when testing components that are dependent on data.</p>
+<p>For a working example showing how to test components, check out this project on CodeSandbox:</p>
+<p><a href="https://codesandbox.io/s/40k7j708n4" target="_blank" rel="noopener"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit React-Apollo Testing"></a></p>
+<!-- Refer to the [docs](../api/react-apollo.html#MockedProvider) for more information on the API for `<MockedProvider />`. -->
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+         
+              <a class="link primary prev" href="authentication.html">
+                <span class="icon-arrow-left-alt"></span>
+                <span class="subtitle-pagination">Previous</span>
+                Authentication
+              </a>
+         
+          
+          
+           
+              <a class="link primary next" href="static-typing.html">
+                <span class="subtitle-pagination">Next</span>
+                Using Apollo with TypeScript
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/recipes/testing.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

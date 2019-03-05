@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Queries | Apollo Client</title>
+    <meta name="description" content="Learn how to fetch data with Query components">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Queries | Apollo Client">
+    <meta property="og:description" content="Learn how to fetch data with Query components">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Queries | Apollo Client">
+    <meta name="twitter:description" content="Learn how to fetch data with Query components">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc current">
+                <a href="" class="sidebar-link current">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Queries
+            </h1>
+            
+              <div class="subtitle-page">
+                Learn how to fetch data with Query components
+              </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <p>Fetching data in a simple, predictable way is one of the core features of Apollo Client. In this guide, you’ll learn how to build Query components in order to fetch GraphQL data and attach the result to your UI. You’ll also learn how Apollo Client simplifies your data management code by tracking error and loading states for you.</p>
+<p>This page assumes some familiarity with building GraphQL queries. If you’d like a refresher, we recommend <a href="http://graphql.org/learn/queries/" target="_blank" rel="noopener">reading this guide</a> and practicing <a href="../features/developer-tooling.html#features">running queries in GraphiQL</a>. Since Apollo Client queries are just standard GraphQL, you can be sure that any query that successfully runs in GraphiQL will also run in an Apollo Query component.</p>
+<p>The following examples assume that you’ve already set up Apollo Client and have wrapped your React app in an <code>ApolloProvider</code> component. Read our <a href="./get-started.html">getting started</a> guide if you need help with either of those steps.</p>
+<blockquote>
+<p>If you’d like to follow along with the examples, open up our <a href="https://codesandbox.io/s/j2ly83749w" target="_blank" rel="noopener">starter project</a> on CodeSandbox and our sample GraphQL server on <a href="https://codesandbox.io/s/32ypr38l61" target="_blank" rel="noopener">this CodeSandbox</a>. You can view the completed version of the app <a href="https://codesandbox.io/s/n3jykqpxwm" target="_blank" rel="noopener">here</a>.</p>
+</blockquote>
+<h2 id="basic">The Query component</h2>
+
+<p>The <code>Query</code> component is one of the most important building blocks of your Apollo application. To create a <code>Query</code> component, just pass a GraphQL query string wrapped with the <code>gql</code> function to <code>this.props.query</code> and provide a function to <code>this.props.children</code> that tells React what to render. The <code>Query</code> component is an example of a React component that uses the <a href="https://reactjs.org/docs/render-props.html" target="_blank" rel="noopener">render prop</a> pattern. React will call the render prop function you provide with an object from Apollo Client containing loading, error, and data properties that you can use to render your UI. Let’s look at an example:</p>
+<p>First, let’s create our GraphQL query. Remember to wrap your query string in the <code>gql</code> function in order to parse it into a query document. Once we have our GraphQL query, let’s attach it to our <code>Query</code> component by passing it to the <code>query</code> prop.</p>
+<p>We also need to provide a function as a child to our <code>Query</code> component that will tell React what we want to render. We can use the <code>loading</code>, <code>error</code>, and <code>data</code> properties that the <code>Query</code> component provides for us in order to intelligently render different UI depending on the state of our query. Let’s see what this looks like!</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">import gql from &quot;graphql-tag&quot;;
+import { Query } from &quot;react-apollo&quot;;
+
+const GET_DOGS = gql`
+  {
+    dogs {
+      id
+      breed
+    }
+  }
+`;
+
+const Dogs = ({ onDogSelected }) =&gt; (
+  &lt;Query query={GET_DOGS}&gt;
+    {({ loading, error, data }) =&gt; {
+      if (loading) return &quot;Loading...&quot;;
+      if (error) return `Error! ${error.message}`;
+
+      return (
+        &lt;select name=&quot;dog&quot; onChange={onDogSelected}&gt;
+          {data.dogs.map(dog =&gt; (
+            &lt;option key={dog.id} value={dog.breed}&gt;
+              {dog.breed}
+            &lt;&#x2F;option&gt;
+          ))}
+        &lt;&#x2F;select&gt;
+      );
+    }}
+  &lt;&#x2F;Query&gt;
+);
+</code></pre>
+<p>If you render <code>Dogs</code> within your <code>App</code> component, you’ll first see a loading state and then a form with a list of dog breeds once Apollo Client receives the data from the server. When the form value changes, we’re going to send the value to a parent component via <code>this.props.onDogSelected</code>, which will eventually pass the value to a <code>DogPhoto</code> component.</p>
+<p>In the next step, we’re going to hook our form up to a more complex query with variables by building a <code>DogPhoto</code> component.</p>
+<h2 id="data">Receiving data</h2>
+
+<p>You’ve already seen a preview of how to work with the result of your query in the render prop function. Let’s dive deeper into what’s happening behind the scenes with Apollo Client when we fetch data from a <code>Query</code> component.</p>
+<ol>
+<li>When the <code>Query</code> component mounts, Apollo Client creates an observable for our query. Our component subscribes to the result of the query via the Apollo Client cache.</li>
+<li>First, we try to load the query result from the Apollo cache. If it’s not in there, we send the request to the server.</li>
+<li>Once the data comes back, we normalize it and store it in the Apollo cache. Since the <code>Query</code> component subscribes to the result, it updates with the data reactively.</li>
+</ol>
+<p>To see Apollo Client’s caching in action, let’s build our <code>DogPhoto</code> component. <code>DogPhoto</code> accepts a prop called <code>breed</code> that reflects the current value of our form from the <code>Dogs</code> component above.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">const GET_DOG_PHOTO = gql`
+  query Dog($breed: String!) {
+    dog(breed: $breed) {
+      id
+      displayImage
+    }
+  }
+`;
+
+const DogPhoto = ({ breed }) =&gt; (
+  &lt;Query query={GET_DOG_PHOTO} variables={{ breed }}&gt;
+    {({ loading, error, data }) =&gt; {
+      if (loading) return null;
+      if (error) return `Error!: ${error}`;
+
+      return (
+        &lt;img src={data.dog.displayImage} style={{ height: 100, width: 100 }} &#x2F;&gt;
+      );
+    }}
+  &lt;&#x2F;Query&gt;
+);
+</code></pre>
+<p>You’ll notice there is a new configuration option on our <code>Query</code> component. The prop <code>variables</code> is an object containing the variables we want to pass to our GraphQL query. In this case, we want to pass the breed from the form into our query.</p>
+<p>Try selecting “bulldog” from the list to see its photo show up. Then, switch to another breed and switch back to “bulldog”. You’ll notice that the bulldog photo loads instantaneously the second time around. This is the Apollo cache at work!</p>
+<p>Next, let’s learn some techniques for ensuring our data is fresh, such as polling and refetching.</p>
+<h2 id="refetching">Polling and refetching</h2>
+
+<p>It’s awesome that Apollo Client caches your data for you, but what should we do when we want fresh data? Two solutions are polling and refetching.</p>
+<p>Polling can help us achieve near real-time data by causing the query to refetch on a specified interval. To implement polling, simply pass a <code>pollInterval</code> prop to the <code>Query</code> component with the interval in ms. If you pass in 0, the query will not poll. You can also implement dynamic polling by using the <code>startPolling</code> and <code>stopPolling</code> functions on the result object passed to the render prop function.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">const DogPhoto = ({ breed }) =&gt; (
+  &lt;Query
+    query={GET_DOG_PHOTO}
+    variables={{ breed }}
+    skip={!breed}
+    pollInterval={500}
+  &gt;
+    {({ loading, error, data, startPolling, stopPolling }) =&gt; {
+      if (loading) return null;
+      if (error) return `Error!: ${error}`;
+
+      return (
+        &lt;img src={data.dog.displayImage} style={{ height: 100, width: 100 }} &#x2F;&gt;
+      );
+    }}
+  &lt;&#x2F;Query&gt;
+);
+</code></pre>
+<p>By setting the <code>pollInterval</code> to 500, you should see a new dog image every .5 seconds. Polling is an excellent way to achieve near-realtime data without the complexity of setting up GraphQL subscriptions.</p>
+<p>What if you want to reload the query in response to a user action instead of an interval? That’s where the <code>refetch</code> function comes in! Here, we’re adding a button to our <code>DogPhoto</code> component that will trigger a refetch when clicked. <code>refetch</code> takes variables, but if we don’t pass in new variables, it will use the same ones from our previous query.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">const DogPhoto = ({ breed }) =&gt; (
+  &lt;Query
+    query={GET_DOG_PHOTO}
+    variables={{ breed }}
+    skip={!breed}
+  &gt;
+    {({ loading, error, data, refetch }) =&gt; {
+      if (loading) return null;
+      if (error) return `Error!: ${error}`;
+
+      return (
+        &lt;div&gt;
+          &lt;img
+            src={data.dog.displayImage}
+            style={{ height: 100, width: 100 }}
+          &#x2F;&gt;
+          &lt;button onClick={() =&gt; refetch()}&gt;Refetch!&lt;&#x2F;button&gt;
+        &lt;&#x2F;div&gt;
+      );
+    }}
+  &lt;&#x2F;Query&gt;
+);
+</code></pre>
+<p>If you click the button, you’ll notice that our UI updates with a new dog photo. Refetching is an excellent way to guarantee fresh data, but it introduces some added complexity with loading state. In the next section, you’ll learn strategies to handle complex loading and error state.</p>
+<h2 id="loading">Loading and error state</h2>
+
+<p>We’ve already seen how Apollo Client exposes our query’s loading and error state in the render prop function. These properties are helpful for when the query initially loads, but what happens to our loading state when we’re refetching or polling?</p>
+<p>Let’s go back to our refetching example from the previous section. If you click on the refetch button, you’ll see that the component doesn’t re-render until the new data arrives. What if we want to indicate to the user that we’re refetching the photo?</p>
+<p>Luckily, Apollo Client provides fine-grained information about the status of our query via the <code>networkStatus</code> property on the result object in the render prop function. We also need to set the prop <code>notifyOnNetworkStatusChange</code> to true so our query component re-renders while a refetch is in flight.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">const DogPhoto = ({ breed }) =&gt; (
+  &lt;Query
+    query={GET_DOG_PHOTO}
+    variables={{ breed }}
+    skip={!breed}
+    notifyOnNetworkStatusChange
+  &gt;
+    {({ loading, error, data, refetch, networkStatus }) =&gt; {
+      if (networkStatus === 4) return &quot;Refetching!&quot;;
+      if (loading) return null;
+      if (error) return `Error!: ${error}`;
+
+      return (
+        &lt;div&gt;
+          &lt;img
+            src={data.dog.displayImage}
+            style={{ height: 100, width: 100 }}
+          &#x2F;&gt;
+          &lt;button onClick={() =&gt; refetch()}&gt;Refetch!&lt;&#x2F;button&gt;
+        &lt;&#x2F;div&gt;
+      );
+    }}
+  &lt;&#x2F;Query&gt;
+);
+</code></pre>
+<p>The <code>networkStatus</code> property is an enum with number values from 1-8 representing a different loading state. 4 corresponds to a refetch, but there are also numbers for polling and pagination. For a full list of all the possible loading states, check out the <a href="../api/react-apollo.html#graphql-query-data-networkStatus">reference guide</a>.</p>
+<p>While not as complex as loading state, responding to errors in your component is also customizable via the <code>errorPolicy</code> prop on the <code>Query</code> component. The default value for <code>errorPolicy</code> is “none” in which we treat all GraphQL errors as runtime errors. In the event of an error, Apollo Client will discard any data that came back with the request and set the <code>error</code> property in the render prop function to true. If you’d like to show any partial data along with any error information, set the <code>errorPolicy</code> to “all”.</p>
+<h2 id="manual-query">Manually firing a query</h2>
+
+<p>When React mounts a <code>Query</code> component, Apollo Client automatically fires off your query. What if you wanted to delay firing your query until the user performs an action, such as clicking on a button? For this scenario, we want to use an <code>ApolloConsumer</code> component and directly call <code>client.query()</code> instead.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-jsx">import React, { Component } from &#39;react&#39;;
+import { ApolloConsumer } from &#39;react-apollo&#39;;
+
+class DelayedQuery extends Component {
+  state = { dog: null };
+
+  onDogFetched = dog =&gt; this.setState(() =&gt; ({ dog }));
+
+  render() {
+    return (
+      &lt;ApolloConsumer&gt;
+        {client =&gt; (
+          &lt;div&gt;
+            {this.state.dog &amp;&amp; &lt;img src={this.state.dog.displayImage} &#x2F;&gt;}
+            &lt;button
+              onClick={async () =&gt; {
+                const { data } = await client.query({
+                  query: GET_DOG_PHOTO,
+                  variables: { breed: &quot;bulldog&quot; }
+                });
+                this.onDogFetched(data.dog);
+              }}
+            &gt;
+              Click me!
+            &lt;&#x2F;button&gt;
+          &lt;&#x2F;div&gt;
+        )}
+      &lt;&#x2F;ApolloConsumer&gt;
+    );
+  }
+}
+</code></pre>
+<p>Fetching this way is quite verbose, so we recommend trying to use a <code>Query</code> component if at all possible!</p>
+<blockquote>
+<p>If you’d like to view a complete version of the app we just built, you can check out the CodeSandbox <a href="https://codesandbox.io/s/n3jykqpxwm" target="_blank" rel="noopener">here</a>.</p>
+</blockquote>
+<h2 id="api">Query API overview</h2>
+
+<p>If you’re looking for an overview of all the props <code>Query</code> accepts and its render prop function, look no further! Most <code>Query</code> components will not need all of these configuration options, but it’s useful to know that they exist. If you’d like to learn about the <code>Query</code> component API in more detail with usage examples, visit our <a href="../api/react-apollo.html">reference guide</a>.</p>
+<h3 id="props">Props</h3>
+
+<p>The Query component accepts the following props. Only <code>query</code> and <code>children</code> are <strong>required</strong>.</p>
+<dl>
+  <dt><code>query</code>: DocumentNode</dt>
+  <dd>A GraphQL query document parsed into an AST by <code>graphql-tag</code>. <strong>Required</strong></dd>
+  <dt><code>children</code>: (result: QueryResult) =&gt; React.ReactNode</dt>
+  <dd>A function returning the UI you want to render based on your query result. <strong>Required</strong></dd>
+  <dt><code>variables</code>: { [key: string]: any }</dt>
+  <dd>An object containing all of the variables your query needs to execute</dd>
+  <dt><code>pollInterval</code>: number</dt>
+  <dd>Specifies the interval in ms at which you want your component to poll for data. Defaults to 0 (no polling).</dd>
+  <dt><code>notifyOnNetworkStatusChange</code>: boolean</dt>
+  <dd>Whether updates to the network status or network error should re-render your component. Defaults to false.</dd>
+  <dt><code>fetchPolicy</code>: FetchPolicy</dt>
+  <dd>How you want your component to interact with the Apollo cache. Defaults to “cache-first”.</dd>
+  <dt><code>errorPolicy</code>: ErrorPolicy</dt>
+  <dd>How you want your component to handle network and GraphQL errors. Defaults to “none”, which means we treat GraphQL errors as runtime errors.</dd>
+  <dt><code>ssr</code>: boolean</dt>
+  <dd>Pass in false to skip your query during server-side rendering.</dd>
+  <dt><code>displayName</code>: string</dt>
+  <dd>The name of your component to be displayed in React DevTools. Defaults to ‘Query’.</dd>
+  <dt><code>skip</code>: boolean</dt>
+  <dd>If skip is true, the query will be skipped entirely.</dd>
+  <dt><code>onCompleted</code>: (data: TData | {}) =&gt; void</dt>
+  <dd>A callback executed once your query successfully completes.</dd>
+  <dt><code>onError</code>: (error: ApolloError) =&gt; void</dt>
+  <dd>A callback executed in the event of an error.</dd>
+  <dt><code>context</code>: Record&lt;string, any&gt;</dt>
+  <dd>Shared context between your Query component and your network interface (Apollo Link). Useful for setting headers from props or sending information to the <code>request</code> function of Apollo Boost.</dd>
+  <dt><code>partialRefetch</code>: boolean</dt>
+  <dd>If <code>true</code>, perform a query <code>refetch</code> if the query result is marked as being partial, and the returned data is reset to an empty Object by the Apollo Client <code>QueryManager</code> (due to a cache miss). The default value is <code>false</code> for backwards-compatibility’s sake, but should be changed to true for most use-cases.</dd>
+</dl>
+
+<h3 id="render-prop">Render prop function</h3>
+
+<p>The render prop function that you pass to the <code>children</code> prop of <code>Query</code> is called with an object (<code>QueryResult</code>) that has the following properties. This object contains your query result, plus some helpful functions for refetching, dynamic polling, and pagination.</p>
+<dl>
+  <dt><code>data</code>: TData</dt>
+  <dd>An object containing the result of your GraphQL query. Defaults to an empty object.</dd>
+  <dt><code>loading</code>: boolean</dt>
+  <dd>A boolean that indicates whether the request is in flight</dd>
+  <dt><code>error</code>: ApolloError</dt>
+  <dd>A runtime error with <code>graphQLErrors</code> and <code>networkError</code> properties</dd>
+  <dt><code>variables</code>: { [key: string]: any }</dt>
+  <dd>An object containing the variables the query was called with</dd>
+  <dt><code>networkStatus</code>: NetworkStatus</dt>
+  <dd>A number from 1-8 corresponding to the detailed state of your network request. Includes information about refetching and polling status. Used in conjunction with the <code>notifyOnNetworkStatusChange</code> prop.</dd>
+  <dt><code>refetch</code>: (variables?: TVariables) =&gt; Promise<apolloqueryresult></apolloqueryresult></dt>
+  <dd>A function that allows you to refetch the query and optionally pass in new variables</dd>
+  <dt><code>fetchMore</code>: ({ query?: DocumentNode, variables?: TVariables, updateQuery: Function}) =&gt; Promise<apolloqueryresult></apolloqueryresult></dt>
+  <dd>A function that enables <a href="../features/pagination.html">pagination</a> for your query</dd>
+  <dt><code>startPolling</code>: (interval: number) =&gt; void</dt>
+  <dd>This function sets up an interval in ms and fetches the query each time the specified interval passes.</dd>
+  <dt><code>stopPolling</code>: () =&gt; void</dt>
+  <dd>This function stops the query from polling.</dd>
+  <dt><code>subscribeToMore</code>: (options: { document: DocumentNode, variables?: TVariables, updateQuery?: Function, onError?: Function}) =&gt; () =&gt; void</dt>
+  <dd>A function that sets up a <a href="../advanced/subscriptions.html">subscription</a>. <code>subscribeToMore</code> returns a function that you can use to unsubscribe.</dd>
+  <dt><code>updateQuery</code>: (previousResult: TData, options: { variables: TVariables }) =&gt; TData</dt>
+  <dd>A function that allows you to update the query’s result in the cache outside the context of a fetch, mutation, or subscription</dd>
+  <dt><code>client</code>: ApolloClient</dt>
+  <dd>Your <code>ApolloClient</code> instance. Useful for manually firing queries or writing data to the cache.</dd>
+</dl>
+
+<h2 id="next-steps">Next steps</h2>
+
+<p>Learning how to build <code>Query</code> components to fetch data is one of the most important skills to mastering development with Apollo Client. Now that you’re a pro at fetching data, why not try building <code>Mutation</code> components to update your data? Here are some resources we think will help you level up your skills:</p>
+<ul>
+<li><a href="./mutations.html">Mutations</a>: Learn how to update data with mutations and when you’ll need to update the Apollo cache. For a full list of options, check out the API reference for <code>Mutation</code> components.</li>
+<li><a href="./local-state.html">Local state management</a>: Learn how to query local data with <code>apollo-link-state</code>.</li>
+<li><a href="../features/pagination.html">Pagination</a>: Building lists has never been easier thanks to Apollo Client’s <code>fetchMore</code> function. Learn more in our pagination tutorial.</li>
+<li><a href="https://youtu.be/YHJ2CaS0vpM" target="_blank" rel="noopener">Query component video by Sara Vieira</a>: If you need a refresher or learn best by watching videos, check out this tutorial on <code>Query</code> components by Sara!</li>
+</ul>
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+         
+              <a class="link primary prev" href="get-started.html">
+                <span class="icon-arrow-left-alt"></span>
+                <span class="subtitle-pagination">Previous</span>
+                Get started
+              </a>
+         
+          
+          
+           
+              <a class="link primary next" href="mutations.html">
+                <span class="subtitle-pagination">Next</span>
+                Mutations
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/essentials/queries.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

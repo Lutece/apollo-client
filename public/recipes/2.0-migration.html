@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Apollo Client 1.0 migration | Apollo Client</title>
+    <meta name="description" content="Updating your app to Apollo Client 2.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Apollo Client 1.0 migration | Apollo Client">
+    <meta property="og:description" content="Updating your app to Apollo Client 2.0">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Apollo Client 1.0 migration | Apollo Client">
+    <meta name="twitter:description" content="Updating your app to Apollo Client 2.0">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/developer-tooling.html" class="sidebar-link ">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../features/defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc current">
+                <a href="" class="sidebar-link current">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Apollo Client 1.0 migration
+            </h1>
+            
+              <div class="subtitle-page">
+                Updating your app to Apollo Client 2.0
+              </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <p>The 2.0 version of Apollo provides a more customizable experience with GraphQL. It prioritizes features like custom execution chains (using Apollo Link) and custom stores while providing powerful defaults. It is an overall minor change to the API so you shouldn’t have to change very much code in your current app at all!</p>
+<h3 id="goals" title="Goals">Goals</h3>
+
+<p>The <code>2.*</code> version of Apollo Client builds on the original principles of the project. For reference, those goals are:</p>
+<ol>
+<li><strong>Incrementally adoptable</strong>, so that you can drop it into an existing JavaScript app and start using GraphQL for just part of your UI.</li>
+<li><strong>Universally compatible</strong>, so that Apollo works with any build setup, any GraphQL server, and any GraphQL schema.</li>
+<li><strong>Simple to get started with</strong>, you can start loading data right away and learn about advanced features later.</li>
+<li><strong>Inspectable and understandable</strong>, so that you can have great developer tools to understand exactly what is happening in your app.</li>
+<li><strong>Built for interactive apps</strong>, so your users can make changes and see them reflected in the UI immediately.</li>
+<li><strong>Small and flexible</strong>, so you don’t get stuff you don’t need</li>
+<li><strong>Community driven</strong>, Apollo is driven by the community and serves a variety of use cases. Everything is planned and developed in the open.</li>
+</ol>
+<p>Based on feedback from a wide variety of users, the <code>2.*</code> version doubles down on being incrementally adoptable and flexible by allowing much stronger extension points. Customization of the client (i.e. data store, execution chain, etc) is a primary feature in the revised API. This version also take steps to reduce the overall size of the default client by 200% and provide the foundations for Apollo powering more of the application experience from development to production with client side state management.</p>
+<p>The goal of the <code>2.0</code> launch is not to provide all of the new features that have been asked to be built in. Instead, the 2.0 makes a few key changes to both management of the code base (lerna / small modules) and the changes necessary to support custom stores and links <strong>fully</strong>. Apollo Client 2.0 is the jumping off point for user-land driven innovation (custom stores, custom links) and internal refactor (moving query manager into links, breaking apart the store / links into packages, etc)</p>
+<h2 id="install" title="Installation">Installation</h2>
+One of the largest changes with the new version is the breaking apart of the monolith <code>apollo-client</code> package into a few small, but isolated modules. This gives way more flexibility, but does require more packages to install. Long term we think this is the right way to go for applications of all sizes, but we have created an <code>apollo-client-preset</code> package with defaults that match the 1.0 version.
+
+To get started with the 2.0, you will change your imports from either <code>react-apollo</code>, or just <code>apollo-client</code> to use the new packages. A typical upgrade looks like this:
+
+<strong>Before</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import {
+  ApolloClient,
+  createNetworkInterface,
+  ApolloProvider,
+  graphql,
+  gql
+} from &#39;react-apollo&#39;;
+
+&#x2F;&#x2F; or
+import { ApolloClient, createNetworkInterface } from &#39;apollo-client&#39;;
+</code></pre>
+
+
+
+<strong>After</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient } from &#39;apollo-client&#39;;
+import { HttpLink } from &#39;apollo-link-http&#39;;
+import { InMemoryCache } from &#39;apollo-cache-inmemory&#39;;
+import gql from &#39;graphql-tag&#39;;
+import { ApolloProvider, graphql } from &#39;react-apollo&#39;;
+</code></pre>
+
+
+
+By splitting these features apart, it makes it possible to import only what your application needs and it makes it possible for us to individually increment versions instead of where a breaking change in one, means a breaking change in all since the packages are re-exported;
+
+The above example can be reduced using <code>apollo-client-preset</code> like so:
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient, HttpLink, InMemoryCache } from &#39;apollo-client-preset&#39;;
+import gql from &#39;graphql-tag&#39;;
+import { ApolloProvider, graphql } from &#39;react-apollo&#39;;
+</code></pre>
+
+
+
+<h3 id="fetch">Fetch polyfill</h3>
+
+Apollo Client 2.0 no longer always includes a polyfill for the browser <code>fetch</code> function. Read about how to set that up in the <a href="https://www.apollographql.com/docs/link/links/http.html#fetch">Apollo Link docs</a>.
+
+You should include this polyfill to support browsers such as Internet Explorer and Opera Mini. <a href="https://caniuse.com/#search=fetch" target="_blank" rel="noopener">See the compatibility details here.</a>
+
+<h3 id="basic" title="Basic updates">Basic updates</h3>
+We know how much hard work and care you have put into your application! The 2.0 upgrade is designed to be as minimal as possible and to not require any application (like UI integration) changes. It is instead focused on how to construct a client as a way to new features and improvements. A simple usage of Apollo Client upgrading to the 2.0 would look like this:
+
+<strong>Before</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import ApolloClient, { ApolloProvider, createNetworkInterface } from &#39;react-apollo&#39;;
+import { render } from &#39;react-dom&#39;;
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({ uri: &#39;http:&#x2F;&#x2F;localhost:3000&#39; }),
+});
+
+const WrappedApp = (
+  &lt;ApolloProvider client={client}&gt;
+    &lt;App &#x2F;&gt;
+  &lt;&#x2F;ApolloProvider&gt;
+);
+
+render(WrappedApp, document.getElementById(&#39;app&#39;));
+</code></pre>
+
+
+
+<strong>After</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient } from &#39;apollo-client&#39;;
+import { createHttpLink } from &#39;apollo-link-http&#39;;
+import { InMemoryCache } from &#39;apollo-cache-inmemory&#39;;
+import { ApolloProvider } from &#39;react-apollo&#39;;
+import { render } from &#39;react-dom&#39;;
+
+const client = new ApolloClient({
+  link: createHttpLink({ uri: &#39;http:&#x2F;&#x2F;localhost:3000&#39; }),
+  cache: new InMemoryCache(),
+});
+
+const WrappedApp = (
+  &lt;ApolloProvider client={client}&gt;
+    &lt;App &#x2F;&gt;
+  &lt;&#x2F;ApolloProvider&gt;
+);
+
+render(WrappedApp, document.getElementById(&#39;app&#39;));
+</code></pre>
+
+
+
+<h3 id="full" title="Custom Configuration">Custom configuration</h3>
+Since everything was baked into the 1.0, custom configuration of the parts, like the network interface or cache, all were done on the constructor. With the 2.0, this is broken up slightly, and unnecessary configurations were removed. The following code snippet shows every possible option with the previous version and how to use it with the 2.0:
+
+<strong>Before</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import ApolloClient, { createNetworkInterface } from &#39;apollo-client&#39;;
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: &#39;http:&#x2F;&#x2F;api.example.com&#x2F;&#39;,
+    opts: {
+      &#x2F;&#x2F; Additional fetch options like `credentials` or `headers`
+      credentials: &#39;same-origin&#39;,
+    }
+  }),
+  reduxRootSelector: ({ apollo }) =&gt; apollo,
+  initialState: window.__APOLLO_CLIENT__,
+  dataIdFromObject: () =&gt; &#x2F;&#x2F; custom idGetter,
+  ssrMode: true,
+  ssrForceFetchDelay: 100,
+  addTypename: true,
+  customResolvers: {},
+  connectToDevTools: true,
+  queryDeduplication: true,
+  fragmentMatcher: new FragmentMatcher()
+})
+</code></pre>
+
+
+
+<strong>After</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient } from &#39;apollo-client&#39;;
+import { InMemoryCache, IntrospectionFragmentMatcher } from &#39;apollo-cache-inmemory&#39;;
+import { createHttpLink } from &#39;apollo-link-http&#39;;
+
+const link = createHttpLink({
+  uri: &#39;http:&#x2F;&#x2F;api.example.com&#x2F;&#39;,
+  credentials: &#39;same-origin&#39;
+})
+
+const cache = new InMemoryCache({
+  dataIdFromObject: () =&gt; &#x2F;&#x2F; custom idGetter,
+  addTypename: true,
+  cacheResolvers: {},
+  fragmentMatcher: new IntrospectionFragmentMatcher({
+    introspectionQueryResultData: yourData
+  }),
+});
+
+const client = new ApolloClient({
+  link,
+  &#x2F;&#x2F; use restore on the cache instead of initialState
+  cache: cache.restore(window.__APOLLO_CLIENT__),
+  ssrMode: true,
+  ssrForceFetchDelay: 100,
+  connectToDevTools: true,
+  queryDeduplication: true,
+});
+
+&#x2F;&#x2F; reduxRootSelector has been removed
+</code></pre>
+
+<em>Note</em> If you were using <code>customResolvers</code>, the name of that has been changed to be <code>cacheResolvers</code> to be more descriptive of what it does. <code>customResolvers</code> will still be supported throughout the 2.0 though to be backwards compatible and ease the upgrade path
+
+
+<h2 id="ssr" title="Cache extraction">Cache extraction</h2>
+If you have previously used <code>getInitialState</code> for SSR, that API has been moved to the cache itself instead of on the client. You can read more about the recipe for server side rendering <a href="../features/server-side-rendering.html">here</a>. The upgrade path looks like this:
+
+<strong>Before</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient } from &#39;apollo-client&#39;;
+
+const client = new ApolloClient();
+
+&#x2F;&#x2F; do some data loading things using getDataFromTree
+
+const state = client.getInitialState();
+</code></pre>
+
+
+
+<strong>After</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient } from &quot;apollo-client&quot;;
+import { InMemoryCache } from &quot;apollo-cache-inmemory&quot;;
+import { createHttpLink } from &#39;apollo-link-http&#39;;
+
+const client = new ApolloClient({
+  link: createHttpLink(),
+  cache: new InMemoryCache()
+});
+
+&#x2F;&#x2F; do some data loading things using getDataFromTree
+
+const state = client.extract();
+</code></pre>
+
+
+
+<h2 id="middleware" title="Network Middleware">Network Middleware and Afterware</h2>
+If you previously used <code>use</code> or <code>useAfter</code> on the networkInterface from the 1.0 of Apollo Client, you will need to update to use Apollo Links as the new way to handle <code>*wares</code> in the 2.0. Apollo Link provides a lot more power for <code>*ware</code> features and more information is available <a href="/docs/link">here</a>. A few examples of migrating custom <code>*ware</code> methods to Apollo Links are shown below:
+
+#### Middleware
+
+<strong>Before</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { createNetworkInterface } from &#39;apollo-client&#39;;
+
+const networkInterface = createNetworkInterface({ uri: &#39;&#x2F;graphql&#39; });
+
+networkInterface.use([{
+  applyMiddleware(req, next) {
+    if (!req.options.headers) {
+      req.options.headers = {};  &#x2F;&#x2F; Create the header object if needed.
+    }
+    req.options.headers[&#39;authorization&#39;] = localStorage.getItem(&#39;token&#39;) ? localStorage.getItem(&#39;token&#39;) : null;
+    next();
+  }
+}]);
+</code></pre>
+
+
+
+<strong>After</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { setContext } from &#39;apollo-link-context&#39;;
+import { createHttpLink } from &#39;apollo-link-http&#39;;
+
+const httpLink = createHttpLink({ uri: &#39;&#x2F;graphql&#39; });
+
+const middlewareLink = setContext(() =&gt; ({
+  headers: {
+    authorization: localStorage.getItem(&#39;token&#39;) || null,
+  }
+}));
+
+&#x2F;&#x2F; use with apollo-client
+const link = middlewareLink.concat(httpLink);
+</code></pre>
+
+
+
+#### Afterware (error handling)
+
+<strong>Before</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { createNetworkInterface } from &#39;apollo-client&#39;;
+import { logout } from &#39;.&#x2F;logout&#39;;
+
+const networkInterface = createNetworkInterface({ uri: &#39;&#x2F;graphql&#39; });
+
+networkInterface.useAfter([{
+  applyAfterware({ response }, next) {
+    if (response.status === 401) {
+      logout();
+    }
+    next();
+  }
+}]);
+</code></pre>
+
+
+
+<strong>After</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { createHttpLink } from &#39;apollo-link-http&#39;;
+import { onError } from &#39;apollo-link-error&#39;;
+
+import { logout } from &#39;.&#x2F;logout&#39;;
+
+const httpLink = createHttpLink({ uri: &#39;&#x2F;graphql&#39; });
+
+const errorLink = onError(({ networkError = {}, graphQLErrors }) =&gt; {
+  if (networkError.statusCode === 401) {
+    logout();
+  }
+})
+
+&#x2F;&#x2F; use with apollo-client
+const link = errorLink.concat(httpLink);
+</code></pre>
+
+
+
+#### Afterware (data manipulation)
+
+<strong>Before</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { createNetworkInterface } from &#39;apollo-client&#39;;
+
+const networkInterface = createNetworkInterface({ uri: &#39;&#x2F;graphql&#39; });
+
+networkInterface.useAfter([{
+  applyAfterware({ response }, next) {
+    if (response.data.user.lastLoginDate) {
+      response.data.user.lastLoginDate = new Date(response.data.user.lastLoginDate)
+    }
+    next();
+  }
+}]);
+</code></pre>
+
+
+
+<strong>After</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloLink } from &#39;apollo-link&#39;;
+import { createHttpLink } from &#39;apollo-link-http&#39;;
+
+const httpLink = createHttpLink({ uri: &#39;&#x2F;graphql&#39; });
+const addDatesLink = new ApolloLink((operation, forward) =&gt; {
+  return forward(operation).map((response) =&gt; {
+    if (response.data.user.lastLoginDate) {
+      response.data.user.lastLoginDate = new Date(response.data.user.lastLoginDate)
+    }
+    return response;
+  })
+});
+
+&#x2F;&#x2F; use with apollo-client
+const link = addDatesLink.concat(httpLink);
+</code></pre>
+
+
+
+#### Afterware (authentication via headers)
+
+<strong>Before</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloClient, createNetworkInterface } from &#39;react-apollo&#39;;
+
+const networkInterface = createNetworkInterface({
+  uri: &#39;&#x2F;graphql&#39;,
+});
+networkInterface.useAfter([
+  {
+    applyAfterware({ response: { headers } }, next) {
+      const token = headers.get(&#39;token&#39;);
+
+      if (token) {
+        localStorage.setItem(&#39;token&#39;, token);
+      }
+
+      next();
+    },
+  },
+]);
+
+const client = new ApolloClient({
+  networkInterface,
+});
+</code></pre>
+
+
+
+<strong>After</strong>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloLink } from &#39;apollo-link&#39;;
+import { createHttpLink } from &#39;apollo-link-http&#39;;
+
+const httpLink = createHttpLink({ uri: &#39;&#x2F;graphql&#39; });
+const afterwareLink = new ApolloLink((operation, forward) =&gt; {
+  return forward(operation).map(response =&gt; {
+    const context = operation.getContext();
+    const { response: { headers } } = context;
+
+    if (headers) {
+      const token = headers.get(&quot;token&quot;);
+
+      if (token) {
+        localStorage.setItem(&quot;token&quot;, token);
+      }
+
+    }
+    return response;
+  });
+});
+
+&#x2F;&#x2F; use with apollo-client
+const link = afterwareLink.concat(httpLink);
+</code></pre>
+
+
+
+For more information on using Apollo Links, check out the <a href="/docs/link">link docs!</a>;
+
+
+<h2 id="redux" title="Redux">Replacing Redux</h2>
+The 2.0 moves away from using Redux as the caching layer in favor of Apollo maintaining its own store through the provided <code>cache</code> passed when creating a client. This allows the new version to be more flexible around how data is cached, and opens the storage of data to many new avenues and view integrations. If you were previously using the Redux integration to do something like logging, you can now use an Apollo Link to log whenever a request is sent to the server. For example:
+
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-js">import { ApolloLink } from &#39;apollo-link&#39;;
+
+const logger = new ApolloLink((operation, forward) =&gt; {
+  console.log(operation.operationName);
+  return forward(operation).map((result) =&gt; {
+    console.log(`received result from ${operation.operationName}`);
+    return result;
+  })
+});
+</code></pre>
+
+
+
+Ultimately we think the move off Redux will open the door for more powerful cache implementations and further performance gains. If you were using the Redux integration for other uses, please reach out or open an issue so we can help find a solution with the 2.0!
+
+If you were using Redux for other purposes in your app with an older version of Apollo, you may have been relying on the fact that the <code>&lt;ApolloProvider store=store&gt;</code> component did double duty as a <a href="https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store" target="_blank" rel="noopener"><code>react-redux</code> <code>&lt;Provider&gt;</code></a>. In react-apollo 2.0, <code>&lt;ApolloProvider&gt;</code> no longer has <code>&lt;Provider&gt;</code> semantics; you’ll have to use <code>&lt;Provider&gt;</code> yourself.
+
+<h2 id="reducers" title="Query Reducers">Query Reducers</h2>
+
+<p>Query reducers have been finally removed in the 2.0, instead we recommend using the more flexible <a href="../essentials/mutations.html"><code>update</code></a> API instead of reducer.</p>
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+         
+              <a class="link primary prev" href="recompose.html">
+                <span class="icon-arrow-left-alt"></span>
+                <span class="subtitle-pagination">Previous</span>
+                Recompose patterns
+              </a>
+         
+          
+          
+           
+              <a class="link primary next" href="../api/apollo-client.html">
+                <span class="subtitle-pagination">Next</span>
+                Apollo Client
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/recipes/2.0-migration.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>

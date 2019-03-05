@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PNFDVBB');</script>
+      <!-- End Google Tag Manager -->
+    
+
+    <!-- Basic -->
+    <title>Developer tools | Apollo Client</title>
+    <meta name="description" content="How to use extensions and developer tools to analyze your data">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <link rel="shortcut icon" type="image/png" href="../images/favicon-apollo.png" sizes="16x16 32x32 64x64">
+    
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apollographql.com/docs/react">
+    <meta property="og:title" content="Developer tools | Apollo Client">
+    <meta property="og:description" content="How to use extensions and developer tools to analyze your data">
+    <meta property="og:image" content="">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Developer tools | Apollo Client">
+    <meta name="twitter:description" content="How to use extensions and developer tools to analyze your data">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="">
+
+    
+    
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic" rel="stylesheet" type="text/css">
+    
+      <link rel="stylesheet" href="../style/bundle-apollo.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+  </head>
+  <body class="">
+    
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNFDVBB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    
+      
+
+  <div class="nav sunset">
+    <div class="nav-group left">
+      <div class="nav-item mobile-button js-sidebar-toggle show-mobile">
+        <span class="icon-menu"></span>
+      </div>
+      <div class="nav-item">
+        
+        <a class="logo-wrapper" href="https://www.apollographql.com/" title="Apollo ">
+          <img src="../images/logo-apollo-space-left.svg" alt="Apollo" class="logo">
+          
+            <span></span>
+          
+        </a>
+      </div>
+    </div>
+
+
+    
+      <div class="nav-group right">
+        <div id="nav-container" class="show-desktop"></div>
+        <script src="https://apollographql-nav.netlify.com/index.js"></script>
+        <script>ApolloNav.initNav({ theme: 'light' }, 'nav-container')</script>
+      </div>
+    
+    </div>
+  
+
+  
+
+<div class="sidebar charcoal">
+  <div class="panel">
+    
+      <div id="sidebar-panel-nav"></div>
+      <script>ApolloNav.initNav({ theme: 'light', id: 'mobile-nav' }, 'sidebar-panel-nav')</script>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo Client</span>
+      
+        <span class="select version-sidebar nochrome">
+          <select class="version-select">
+            
+              <option value="v2.5">2.5</option>
+            
+              <option value="v2.4">2.4</option>
+            
+          </select>
+        </span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-area">
+        <div class="input-symbol small round">
+          <input type="text" placeholder="Search React Guide" id="desktop-search-input">
+          <span class="icon-search"></span>
+        </div>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+
+        <li>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../." class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../why-apollo.html" class="sidebar-link ">
+                  <span>Why Apollo Client?</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../integrations.html" class="sidebar-link ">
+                  <span>View integrations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../react-apollo-migration.html" class="sidebar-link ">
+                  <span>New in React Apollo 2.1</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Essentials</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/get-started.html" class="sidebar-link ">
+                  <span>Get started</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../essentials/local-state.html" class="sidebar-link ">
+                  <span>Local state management</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Features</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="error-handling.html" class="sidebar-link ">
+                  <span>Error handling</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>Server-side rendering</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc current">
+                <a href="" class="sidebar-link current">
+                  <span>Developer tools</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="defer-support.html" class="sidebar-link ">
+                  <span>Deferred queries</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Advanced</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/boost-migration.html" class="sidebar-link ">
+                  <span>Apollo Boost migration</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/network-layer.html" class="sidebar-link ">
+                  <span>Network layer (Apollo Link)</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/caching.html" class="sidebar-link ">
+                  <span>Caching data</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../advanced/fragments.html" class="sidebar-link ">
+                  <span>Using fragments</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/authentication.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/testing.html" class="sidebar-link ">
+                  <span>Testing React components</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/static-typing.html" class="sidebar-link ">
+                  <span>Using TypeScript</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/performance.html" class="sidebar-link ">
+                  <span>Improving performance</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/babel.html" class="sidebar-link ">
+                  <span>Compiling queries with Babel</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/webpack.html" class="sidebar-link ">
+                  <span>Loading queries with Webpack</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/meteor.html" class="sidebar-link ">
+                  <span>Integrating with Meteor</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/recompose.html" class="sidebar-link ">
+                  <span>Recompose patterns</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../recipes/2.0-migration.html" class="sidebar-link ">
+                  <span>Apollo Client 1.0 migration</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+
+        <li>
+          
+            <div class="heading-toc">API</div>
+          
+
+          <ul class="list-toc">
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/apollo-client.html" class="sidebar-link ">
+                  <span>Apollo Client</span>
+                </a>
+              </li>
+              
+            
+              
+              
+              <li class="item-toc ">
+                <a href="../api/react-apollo.html" class="sidebar-link ">
+                  <span>React Apollo</span>
+                </a>
+              </li>
+              
+            
+          </ul>
+        </li>
+
+        <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="header-content">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title-page">
+              Developer tools
+            </h1>
+            
+              <div class="subtitle-page">
+                How to use extensions and developer tools to analyze your data
+              </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="document-formatting">
+          <h2 id="engine">Apollo Engine</h2>
+
+<p><a href="/engine">Apollo Engine</a> is the best way to run GraphQL in production. It is a GraphQL gateway that helps you implement and run GraphQL over REST or any other backend with confidence. With Engine, you get a number of incredible features to help you understand your GraphQL service, and to make it run faster!</p>
+<ul>
+<li><strong>Improve response times</strong>: With caching and persisted queries</li>
+<li><strong>Identify and understand hotspots</strong>: With performance tracing and history</li>
+<li><strong>Keep an eye on your API</strong>: With alerts and regular reports</li>
+</ul>
+<p>Apollo Engine can run anywhere your GraphQL server can. It operates in one of two modes, either as a package you install into your Node server, or as a standalone proxy you can run with Docker, which works with any GraphQL server library. We’ve architected it to work for the most demanding of environments.</p>
+<p>To learn more about Apollo Engine, check out the <a href="/engine">guide</a></p>
+<h2 id="devtools">Apollo Client Devtools</h2>
+
+<p>The <a href="https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm" target="_blank" rel="noopener">Apollo Client Devtools</a> is a Chrome extension.</p>
+<h3 id="features">Features</h3>
+
+<p>The devtools appear as an “Apollo” tab in your Chrome inspector, along side the “Elements” and “Console” tabs. There are currently 3 main features of the devtools:</p>
+<ul>
+<li>GraphiQL: Send queries to your server through the Apollo network interface, or query the Apollo cache to see what data is loaded.</li>
+<li>Normalized store inspector: Visualize your GraphQL store the way Apollo Client sees it, and search by field names or values.</li>
+<li><p>Watched query inspector: View active queries and variables, and locate the associated UI components.</p>
+<p><img src="../assets/devtools/apollo-client-devtools/apollo-devtools-graphiql.png" alt="GraphiQL Console"></p>
+</li>
+</ul>
+<p>Make requests against either your app’s GraphQL server or the Apollo Client cache through the Chrome developer console. This version of GraphiQL leverages your app’s network interface, so there’s no configuration necessary — it automatically passes along the proper HTTP headers, etc. the same way your Apollo Client app does.</p>
+<p><img src="../assets/devtools/apollo-client-devtools/apollo-devtools-store.png" alt="Store Inspector"></p>
+<p>View the state of your client-side cache as a tree and inspect every object inside. Visualize the <a href="https://blog.apollographql.com/the-concepts-of-graphql-bc68bd819be3" target="_blank" rel="noopener">mental model</a> of the Apollo cache. Search for specific keys and values in the store and see the path to those keys highlighted.</p>
+<p><img src="../assets/devtools/apollo-client-devtools/apollo-devtools-queries.png" alt="Watched Query Inspector"></p>
+<p>View the queries being actively watched on any given page. See when they’re loading, what variables they’re using, and, if you’re using React, which React component they’re attached to. Angular support coming soon.</p>
+<h3 id="installation">Installation</h3>
+
+<p>You can install the extension via the <a href="https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm" target="_blank" rel="noopener">Chrome Webstore</a>.
+If you want to install a local version of the extension instead, skip ahead to the <strong>Developing</strong> section.</p>
+<h3 id="configuration">Configuration</h3>
+
+<p>While your app is in dev mode, the devtools will appear as an “Apollo” tab in your chrome inspector. To enable the devtools in your app even in production, pass <code>connectToDevTools: true</code> to the ApolloClient constructor in your app.  Pass <code>connectToDevTools: false</code> if want to manually disable this functionality.</p>
+<p>The “Apollo” tab will appear in the Chrome console if a global <code>window.__APOLLO_CLIENT__</code> object exists in your app. Apollo Client adds this hook to the window automatically unless <code>process.env.NODE_ENV === &#39;production&#39;</code>. If you would like to use the devtools in production, just manually attach your Apollo Client instance to <code>window.__APOLLO_CLIENT__</code> or pass <code>connectToDevTools: true</code> to the constructor.</p>
+<p>Find more information about contributing and debugging on the <a href="https://github.com/apollographql/apollo-client-devtools" target="_blank" rel="noopener">Apollo Client DevTools GitHub page</a>.</p>
+<h2 id="codegen">Apollo Codegen</h2>
+
+<p>Apollo Codegen is a tool to generate API code or type annotations based on a GraphQL schema and query documents.</p>
+<p>It currently generates Swift code, TypeScript annotations, Flow annotations, and Scala code, we hope to add support for other targets in the future.</p>
+<p>See <a href="https://github.com/apollographql/apollo-ios" target="_blank" rel="noopener">Apollo iOS</a> for details on the mapping from GraphQL results to Swift types, as well as runtime support for executing queries and mutations. For Scala, see <a href="https://github.com/apollographql/react-apollo-scalajs" target="_blank" rel="noopener">React Apollo Scala.js</a> for details on how to use generated Scala code in a Scala.js app with Apollo Client.</p>
+<h3 id="usage">Usage</h3>
+
+<p>If you want to use <code>apollo-codegen</code>, you can install it command globally:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-bash">npm install -g apollo-codegen
+</code></pre>
+<h3 id="introspect"><code>introspect-schema</code></h3>
+
+<p>The purpose of this command is to create a JSON introspection dump file for a given graphql schema. The input schema can be fetched from a remote graphql server or from a local file. The resulting JSON introspection dump file is needed as input to the <a href="#generate">generate</a> command.</p>
+<p>To download a GraphQL schema by sending an introspection query to a server:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-bash">apollo-codegen introspect-schema http:&#x2F;&#x2F;localhost:8080&#x2F;graphql --output schema.json
+</code></pre>
+<p>You can use the <code>header</code> option to add additional HTTP headers to the request. For example, to include an authentication token, use <code>--header &quot;Authorization: Bearer &lt;token&gt;&quot;</code>.</p>
+<p>You can use the <code>insecure</code> option to ignore any SSL errors (for example if the server is running with self-signed certificate).</p>
+<p>To generate a GraphQL schema introspection JSON from a local GraphQL schema:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-bash">apollo-codegen introspect-schema schema.graphql --output schema.json
+</code></pre>
+<h3 id="generate"><code>generate</code></h3>
+
+<p>The purpose of this command is to generate types for query and mutation operations made against the schema (it will not generate types for the schema itself).</p>
+<p>This tool will generate Swift code by default from a set of query definitions in <code>.graphql</code> files:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-bash">apollo-codegen generate **&#x2F;*.graphql --schema schema.json --output API.swift
+</code></pre>
+<p>You can also generate type annotations for TypeScript, Flow, or Scala using the <code>--target</code> option:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-bash"># TypeScript
+apollo-codegen generate **&#x2F;*.graphql --schema schema.json --target typescript --output operation-result-types.ts
+# Flow
+apollo-codegen generate **&#x2F;*.graphql --schema schema.json --target flow --output operation-result-types.flow.js
+# Scala
+apollo-codegen generate **&#x2F;*.graphql --schema schema.json --target scala --output operation-result-types.scala
+</code></pre>
+<h3 id="template"><code>gql</code> template support</h3>
+
+<p>If the source file for generation is a javascript or typescript file, the codegen will try to extrapolate the queries inside the <a href="https://github.com/apollographql/graphql-tag" target="_blank" rel="noopener">gql tag</a> templates.</p>
+<p>The tag name is configurable using the CLI <code>--tag-name</code> option.</p>
+<h3 id="graphqlconfig" title=".graphqlconfig"><a href="https://github.com/graphcool/graphql-config" target="_blank" rel="noopener">.graphqlconfig</a> support</h3>
+
+<p>Instead of using the <code>--schema</code> option to point out your GraphQL schema, you can specify it in a <code>.graphqlconfig</code> file.</p>
+<p>In case you specify multiple schemas in your <code>.graphqlconfig</code> file, choose which one to pick by using the <code>--project-name</code> option.</p>
+<h3 id="typescript-and-flow">Typescript and Flow</h3>
+
+<p>When using <code>apollo-codegen</code> with Typescript or Flow, make sure to add the <code>__typename</code> introspection field to every selection set within your graphql operations.</p>
+<p>If you’re using a client like <code>apollo-client</code> that does this automatically for your GraphQL operations, pass in the <code>--addTypename</code> option to <code>apollo-codegen</code> to make sure the generated Typescript and Flow types have the <code>__typename</code> field as well. This is required to ensure proper type generation support for <code>GraphQLUnionType</code> and <code>GraphQLInterfaceType</code> fields.</p>
+<p><strong>Why is the __typename field required?</strong></p>
+<p>Using the type information from the GraphQL schema, we can infer the possible types for fields. However, in the case of a <code>GraphQLUnionType</code> or <code>GraphQLInterfaceType</code>, there are multiple types that are possible for that field. This is best modeled using a disjoint union with the <code>__typename</code>
+as the discriminant.</p>
+<p>For example, given a schema:
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-graphql">
+interface Character {
+  name: String!
+}
+
+type Human implements Character {
+  homePlanet: String
+}
+
+type Droid implements Character {
+  primaryFunction: String
+}
+</code></pre></p>
+<p>Whenever a field of type <code>Character</code> is encountered, it could be either a Human or Droid. Human and Droid objects
+will have a different set of fields. Within your application code, when interacting with a <code>Character</code> you’ll want to make sure to handle both of these cases.</p>
+<p>Given this query:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-graphql">query Characters {
+  characters(episode: NEW_HOPE) {
+    name
+
+    ... on Human {
+      homePlanet
+    }
+
+    ... on Droid {
+      primaryFunction
+    }
+  }
+}
+</code></pre>
+<p>Apollo Codegen will generate a union type for Character.</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-javascript">export type CharactersQuery = {
+  characters: Array&lt;{
+    __typename: &#39;Human&#39;,
+    name: string,
+    homePlanet: ?string
+  } | {
+    __typename: &#39;Droid&#39;,
+    name: string,
+    primaryFunction: ?string
+  }&gt;
+}
+</code></pre>
+<p>This type can then be used as follows to ensure that all possible types are handled:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style=""><code class="language-javascript">function CharacterFigures({ characters }: CharactersQuery) {
+  return characters.map(character =&gt; {
+    switch(character.__typename) {
+      case &quot;Human&quot;:
+        return &lt;HumanFigure homePlanet={character.homePlanet} name={character.name} &#x2F;&gt;
+      case &quot;Droid&quot;:
+        return &lt;DroidFigure primaryFunction={character.primaryFunction} name={character.name} &#x2F;&gt;
+    }
+  });
+}
+</code></pre>
+
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="content-wrapper">
+          
+          
+         
+              <a class="link primary prev" href="server-side-rendering.html">
+                <span class="icon-arrow-left-alt"></span>
+                <span class="subtitle-pagination">Previous</span>
+                Server-side rendering
+              </a>
+         
+          
+          
+           
+              <a class="link primary next" href="defer-support.html">
+                <span class="subtitle-pagination">Next</span>
+                Deferred queries
+                  <span class="icon-arrow-right-alt"></span>
+              </a>
+           
+          
+        </div>
+      </div>
+
+      <div class="github">
+        <a class="link tertiary " href="https://github.com/apollographql/apollo-client/tree/master/docs/source/features/developer-tooling.md" target="_blank">
+          <span class="icon-github"></span>Edit on GitHub</a>
+      </div>
+
+      
+    </div>
+
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/combine/npm/prismjs@1.15.0/components/prism-bash.min.js,npm/prismjs@1.15.0/components/prism-graphql.min.js,npm/prismjs@1.15.0/components/prism-json.min.js,npm/prismjs@1.15.0/components/prism-jsx.min.js,npm/prismjs@1.15.0/components/prism-less.min.js,npm/prismjs@1.15.0/components/prism-swift.min.js,npm/prismjs@1.15.0/components/prism-typescript.min.js,npm/prismjs@1.15.0/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/smooth-scroll@12.1.5/dist/js/smooth-scroll.min.js"></script>
+
+    <script>
+      // Used by the main.js script below.
+      docsConfigRoot = '/docs/react/';
+    </script>
+    <script src="../script/main.js"></script>
+
+    
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+    </script>
+
+    
+
+    
+      <script>
+        
+        var analytics;
+
+        <!-- Segment.io -->
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page();
+        }}();
+      </script>
+    
+
+    // search box
+    
+      <script>
+        ['desktop'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            
+            
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      </script>
+    
+
+    
+      <script>
+        var REDIRECTS = {
+  "/docs/react/essentials/get-started.html#api": "docs/react/api/react-apollo.html",
+  "/docs/react/essentials/queries.html#api": "docs/react/api/react-apollo.html#graphql-query-options",
+  "/docs/react/basics/mutations.html#api": "docs/react/api/react-apollo.html#graphql-mutation-options",
+  "/docs/react/recipes/simple-example.html": "docs/react/essentials/get-started.html",
+  "/docs/react/api/apollo-client.html#FetchPolicy": "docs/react/api/react-apollo.html#graphql-config-options-fetchPolicy",
+  "/docs/react/api/apollo-client.html#ErrorPolicy": "docs/react/api/react-apollo.html#graphql-config-options-errorPolicy",
+  "/docs/react/features/performance.html": "/docs/react/recipes/performance.html"
+};
+
+        function redirect() {
+          // Support redirects of the form /path#hash
+          var locationKey = location.pathname + location.hash;
+          if (REDIRECTS[locationKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+          }
+
+          // Support redirects of the form #hash (works for any path)
+          var hashKey = location.hash;
+          if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+          }
+        }
+
+        // Redirect now
+        redirect();
+
+        // Redirect on hash change
+        window.onhashchange = redirect;
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: '#555',
+            },
+            button: {
+              text: '#333',
+              background: '#CCC',
+            },
+          },
+        })
+      });
+    </script>
+  </body>
+</html>
